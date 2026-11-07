@@ -1,0 +1,65 @@
+{
+  "format": "qwenpu-forward-stories260k-v1",
+  "revisions": {
+    "qwenputer": "bec1a0c9654ac8151b6f36ed0154a19c53141384",
+    "qwenpu": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+    "prism_llama_cpp": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+    "bonsai_27b_gguf": "f10afb355f104535e3e3e98cf7ab7795c72bd292",
+    "qwen_3_5_0_8b": "2fc06364715b967f1860aea9cf38778875588b17"
+  },
+  "stock_gguf": {
+    "bytes": 3803452480,
+    "sha256": "17ef842e47450caeb8eaa3ebfbbab5d2f2278b62b79be107985fb69a2f819aa0"
+  },
+  "tokenizer": {
+    "bytes": 12807982,
+    "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+  },
+  "guests": {
+    "one": {
+      "bytes": 377332,
+      "sha256": "2a9f6da85bb5abc71f178711f0d9eef2ca64b7c6c4eb59bfa88074fe86821a40"
+    },
+    "three": {
+      "bytes": 377356,
+      "sha256": "bed6feefe630ae8079aba4f0d7d1b6d2c25f3f23f4f9149e99fa5d33a35a7b11"
+    }
+  },
+  "checkpoint": {
+    "bytes": 3825213248,
+    "sha256": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1"
+  },
+  "payloads": {
+    "qwenpu.forward.graph": {
+      "bytes": 18212552,
+      "sha256": "ed842a828806f88f9a828e31ee5d10902db48126dcfb1eb57f0c1b0c32c9447c"
+    },
+    "qwenpu.forward.program.stories260k.one": {
+      "bytes": 1765248,
+      "sha256": "ce808f4db086b30dca670865ee59e3f33c6faac3117c624370e33c829103cedb"
+    },
+    "qwenpu.forward.program.stories260k.three": {
+      "bytes": 1782712,
+      "sha256": "9f56591bf91ba2d838fa43de8fde2309bed14618692f00a8d086d8e40b31af6a"
+    }
+  },
+  "tensor_verification": {
+    "original_tensors": 851,
+    "q1_0_tensors": 498,
+    "original_metadata_equal": true,
+    "original_tensor_bytes_equal": true,
+    "original_tensor_data_sha256": "a0eb5d7f8a56015984e34abab4ed103d47316cb93219e06652681b773973dc03",
+    "circuit_payloads_equal": true,
+    "circuit_payload_bytes": 21760512,
+    "source_bytes": 3803452480,
+    "checkpoint_bytes": 3825213248
+  },
+  "circuit": {
+    "text_vocab": 248320,
+    "chip_dims": 6914,
+    "allocated_slots": 2517,
+    "widened_width": 7680,
+    "ballast_slots": 30,
+    "chip_layers": 23
+  }
+}

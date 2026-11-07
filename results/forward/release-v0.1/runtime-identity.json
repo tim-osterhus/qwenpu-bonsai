@@ -1,0 +1,87 @@
+{
+  "validation_date": "2026-11-07",
+  "platform": {
+    "os": "Windows 10 22H2 x64",
+    "os_build": "19045.7548",
+    "gpu": "NVIDIA GeForce GTX 1080",
+    "gpu_memory_mib": 8192,
+    "driver": "582.66",
+    "compute_capability": "6.1"
+  },
+  "build": {
+    "prism_llama_cpp_revision": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+    "prism_release": "prism-b9596-9fcaed7",
+    "profile": "forward",
+    "msvc": "19.44.35219.0",
+    "cmake": "3.31.6-msvc6",
+    "ninja": "1.12.1",
+    "python": "3.11.9",
+    "torch": "2.14.1+cu126",
+    "nvrtc": "12.6",
+    "cuda_architecture": "sm_61",
+    "runtime_cuda_archives": {
+      "llama-prism-b1-9fcaed7-bin-win-cuda-12.4-x64.zip": {
+        "sha256": "6d109e2930c0eaf2f729c3a6fc58dd7809ce2ba7047bfb294547cc389af6de5d"
+      },
+      "cudart-llama-bin-win-cuda-12.4-x64.zip": {
+        "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+      }
+    }
+  },
+  "validation_report": {
+    "name": "validation.json",
+    "sha256": "09e7da01d9e6d9ad551970fd664efee8bb6e9e41ae65b7608eac47db94a8ece8"
+  },
+  "checkpoint": {
+    "name": "Bonsai-27B-Q1_0-QwenPU-stories260k.gguf",
+    "bytes": 3825213248,
+    "sha256": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1"
+  },
+  "probe": {
+    "name": "probe_forward.exe",
+    "bytes": 292352,
+    "sha256": "74a3d486e3ef3aff24e0acc67bb824552784025e63935c4ee7915ef90dac5e4e"
+  },
+  "runtime": {
+    "cublas64_12.dll": {
+      "bytes": 100033536,
+      "sha256": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c"
+    },
+    "cublasLt64_12.dll": {
+      "bytes": 473551360,
+      "sha256": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f"
+    },
+    "cudart64_12.dll": {
+      "bytes": 553984,
+      "sha256": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc"
+    },
+    "ggml-base.dll": {
+      "bytes": 645120,
+      "sha256": "012e304ef636eeb84a871d91f0a43e5bd0f0401945590b9597c2e303dc526772"
+    },
+    "ggml-cpu.dll": {
+      "bytes": 914944,
+      "sha256": "86489061b8a99b31f53a47e5be1971229a60cb0fd99e70c9e9fbf9fb2638a201"
+    },
+    "ggml-cuda.dll": {
+      "bytes": 583418368,
+      "sha256": "dd222c5fdd4d214f49826930de9c53750080ca6f59b0ab6e2ecf3ed413ff29dd"
+    },
+    "ggml-rpc.dll": {
+      "bytes": 121856,
+      "sha256": "43459de8b080d7ffe7679658e24f956f4f7f39fcfebadbd5f4797520572b881b"
+    },
+    "ggml.dll": {
+      "bytes": 67072,
+      "sha256": "0f7d8f92b754215a70fbe7334e0db70a9605295faba4c388f366d2bdef1c7be8"
+    },
+    "llama.dll": {
+      "bytes": 2179584,
+      "sha256": "f8323505a4356a1bc5148dae5a09f8f7b2e83b4e0561d68880bfb5e3ee1efcf9"
+    },
+    "qwenpu-forward-cuda.cubin": {
+      "bytes": 62880,
+      "sha256": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49"
+    }
+  }
+}

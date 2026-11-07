@@ -1,0 +1,137 @@
+{
+  "repository": "millrace-ai/qwenpu-bonsai",
+  "downloaded_revision": "5ea1e1a9a56a598397d8d6faaaf06a1b7b18ee93",
+  "checkpoint": {
+    "bytes": 3825213248,
+    "sha256": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1"
+  },
+  "checkpoint_filename": "Bonsai-27B-Q1_0-QwenPU-stories260k.gguf",
+  "checkpoint_sha256_before": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1",
+  "checkpoint_sha256_after": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1",
+  "release_manifest_sha256": "b2f9e5692f54f672ce3ab49cdd9d99b5d834efe8de11a8a802a593a63d384d14",
+  "requested_tests": [
+    "first-vmat"
+  ],
+  "status": "PASS",
+  "first_vmat": {
+    "status": "PASS",
+    "exit_code": 0,
+    "checks": {
+      "exact_bridge_trace": true,
+      "exact_instruction_trace": true,
+      "first_prediction_from_tool_close": true,
+      "free_running_selection": true,
+      "cuda_layers_executed": true,
+      "cache_and_position_preserved": true,
+      "ownership_boundary": true,
+      "expected_echo": true
+    },
+    "passed": true,
+    "expected_record_tokens": 3252,
+    "actual_record_tokens": 3252,
+    "expected_selected_tokens": 3253,
+    "actual_selected_tokens": 3253,
+    "first_difference": null,
+    "echo": "",
+    "wall_seconds": 46.119614899973385,
+    "record_tokens_per_second": 634.0157646109245,
+    "selected_tokens_per_second": 634.2107264081603,
+    "native": {
+      "phase": "result",
+      "released": false,
+      "chip_only_steps": 3253,
+      "echoed_text_tokens": 0,
+      "cuda_layer_calls": 74888,
+      "position_correct": true,
+      "cache_equal_during_chip": true,
+      "elapsed_seconds": 5.12921,
+      "echoed_bytes": []
+    },
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 13.1,
+        "gpu_mib": 1153,
+        "system_ram_used_bytes": 16177065984,
+        "available_ram_bytes": 18101805056
+      },
+      "stages": {
+        "first-vmat": {
+          "tree_cpu_pct": 170.89843751067548,
+          "system_cpu_pct": 46.1,
+          "working_set_bytes": 5177884672,
+          "private_commit_bytes": 7094759424,
+          "system_ram_used_bytes": 21161967616,
+          "gpu_mib": 5299
+        }
+      }
+    }
+  },
+  "reference": {
+    "elf": "stories_vx_one.elf",
+    "elf_sha256": "485bf9b319b81d6ac8f006b03962f6061a030353fc5e47a9df29cefab24a5b6d",
+    "reference_sha256": "15dc55f0ae5448c1b5de488f27cbe945e17717bdc2791b2aad6b2d76baa0e0b7",
+    "selected_reference_sha256": "c621ccdd2576cab33601ea93d916606783d677d14adeaa0f10f87b7f5b2a15d7",
+    "record_tokens": 51187,
+    "selected_tokens": 51194,
+    "first_vmat": {
+      "first_record_token": 3184,
+      "last_record_token": 3252,
+      "selected_tokens_through": 3253
+    },
+    "last_vmat": {
+      "first_record_token": 50856,
+      "last_record_token": 50924,
+      "selected_tokens_through": 50925
+    },
+    "vmat_count": 242,
+    "output": "Once\n"
+  },
+  "probe": {
+    "name": "probe_forward.exe",
+    "bytes": 292352,
+    "sha256": "74a3d486e3ef3aff24e0acc67bb824552784025e63935c4ee7915ef90dac5e4e"
+  },
+  "runtime": {
+    "cublas64_12.dll": {
+      "bytes": 100033536,
+      "sha256": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c"
+    },
+    "cublasLt64_12.dll": {
+      "bytes": 473551360,
+      "sha256": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f"
+    },
+    "cudart64_12.dll": {
+      "bytes": 553984,
+      "sha256": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc"
+    },
+    "ggml-base.dll": {
+      "bytes": 645120,
+      "sha256": "012e304ef636eeb84a871d91f0a43e5bd0f0401945590b9597c2e303dc526772"
+    },
+    "ggml-cpu.dll": {
+      "bytes": 914944,
+      "sha256": "86489061b8a99b31f53a47e5be1971229a60cb0fd99e70c9e9fbf9fb2638a201"
+    },
+    "ggml-cuda.dll": {
+      "bytes": 583418368,
+      "sha256": "dd222c5fdd4d214f49826930de9c53750080ca6f59b0ab6e2ecf3ed413ff29dd"
+    },
+    "ggml-rpc.dll": {
+      "bytes": 121856,
+      "sha256": "43459de8b080d7ffe7679658e24f956f4f7f39fcfebadbd5f4797520572b881b"
+    },
+    "ggml.dll": {
+      "bytes": 67072,
+      "sha256": "0f7d8f92b754215a70fbe7334e0db70a9605295faba4c388f366d2bdef1c7be8"
+    },
+    "llama.dll": {
+      "bytes": 2179584,
+      "sha256": "f8323505a4356a1bc5148dae5a09f8f7b2e83b4e0561d68880bfb5e3ee1efcf9"
+    },
+    "qwenpu-forward-cuda.cubin": {
+      "bytes": 62880,
+      "sha256": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49"
+    }
+  },
+  "raw_validation_report_sha256": "3e734dccd8b92f7868554b09639e785ec4c6264308f83a27117672a19ac6d500"
+}

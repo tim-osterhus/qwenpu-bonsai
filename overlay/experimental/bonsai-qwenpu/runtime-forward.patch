@@ -1,0 +1,462 @@
+diff --git a/include/llama.h b/include/llama.h
+index 646ba13..710c96a 100644
+--- a/include/llama.h
++++ b/include/llama.h
+@@ -968,6 +968,25 @@ extern "C" {
+             struct llama_context * ctx,
+               struct llama_batch   batch);
+ 
++    // Experimental packed QwenPU forward graph. A nonnegative prediction owns
++    // the next token; -1 leaves sampling to the original language logits.
++    struct llama_qwenpu_forward_info {
++        uint32_t text_vocab;
++        uint32_t chip_width;
++        uint32_t widened_width;
++        uint32_t chip_layers;
++        int32_t prediction;
++        int32_t last_text_position;
++        uint64_t text_steps;
++        uint64_t chip_only_steps;
++        uint64_t cuda_layer_calls;
++        float kept_l2;
++    };
++    // A named snapshot restores recurrent state and keeps the prefill's lag
++    // history. A null name clears both and starts a new circuit stream.
++    LLAMA_API int32_t llama_qwenpu_forward_reset(struct llama_context * ctx, const char * program_tensor);
++    LLAMA_API int32_t llama_qwenpu_forward_get(struct llama_context * ctx, struct llama_qwenpu_forward_info * info);
++
+     // Set the number of threads used for decoding
+     // n_threads is the number of threads used for generation (single token)
+     // n_threads_batch is the number of threads used for prompt and batch processing (multiple tokens)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index d15ccfd..d4660f7 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -16,6 +16,8 @@ add_library(llama
+             llama-batch.cpp
+             llama-chat.cpp
+             llama-context.cpp
++            llama-qwenpu-forward.cpp
++            qwenpu-forward-cuda.cpp
+             llama-cparams.cpp
+             llama-grammar.cpp
+             llama-graph.cpp
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 5f43818..3fae35d 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -361,11 +361,36 @@ llama_context::llama_context(
+     if (!hparams.vocab_only) {
+         LLAMA_LOG_DEBUG("%s: enumerating backends\n", __func__);
+ 
++        if (!hparams.no_alloc && !model.qwenpu_forward_checkpoint.empty()) {
++            if (model.n_devices() != 1 || model.n_gpu_layers() <= hparams.n_layer_all ||
++                    cparams.n_seq_max != 1 || cparams.ctx_type != LLAMA_CONTEXT_TYPE_DEFAULT ||
++                    cparams.embeddings || !cparams.offload_kqv) {
++                throw std::runtime_error("QwenPU forward requires one sequence and one fully offloaded CUDA model");
++            }
++            const auto native = std::find_if(backends.begin(), backends.end(), [&](const auto & backend) {
++                return ggml_backend_get_device(backend.get()) == model.dev_output();
++            });
++            if (native == backends.end()) {
++                throw std::runtime_error("QwenPU forward could not find the CUDA model backend");
++            }
++            if (ggml_backend_buffer_get_type(model.tok_embd->buffer) != ggml_backend_get_default_buffer_type(native->get())) {
++                throw std::runtime_error("QwenPU forward requires the packed Bonsai embedding on CUDA");
++            }
++            qwenpu_forward = std::make_unique<llama_qwenpu_forward>(
++                native->get(), model.qwenpu_forward_checkpoint.c_str(), model.vocab.n_tokens(), hparams.n_embd);
++        }
++
+         backend_buft.clear();
+         backend_ptrs.clear();
+         backend_buf_exp_size.clear();
+ 
+         for (auto & backend : backends) {
++            if (qwenpu_forward && backend.get() == backend_cpu) {
++                auto * packed = qwenpu_forward->backend();
++                backend_ptrs.push_back(packed);
++                backend_buft.push_back(ggml_backend_get_default_buffer_type(packed));
++                backend_buf_exp_size.push_back(0);
++            }
+             auto * buft = ggml_backend_get_default_buffer_type(backend.get());
+             auto backend_type = ggml_backend_dev_type(ggml_backend_get_device(backend.get()));
+ 
+@@ -458,6 +483,10 @@ llama_context::~llama_context() {
+         }
+     }
+     ggml_opt_free(opt_ctx);
++    if (qwenpu_forward) {
++        ggml_backend_sched_synchronize(sched.get());
++        sched.reset();
++    }
+ }
+ 
+ void llama_context::sched_reserve() {
+@@ -1418,6 +1447,11 @@ llm_graph_result * llama_context::process_ubatch(const llama_ubatch & ubatch, ll
+     auto * res = gf_res_prev.get();
+     auto * gf  = res->get_gf();
+ 
++    if (qwenpu_forward) {
++        // The circuit and language CUDA streams share allocator storage.
++        ggml_backend_sched_synchronize(sched.get());
++    }
++
+     // the new graph parameters
+     // in order to correctly reuse a graph, it's full topology has to be uniquely determined by these parameters
+     const auto gparams = graph_params(res, ubatch, mctx, gtype);
+@@ -1475,6 +1509,12 @@ llm_graph_result * llama_context::process_ubatch(const llama_ubatch & ubatch, ll
+         return nullptr;
+     }
+ 
++    if (res->t_qwenpu_kept && !qwenpu_forward->read_output(
++            res->t_qwenpu_kept, gtype == LLM_GRAPH_TYPE_QWENPU_ONLY, ubatch.pos[0])) {
++        ret = GGML_STATUS_FAILED;
++        return nullptr;
++    }
++
+     ret = GGML_STATUS_SUCCESS;
+ 
+     return res;
+@@ -1828,6 +1868,31 @@ int llama_context::decode(const llama_batch & batch_inp) {
+     const int64_t n_vocab = vocab.n_tokens();
+     const int64_t n_embd  = hparams.n_embd_inp();
+ 
++    if (qwenpu_forward) {
++        if (batch_inp.n_tokens != 1 || !batch_inp.token || batch_inp.embd ||
++                !sampling.samplers.empty() || (batch_inp.n_seq_id && batch_inp.n_seq_id[0] != 1) ||
++                (batch_inp.seq_id && (!batch_inp.seq_id[0] || batch_inp.seq_id[0][0] != 0)) ||
++                !qwenpu_forward->accepts(batch_inp.token[0])) {
++            LLAMA_LOG_ERROR("%s: QwenPU forward requires one valid token in sequence zero\n", __func__);
++            return -1;
++        }
++        if (batch_inp.token[0] >= n_vocab) {
++            // Chip tokens are outside Bonsai's vocabulary and never enter its
++            // memory allocator. Build the chip-only form of the same decoder.
++            sched_reserve();
++            llama_ubatch ubatch = balloc->ubatch_reserve(1, 1);
++            ubatch.token[0] = batch_inp.token[0];
++            ubatch.pos[0] = memory->seq_pos_max(0);
++            n_outputs = 0;
++            output_swaps.clear();
++            ggml_status status;
++            if (!process_ubatch(ubatch, LLM_GRAPH_TYPE_QWENPU_ONLY, nullptr, status)) {
++                return status == GGML_STATUS_ALLOC_FAILED ? -2 : -3;
++            }
++            return 0;
++        }
++    }
++
+     // when computing embeddings, all tokens are output
+     const bool output_all   = cparams.embeddings;
+     const bool has_samplers = !sampling.samplers.empty();
+@@ -2560,6 +2625,7 @@ llm_graph_params llama_context::graph_params(
+         /*.n_outputs   =*/ n_outputs,
+         /*.cb          =*/ graph_get_cb(),
+         /*.res         =*/ res,
++        /*.qwenpu_forward =*/ ubatch.n_tokens == 1 && gtype != LLM_GRAPH_TYPE_ENCODER ? qwenpu_forward.get() : nullptr,
+     };
+ }
+ 
+@@ -4388,6 +4454,30 @@ int32_t llama_decode(
+     return ret;
+ }
+ 
++int32_t llama_qwenpu_forward_reset(llama_context * ctx, const char * program_tensor) {
++    auto * qwenpu = ctx ? ctx->get_qwenpu_forward() : nullptr;
++    if (!qwenpu) {
++        return -1;
++    }
++    try {
++        ctx->synchronize();
++        qwenpu->reset(program_tensor);
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
++int32_t llama_qwenpu_forward_get(llama_context * ctx, llama_qwenpu_forward_info * info) {
++    auto * qwenpu = ctx ? ctx->get_qwenpu_forward() : nullptr;
++    if (!qwenpu || !info) {
++        return -1;
++    }
++    *info = qwenpu->info();
++    return 0;
++}
++
+ //
+ // perf
+ //
+diff --git a/src/llama-context.h b/src/llama-context.h
+index de93d0c..f7cc6f4 100644
+--- a/src/llama-context.h
++++ b/src/llama-context.h
+@@ -7,6 +7,7 @@
+ #include "llama-adapter.h"
+ #include "llama-impl.h"
+ #include "llama-memory.h"
++#include "llama-qwenpu-forward.h"
+ 
+ #include "ggml-cpp.h"
+ #include "ggml-opt.h"
+@@ -57,6 +58,8 @@ struct llama_context {
+ 
+     void synchronize();
+ 
++    llama_qwenpu_forward * get_qwenpu_forward() const { return qwenpu_forward.get(); }
++
+     const llama_model   & get_model()   const;
+     const llama_cparams & get_cparams() const;
+ 
+@@ -363,6 +366,7 @@ private:
+ 
+     ggml_backend_t backend_cpu = nullptr;
+     std::vector<ggml_backend_ptr> backends;
++    std::unique_ptr<llama_qwenpu_forward> qwenpu_forward;
+ 
+     // training
+     ggml_opt_context_t opt_ctx = nullptr;
+diff --git a/src/llama-graph.cpp b/src/llama-graph.cpp
+index b3d9863..825c7d4 100644
+--- a/src/llama-graph.cpp
++++ b/src/llama-graph.cpp
+@@ -953,6 +953,7 @@ int64_t llm_graph_result::get_max_nodes() const {
+ 
+ void llm_graph_result::reset() {
+     t_inp_tokens  = nullptr;
++    t_qwenpu_kept = nullptr;
+     t_inp_embd    = nullptr;
+     t_logits      = nullptr;
+     t_embd        = nullptr;
+diff --git a/src/llama-graph.h b/src/llama-graph.h
+index ac8b9e2..1ea015a 100644
+--- a/src/llama-graph.h
++++ b/src/llama-graph.h
+@@ -27,6 +27,7 @@ class llama_kv_cache_iswa_context;
+ class llama_memory_recurrent_context;
+ class llama_memory_hybrid_context;
+ class llama_memory_hybrid_iswa_context;
++class llama_qwenpu_forward;
+ 
+ // certain models (typically multi-modal) can produce different types of graphs
+ enum llm_graph_type {
+@@ -34,6 +35,7 @@ enum llm_graph_type {
+     LLM_GRAPH_TYPE_ENCODER,
+     LLM_GRAPH_TYPE_DECODER,
+     LLM_GRAPH_TYPE_DECODER_MTP,
++    LLM_GRAPH_TYPE_QWENPU_ONLY,
+ };
+ 
+ enum llm_ffn_op_type : int {
+@@ -697,6 +699,7 @@ struct llm_graph_params {
+     llm_graph_cb cb;
+ 
+     llm_graph_result * res;
++    llama_qwenpu_forward * qwenpu_forward = nullptr;
+ 
+     // return true if the "other" params would result in a graph with the same topology as with the current params
+     //   having the same topology allows us to reuse the graph in some cases
+@@ -759,6 +762,7 @@ struct llm_graph_params {
+             cparams.causal_attn == other.cparams.causal_attn &&
+             arch  == other.arch  &&
+             gtype == other.gtype &&
++            qwenpu_forward == other.qwenpu_forward &&
+             cvec  == other.cvec  &&
+             loras == other.loras &&
+             cross == other.cross;
+@@ -804,6 +808,7 @@ public:
+ 
+     // important graph nodes
+     ggml_tensor * t_inp_tokens  = nullptr;
++    ggml_tensor * t_qwenpu_kept = nullptr;
+     ggml_tensor * t_inp_embd    = nullptr; // [n_embd_inp, n_tokens]
+     ggml_tensor * t_logits      = nullptr;
+     ggml_tensor * t_embd        = nullptr;
+diff --git a/src/llama-model-loader.cpp b/src/llama-model-loader.cpp
+index b211950..123a2b7 100644
+--- a/src/llama-model-loader.cpp
++++ b/src/llama-model-loader.cpp
+@@ -4,6 +4,7 @@
+ #include "ggml.h"
+ #include "gguf.h"
+ #include "llama-hparams.h"
++#include "llama-qwenpu-forward.h"
+ 
+ #include <algorithm>
+ #include <array>
+@@ -570,11 +571,26 @@ llama_model_loader::llama_model_loader(
+             }
+         }
+ 
++        const auto qwenpu_version = gguf_find_key(metadata, qwenpu_forward_version_key);
++        if (qwenpu_version >= 0) {
++            const auto graph = gguf_find_tensor(metadata, qwenpu_forward_graph_tensor);
++            if (gguf_get_kv_type(metadata, qwenpu_version) != GGUF_TYPE_UINT32 ||
++                    gguf_get_val_u32(metadata, qwenpu_version) != 1 ||
++                    graph < 0 || gguf_get_tensor_type(metadata, graph) != GGML_TYPE_I8 ||
++                    gguf_get_tensor_size(metadata, graph) == 0) {
++                throw std::runtime_error("invalid QwenPU forward checkpoint version or graph tensor");
++            }
++        }
++
+         // Save tensors data offset of the main file.
+         // For subsidiary files, `meta` tensor data offset must not be used,
+         // so we build a unified tensors index for weights.
+         for (ggml_tensor * cur = ggml_get_first_tensor(ctx); cur; cur = ggml_get_next_tensor(ctx, cur)) {
+             std::string tensor_name = std::string(cur->name);
++            if (qwenpu_version >= 0 && (tensor_name == qwenpu_forward_graph_tensor ||
++                    tensor_name.find(qwenpu_forward_program_prefix) == 0)) {
++                continue;
++            }
+             // make sure there is no duplicated tensor names
+             if (weights_map.find(tensor_name) != weights_map.end()) {
+                 throw std::runtime_error(format("invalid model: tensor '%s' is duplicated", ggml_get_name(cur)));
+@@ -585,6 +601,9 @@ llama_model_loader::llama_model_loader(
+         }
+         uint16_t n_split = 0;
+         get_key(llm_kv(LLM_KV_SPLIT_COUNT), n_split, false);
++        if (qwenpu_version >= 0 && n_split > 1) {
++            throw std::runtime_error("QwenPU forward requires one GGUF file");
++        }
+ 
+         // Load additional GGML contexts
+         if (n_split > 1) {
+diff --git a/src/llama-model.cpp b/src/llama-model.cpp
+index d1c3c79..b14197e 100644
+--- a/src/llama-model.cpp
++++ b/src/llama-model.cpp
+@@ -1283,10 +1283,6 @@ bool llama_model_base::load_tensors(llama_model_loader & ml) {
+         return {dev, &pimpl->gpu_buft_list.at(dev)};
+     };
+ 
+-    // assign the input layer
+-    // there is very little benefit to offloading the input layer, so always keep it on the CPU
+-    pimpl->dev_input = { cpu_dev, &pimpl->cpu_buft_list };
+-
+     // assign the repeating layers to the devices according to the splits
+     pimpl->dev_layer.resize(n_layer_all);
+     for (int il = 0; il < n_layer_all; ++il) {
+@@ -1296,6 +1292,12 @@ bool llama_model_base::load_tensors(llama_model_loader & ml) {
+     // assign the output layer
+     pimpl->dev_output = get_layer_buft_list(n_layer_all);
+ 
++    // Stock models keep token lookup on the CPU. QwenPU forward keeps
++    // the original packed input embedding on the decoder's CUDA device.
++    pimpl->dev_input = qwenpu_forward_checkpoint.empty()
++        ? llama_model::impl::layer_dev{ cpu_dev, &pimpl->cpu_buft_list }
++        : pimpl->dev_output;
++
+     const auto TENSOR_NOT_REQUIRED = llama_model_loader::TENSOR_NOT_REQUIRED;
+ 
+     // create tensors for the weights
+@@ -2230,6 +2232,9 @@ llama_memory_i * llama_model::create_memory(const llama_memory_params & params,
+ 
+ ggml_cgraph * llama_model::build_graph(const llm_graph_params & params) const {
+     std::unique_ptr<llm_graph_context> llm = build_arch_graph(params);
++    if (params.gtype == LLM_GRAPH_TYPE_QWENPU_ONLY) {
++        return llm->res->get_gf();
++    }
+ 
+     // add on pooling layer
+     llm->build_pooling(cls, cls_b, cls_out, cls_out_b, cls_norm);
+diff --git a/src/llama-model.h b/src/llama-model.h
+index bd6eaaa..220514d 100644
+--- a/src/llama-model.h
++++ b/src/llama-model.h
+@@ -596,6 +596,7 @@ struct llama_model {
+ 
+     // gguf metadata
+     std::unordered_map<std::string, std::string> gguf_kv;
++    std::string qwenpu_forward_checkpoint;
+ 
+     // list of devices used in this model
+     std::vector<llama_device> devices;
+diff --git a/src/llama.cpp b/src/llama.cpp
+index a67fa80..97d8209 100644
+--- a/src/llama.cpp
++++ b/src/llama.cpp
+@@ -9,6 +9,7 @@
+ #include "llama-model-loader.h"
+ #include "llama-model-saver.h"
+ #include "llama-model.h"
++#include "llama-qwenpu-forward.h"
+ 
+ #include "ggml.h"
+ #include "ggml-cpp.h"
+@@ -313,6 +314,12 @@ static std::pair<int, llama_model *> llama_model_load(struct gguf_context * meta
+         if (model->arch == LLM_ARCH_CLIP) {
+             throw std::runtime_error("CLIP cannot be used as main model, use it with --mmproj instead");
+         }
++        if (gguf_find_key(ml.metadata, qwenpu_forward_version_key) >= 0) {
++            if (fname.empty() || model->arch != LLM_ARCH_QWEN35) {
++                throw std::runtime_error("QwenPU forward requires a Qwen3.5 GGUF loaded by filename");
++            }
++            model->qwenpu_forward_checkpoint = fname;
++        }
+         try {
+             model->load_vocab(ml);
+         } catch(const std::exception & e) {
+diff --git a/src/models/qwen35.cpp b/src/models/qwen35.cpp
+index 195062d..1151005 100644
+--- a/src/models/qwen35.cpp
++++ b/src/models/qwen35.cpp
+@@ -1,5 +1,6 @@
+ #include "models.h"
+ #include "llama-memory-recurrent.h"
++#include "llama-qwenpu-forward.h"
+ 
+ void llama_model_qwen35::load_arch_hparams(llama_model_loader & ml) {
+     ml.get_key(LLM_KV_ATTENTION_LAYERNORM_RMS_EPS,       hparams.f_norm_rms_eps);
+@@ -145,6 +146,23 @@ llama_model_qwen35::graph::graph(const llama_model & model, const llm_graph_para
+     ggml_tensor * cur;
+     ggml_tensor * inpL;
+ 
++    ggml_tensor * chip_mean = nullptr;
++    if (params.qwenpu_forward) {
++        auto * kept = params.qwenpu_forward->build(params);
++        if (params.gtype == LLM_GRAPH_TYPE_QWENPU_ONLY) {
++            return;
++        }
++        chip_mean = params.qwenpu_forward->chip_mean_square(ctx0, params.sched, kept);
++    }
++    const auto residual_norm = [&](ggml_tensor * text, ggml_tensor * weight, int il) {
++        if (!chip_mean) {
++            return build_norm(text, weight, nullptr, LLM_NORM_RMS, il);
++        }
++        auto * normalized = params.qwenpu_forward->language_norm(ctx0, text, chip_mean, hparams.f_norm_rms_eps);
++        cb(normalized, "norm", il);
++        return ggml_mul(ctx0, normalized, weight);
++    };
++
+     inpL = build_inp_embd(model.tok_embd);
+ 
+     cb(inpL, "model.input_embed", -1);
+@@ -199,7 +217,7 @@ llama_model_qwen35::graph::graph(const llama_model & model, const llm_graph_para
+     for (int il = 0; il < n_layer; ++il) {
+         ggml_tensor * inpSA = inpL;
+ 
+-        cur = build_norm(inpL, model.layers[il].attn_norm, nullptr, LLM_NORM_RMS, il);
++        cur = residual_norm(inpL, model.layers[il].attn_norm, il);
+         cb(cur, "attn_norm", il);
+ 
+         ggml_build_forward_expand(gf, cur);
+@@ -226,7 +244,7 @@ llama_model_qwen35::graph::graph(const llama_model & model, const llm_graph_para
+         ggml_tensor * ffn_residual = cur;
+ 
+         // Post-attention norm
+-        ggml_tensor * attn_post_norm = build_norm(cur, model.layers[il].attn_post_norm, nullptr, LLM_NORM_RMS, il);
++        ggml_tensor * attn_post_norm = residual_norm(cur, model.layers[il].attn_post_norm, il);
+         cb(attn_post_norm, "attn_post_norm", il);
+ 
+         // Dense FFN layer - without residual connection
+@@ -261,7 +279,7 @@ llama_model_qwen35::graph::graph(const llama_model & model, const llm_graph_para
+     }
+     cur = inpL;
+ 
+-    cur = build_norm(cur, model.output_norm, nullptr, LLM_NORM_RMS, -1);
++    cur = residual_norm(cur, model.output_norm, -1);
+ 
+     cb(cur, "h_nextn", -1);
+     res->t_h_nextn = cur;

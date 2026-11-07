@@ -1,0 +1,93 @@
+{
+  "first_vmat": {
+    "first_trace_position": 3184,
+    "last_trace_position": 3252
+  },
+  "reference_complete_trace_tokens": 51187,
+  "reference_output": "Once\n",
+  "cpu_affinity_limit_pct": 12.5,
+  "through_first_vmat": {
+    "returncode": 0,
+    "expected_trace_tokens": 3252,
+    "actual_trace_tokens": 3252,
+    "first_difference": null,
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 16.3,
+        "gpu_mib": 1048,
+        "system_ram_used_bytes": 16694284288,
+        "available_ram_bytes": 17584586752
+      },
+      "stages": {
+        "first-vmat": {
+          "tree_cpu_pct": 50.12309867369207,
+          "system_cpu_pct": 48.7,
+          "working_set_bytes": 4848701440,
+          "private_commit_bytes": 6732189696,
+          "system_ram_used_bytes": 21077630976,
+          "gpu_mib": 4959
+        }
+      }
+    },
+    "wall_seconds": 15.919943999964744,
+    "result": {
+      "phase": "result",
+      "position_before": 22,
+      "position_after": 22,
+      "cache_equal": true,
+      "cache_bytes": 158402552,
+      "trace_tokens": 3252,
+      "circuit_seconds": 12.1252,
+      "output_bytes": []
+    },
+    "output": "",
+    "trace_tokens_per_second": 268.2017616204269,
+    "passed": true
+  },
+  "estimated_full_circuit_seconds": 190.85258683886838,
+  "first_story_token": {
+    "returncode": 0,
+    "expected_trace_tokens": 51187,
+    "actual_trace_tokens": 51187,
+    "first_difference": null,
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 53.1,
+        "gpu_mib": 1047,
+        "system_ram_used_bytes": 16855904256,
+        "available_ram_bytes": 17422966784
+      },
+      "stages": {
+        "first-story-token": {
+          "tree_cpu_pct": 55.08050685830944,
+          "system_cpu_pct": 57.8,
+          "working_set_bytes": 4849319936,
+          "private_commit_bytes": 6734036992,
+          "system_ram_used_bytes": 20940210176,
+          "gpu_mib": 5184
+        }
+      }
+    },
+    "wall_seconds": 178.9647454000078,
+    "result": {
+      "phase": "result",
+      "position_before": 22,
+      "position_after": 22,
+      "cache_equal": true,
+      "cache_bytes": 158402552,
+      "trace_tokens": 51187,
+      "circuit_seconds": 175.028,
+      "output_bytes": [
+        79,
+        110,
+        99,
+        101,
+        10
+      ]
+    },
+    "output": "Once\n",
+    "trace_tokens_per_second": 292.45035080101474,
+    "passed": true
+  },
+  "cpu_sampling_note": "The first worker CPU sample includes time spent preparing the reference in Python."
+}

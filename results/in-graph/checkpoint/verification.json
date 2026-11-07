@@ -1,0 +1,11 @@
+{
+  "original_tensors": 851,
+  "q1_0_tensors": 498,
+  "original_metadata_equal": true,
+  "original_tensor_bytes_equal": true,
+  "original_tensor_data_sha256": "a0eb5d7f8a56015984e34abab4ed103d47316cb93219e06652681b773973dc03",
+  "circuit_payloads_equal": true,
+  "circuit_payload_bytes": 16502972,
+  "source_bytes": 3803452480,
+  "checkpoint_bytes": 3819955744
+}

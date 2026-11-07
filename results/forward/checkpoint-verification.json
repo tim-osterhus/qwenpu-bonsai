@@ -1,0 +1,18 @@
+{
+  "original_tensors": 851,
+  "q1_0_tensors": 498,
+  "original_metadata_equal": true,
+  "original_tensor_bytes_equal": true,
+  "original_tensor_data_sha256": "a0eb5d7f8a56015984e34abab4ed103d47316cb93219e06652681b773973dc03",
+  "circuit_payloads_equal": true,
+  "circuit_payload_bytes": 18455856,
+  "source_bytes": 3803452480,
+  "checkpoint_bytes": 3821908544,
+  "text_vocab": 248320,
+  "chip_dims": 6914,
+  "allocated_slots": 2517,
+  "widened_width": 7680,
+  "ballast_slots": 30,
+  "chip_layers": 23,
+  "reference_sha256": "b95d5c8edea154c8e99a879bd11fc090fd4537206c9d7df79587dbaaa92f5313"
+}

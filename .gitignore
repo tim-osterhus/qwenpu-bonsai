@@ -1,0 +1,17 @@
+# Model weights and build outputs: publish weights on Hugging Face, binaries in GitHub Releases
+*.gguf
+*.safetensors
+*.dll
+*.lib
+*.exe
+*.cubin
+*.npz
+work/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/

@@ -1,0 +1,283 @@
+diff --git a/include/llama.h b/include/llama.h
+index 646ba13..7678907 100644
+--- a/include/llama.h
++++ b/include/llama.h
+@@ -964,6 +964,20 @@ extern "C" {
+     //    2 - aborted     (processed ubatches will remain in the context's memory)
+     //   -1 - invalid input batch
+     // < -1 - fatal error (processed ubatches will remain in the context's memory)
++    // Experimental private QwenPU token stream. This graph uses separate state
++    // and does not submit a text batch or advance the model's text memory.
++    LLAMA_API int32_t llama_qwenpu_load(struct llama_context * ctx, const char * path);
++    LLAMA_API int32_t llama_qwenpu_reset(struct llama_context * ctx, const char * path);
++    LLAMA_API int32_t llama_qwenpu_reset_program(struct llama_context * ctx, uint32_t program);
++    struct llama_qwenpu_tokens {
++        uint32_t start;
++        uint32_t halt;
++        uint32_t byte_base;
++        uint32_t byte_count;
++    };
++    LLAMA_API int32_t llama_qwenpu_get_tokens(struct llama_context * ctx, struct llama_qwenpu_tokens * tokens);
++    LLAMA_API int32_t llama_qwenpu_step(struct llama_context * ctx, int32_t token, int32_t * prediction);
++
+     LLAMA_API int32_t llama_decode(
+             struct llama_context * ctx,
+               struct llama_batch   batch);
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index d15ccfd..29e6657 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -16,6 +16,7 @@ add_library(llama
+             llama-batch.cpp
+             llama-chat.cpp
+             llama-context.cpp
++            llama-qwenpu.cpp
+             llama-cparams.cpp
+             llama-grammar.cpp
+             llama-graph.cpp
+@@ -54,6 +55,10 @@ target_compile_features   (llama PRIVATE cxx_std_17) # don't bump
+ 
+ target_link_libraries(llama PUBLIC ggml)
+ 
++if (MSVC)
++    set_source_files_properties(llama-qwenpu.cpp PROPERTIES COMPILE_OPTIONS "/fp:strict")
++endif()
++
+ if (BUILD_SHARED_LIBS)
+     set_target_properties(llama PROPERTIES POSITION_INDEPENDENT_CODE ON)
+     target_compile_definitions(llama PRIVATE LLAMA_BUILD)
+diff --git a/src/llama-context.cpp b/src/llama-context.cpp
+index 5f43818..f22480a 100644
+--- a/src/llama-context.cpp
++++ b/src/llama-context.cpp
+@@ -438,6 +438,10 @@ llama_context::llama_context(
+             sampling.token_ids_full_vocab[i] = i;
+         }
+     }
++    if (!model.hparams.no_alloc && !model.qwenpu_checkpoint_path.empty()) {
++        qwenpu = std::make_unique<llama_qwenpu_circuit>(
++            backend_cpu, model.qwenpu_checkpoint_path.c_str(), true);
++    }
+ }
+ 
+ llama_context::~llama_context() {
+@@ -4377,6 +4381,104 @@ int32_t llama_encode(
+     return ret;
+ }
+ 
++void llama_context::qwenpu_load(const char * path) {
++    synchronize();
++    qwenpu = std::make_unique<llama_qwenpu_circuit>(backend_cpu, path);
++}
++
++void llama_context::qwenpu_reset(const char * path) {
++    if (!qwenpu) {
++        throw std::runtime_error("QwenPU graph is not loaded");
++    }
++    qwenpu->reset(path);
++}
++
++void llama_context::qwenpu_reset_program(uint32_t program) {
++    if (!qwenpu) {
++        throw std::runtime_error("QwenPU graph is not loaded");
++    }
++    qwenpu->reset_program(program);
++}
++
++llama_qwenpu_tokens llama_context::qwenpu_tokens() const {
++    if (!qwenpu) {
++        throw std::runtime_error("QwenPU graph is not loaded");
++    }
++    return qwenpu->tokens();
++}
++
++int32_t llama_context::qwenpu_step(int32_t token) {
++    if (!qwenpu) {
++        throw std::runtime_error("QwenPU fixture is not loaded");
++    }
++    return qwenpu->step(token);
++}
++
++int32_t llama_qwenpu_load(llama_context * ctx, const char * path) {
++    if (!ctx || !path) {
++        return -1;
++    }
++    try {
++        ctx->qwenpu_load(path);
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
++int32_t llama_qwenpu_reset(llama_context * ctx, const char * path) {
++    if (!ctx || !path) {
++        return -1;
++    }
++    try {
++        ctx->qwenpu_reset(path);
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
++int32_t llama_qwenpu_reset_program(llama_context * ctx, uint32_t program) {
++    if (!ctx) {
++        return -1;
++    }
++    try {
++        ctx->qwenpu_reset_program(program);
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
++int32_t llama_qwenpu_get_tokens(llama_context * ctx, llama_qwenpu_tokens * tokens) {
++    if (!ctx || !tokens) {
++        return -1;
++    }
++    try {
++        *tokens = ctx->qwenpu_tokens();
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
++int32_t llama_qwenpu_step(llama_context * ctx, int32_t token, int32_t * prediction) {
++    if (!ctx || token < 0 || !prediction) {
++        return -1;
++    }
++    try {
++        *prediction = ctx->qwenpu_step(token);
++        return 0;
++    } catch (const std::exception & e) {
++        LLAMA_LOG_ERROR("%s: %s\n", __func__, e.what());
++        return -1;
++    }
++}
++
+ int32_t llama_decode(
+         llama_context * ctx,
+           llama_batch   batch) {
+diff --git a/src/llama-context.h b/src/llama-context.h
+index de93d0c..37d4d6a 100644
+--- a/src/llama-context.h
++++ b/src/llama-context.h
+@@ -7,6 +7,7 @@
+ #include "llama-adapter.h"
+ #include "llama-impl.h"
+ #include "llama-memory.h"
++#include "qwenpu-circuit.h"
+ 
+ #include "ggml-cpp.h"
+ #include "ggml-opt.h"
+@@ -57,6 +58,12 @@ struct llama_context {
+ 
+     void synchronize();
+ 
++    void qwenpu_load(const char * path);
++    void qwenpu_reset(const char * path);
++    void qwenpu_reset_program(uint32_t program);
++    llama_qwenpu_tokens qwenpu_tokens() const;
++    int32_t qwenpu_step(int32_t token);
++
+     const llama_model   & get_model()   const;
+     const llama_cparams & get_cparams() const;
+ 
+@@ -363,6 +370,7 @@ private:
+ 
+     ggml_backend_t backend_cpu = nullptr;
+     std::vector<ggml_backend_ptr> backends;
++    std::unique_ptr<llama_qwenpu_circuit> qwenpu;
+ 
+     // training
+     ggml_opt_context_t opt_ctx = nullptr;
+diff --git a/src/llama-model-loader.cpp b/src/llama-model-loader.cpp
+index b211950..09c3c4b 100644
+--- a/src/llama-model-loader.cpp
++++ b/src/llama-model-loader.cpp
+@@ -4,6 +4,7 @@
+ #include "ggml.h"
+ #include "gguf.h"
+ #include "llama-hparams.h"
++#include "qwenpu-circuit.h"
+ 
+ #include <algorithm>
+ #include <array>
+@@ -570,11 +571,30 @@ llama_model_loader::llama_model_loader(
+             }
+         }
+ 
++        const auto qwenpu_version = gguf_find_key(metadata, qwenpu_version_key);
++        if (qwenpu_version >= 0) {
++            if (gguf_get_kv_type(metadata, qwenpu_version) != GGUF_TYPE_UINT32 ||
++                gguf_get_val_u32(metadata, qwenpu_version) != 1) {
++                throw std::runtime_error("unsupported QwenPU checkpoint version");
++            }
++            for (const auto * name : qwenpu_tensor_names) {
++                const auto id = gguf_find_tensor(metadata, name);
++                if (id < 0 || gguf_get_tensor_type(metadata, id) != GGML_TYPE_I8 ||
++                    gguf_get_tensor_size(metadata, id) == 0) {
++                    throw std::runtime_error(std::string("invalid QwenPU checkpoint tensor: ") + name);
++                }
++            }
++        }
++
+         // Save tensors data offset of the main file.
+         // For subsidiary files, `meta` tensor data offset must not be used,
+         // so we build a unified tensors index for weights.
+         for (ggml_tensor * cur = ggml_get_first_tensor(ctx); cur; cur = ggml_get_next_tensor(ctx, cur)) {
+             std::string tensor_name = std::string(cur->name);
++            if (qwenpu_version >= 0 && std::any_of(qwenpu_tensor_names.begin(), qwenpu_tensor_names.end(),
++                    [&](const char * name) { return tensor_name == name; })) {
++                continue;
++            }
+             // make sure there is no duplicated tensor names
+             if (weights_map.find(tensor_name) != weights_map.end()) {
+                 throw std::runtime_error(format("invalid model: tensor '%s' is duplicated", ggml_get_name(cur)));
+@@ -585,6 +605,9 @@ llama_model_loader::llama_model_loader(
+         }
+         uint16_t n_split = 0;
+         get_key(llm_kv(LLM_KV_SPLIT_COUNT), n_split, false);
++        if (qwenpu_version >= 0 && n_split > 1) {
++            throw std::runtime_error("QwenPU checkpoints must use one GGUF file");
++        }
+ 
+         // Load additional GGML contexts
+         if (n_split > 1) {
+diff --git a/src/llama-model.h b/src/llama-model.h
+index bd6eaaa..ba98136 100644
+--- a/src/llama-model.h
++++ b/src/llama-model.h
+@@ -596,6 +596,7 @@ struct llama_model {
+ 
+     // gguf metadata
+     std::unordered_map<std::string, std::string> gguf_kv;
++    std::string qwenpu_checkpoint_path;
+ 
+     // list of devices used in this model
+     std::vector<llama_device> devices;
+diff --git a/src/llama.cpp b/src/llama.cpp
+index a67fa80..e4cd315 100644
+--- a/src/llama.cpp
++++ b/src/llama.cpp
+@@ -313,6 +313,12 @@ static std::pair<int, llama_model *> llama_model_load(struct gguf_context * meta
+         if (model->arch == LLM_ARCH_CLIP) {
+             throw std::runtime_error("CLIP cannot be used as main model, use it with --mmproj instead");
+         }
++        if (gguf_find_key(ml.metadata, qwenpu_version_key) >= 0) {
++            if (fname.empty()) {
++                throw std::runtime_error("QwenPU checkpoints require loading by filename");
++            }
++            model->qwenpu_checkpoint_path = fname;
++        }
+         try {
+             model->load_vocab(ml);
+         } catch(const std::exception & e) {

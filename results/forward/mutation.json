@@ -1,0 +1,17 @@
+{
+  "graph_offset": 14097128,
+  "original_hex": "00008035",
+  "replacement_hex": "00000000",
+  "node": "exit.code8",
+  "sublayer": 22,
+  "unit": 680,
+  "coefficient": 9.5367431640625e-07,
+  "expected_first_divergence_stream_index": 45,
+  "original_selected_id": 477756,
+  "mutated_selected_id": 477748,
+  "original_echo_id": 23,
+  "mutated_echo_id": 15,
+  "expected_original_output": "8",
+  "expected_mutated_output": "0",
+  "ir_invariants_checked": true
+}

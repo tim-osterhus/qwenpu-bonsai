@@ -1,0 +1,263 @@
+{
+  "passed": true,
+  "checks": {
+    "both_programs_passed": true,
+    "context_carried_between_programs": true,
+    "second_program_matches_clean_state": true
+  },
+  "programs": [
+    {
+      "program": 1,
+      "trace_tokens": 40,
+      "output": "8",
+      "answer": "8",
+      "idle_logits": {
+        "bitwise_equal": true,
+        "vocabulary_size": 248320,
+        "max_abs_diff": 0.0
+      },
+      "continuation_logits": {
+        "bitwise_equal": true,
+        "vocabulary_size": 248320,
+        "max_abs_diff": 0.0
+      },
+      "checks": {
+        "trace_exact": true,
+        "vector_output": true,
+        "cache_frozen": true,
+        "position_frozen": true,
+        "position_resumed": true,
+        "idle_logits_bitwise": true,
+        "continuation_logits_bitwise": true,
+        "answer_correct": true
+      }
+    },
+    {
+      "program": 2,
+      "trace_tokens": 40,
+      "output": "6",
+      "answer": "86",
+      "idle_logits": {
+        "bitwise_equal": true,
+        "vocabulary_size": 248320,
+        "max_abs_diff": 0.0
+      },
+      "continuation_logits": {
+        "bitwise_equal": true,
+        "vocabulary_size": 248320,
+        "max_abs_diff": 0.0
+      },
+      "checks": {
+        "trace_exact": true,
+        "vector_output": true,
+        "cache_frozen": true,
+        "position_frozen": true,
+        "position_resumed": true,
+        "idle_logits_bitwise": true,
+        "continuation_logits_bitwise": true,
+        "answer_correct": true
+      }
+    }
+  ],
+  "contaminated_second_output": "9",
+  "cpu_affinity_limit_pct": 12.5,
+  "baseline": {
+    "programs": [
+      {
+        "phase": "program",
+        "program": 1,
+        "position_before": 58,
+        "position_after": 58,
+        "position_final": 89,
+        "cache_bytes": 0,
+        "cache_equal": true,
+        "circuit_seconds": 0,
+        "trace": [],
+        "output_bytes": [
+          56
+        ],
+        "answer_bytes": [
+          56
+        ]
+      },
+      {
+        "phase": "program",
+        "program": 2,
+        "position_before": 111,
+        "position_after": 111,
+        "position_final": 156,
+        "cache_bytes": 0,
+        "cache_equal": true,
+        "circuit_seconds": 0,
+        "trace": [],
+        "output_bytes": [
+          54
+        ],
+        "answer_bytes": [
+          56,
+          54
+        ]
+      }
+    ],
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 11.4,
+        "gpu_mib": 1044,
+        "system_ram_used_bytes": 13716570112,
+        "available_ram_bytes": 20562300928
+      },
+      "stages": {
+        "baseline": {
+          "tree_cpu_pct": 8.485375381627614,
+          "system_cpu_pct": 19.7,
+          "working_set_bytes": 4082454528,
+          "private_commit_bytes": 5693771776,
+          "system_ram_used_bytes": 17783336960,
+          "gpu_mib": 4956
+        }
+      }
+    },
+    "wall_seconds": 3.959648299962282
+  },
+  "candidate": {
+    "programs": [
+      {
+        "phase": "program",
+        "program": 1,
+        "position_before": 58,
+        "position_after": 58,
+        "position_final": 89,
+        "cache_bytes": 160762568,
+        "cache_equal": true,
+        "circuit_seconds": 0.114312,
+        "trace": [
+          32771,
+          394157,
+          32771,
+          32773,
+          232364,
+          263087,
+          328620,
+          263089,
+          328620,
+          394156,
+          36864,
+          34816,
+          32768,
+          0,
+          65537,
+          32767,
+          65536,
+          231340,
+          234412,
+          238508,
+          242604,
+          250795,
+          251059,
+          328623,
+          328625,
+          394156,
+          32898,
+          230828,
+          239532,
+          246701,
+          263092,
+          328620,
+          394156,
+          32769,
+          32776,
+          32824,
+          32769,
+          229436,
+          32861,
+          394161
+        ],
+        "output_bytes": [
+          56
+        ],
+        "answer_bytes": [
+          56
+        ]
+      },
+      {
+        "phase": "program",
+        "program": 2,
+        "position_before": 111,
+        "position_after": 111,
+        "position_final": 156,
+        "cache_bytes": 164237036,
+        "cache_equal": true,
+        "circuit_seconds": 0.115845,
+        "trace": [
+          32768,
+          32770,
+          32772,
+          232364,
+          263086,
+          328620,
+          263088,
+          328620,
+          394156,
+          36864,
+          34816,
+          32768,
+          0,
+          65537,
+          32767,
+          65536,
+          231340,
+          234412,
+          238508,
+          242604,
+          250795,
+          251059,
+          328622,
+          328624,
+          394156,
+          32898,
+          230828,
+          239532,
+          246701,
+          263090,
+          328620,
+          394156,
+          32769,
+          32774,
+          32774,
+          32822,
+          32769,
+          229434,
+          32861,
+          394161
+        ],
+        "output_bytes": [
+          54
+        ],
+        "answer_bytes": [
+          56,
+          54
+        ]
+      }
+    ],
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 10.5,
+        "gpu_mib": 1046,
+        "system_ram_used_bytes": 13712289792,
+        "available_ram_bytes": 20566581248
+      },
+      "stages": {
+        "candidate": {
+          "tree_cpu_pct": 9.215658295190138,
+          "system_cpu_pct": 24.4,
+          "working_set_bytes": 4293160960,
+          "private_commit_bytes": 5903958016,
+          "system_ram_used_bytes": 18011078656,
+          "gpu_mib": 4959
+        }
+      }
+    },
+    "wall_seconds": 4.729037500044797
+  },
+  "checkpoint": null
+}

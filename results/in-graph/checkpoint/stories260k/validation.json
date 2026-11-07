@@ -1,0 +1,94 @@
+{
+  "first_vmat": {
+    "first_trace_position": 3184,
+    "last_trace_position": 3252
+  },
+  "reference_complete_trace_tokens": 51187,
+  "reference_output": "Once\n",
+  "cpu_affinity_limit_pct": 12.5,
+  "cpu_sampling_note": "The first worker CPU sample includes time spent preparing the reference in Python.",
+  "checkpoint": "<qwenputer>\\dist\\local-bench\\bonsai-in-graph\\checkpoint\\Bonsai-27B-Q1_0-QwenPU.gguf",
+  "through_first_vmat": {
+    "returncode": 0,
+    "expected_trace_tokens": 3252,
+    "actual_trace_tokens": 3252,
+    "first_difference": null,
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 11.8,
+        "gpu_mib": 1045,
+        "system_ram_used_bytes": 14795317248,
+        "available_ram_bytes": 19483553792
+      },
+      "stages": {
+        "first-vmat": {
+          "tree_cpu_pct": 28.19242931461661,
+          "system_cpu_pct": 21.8,
+          "working_set_bytes": 4774371328,
+          "private_commit_bytes": 6658625536,
+          "system_ram_used_bytes": 19045810176,
+          "gpu_mib": 4960
+        }
+      }
+    },
+    "wall_seconds": 11.988847100001294,
+    "result": {
+      "phase": "result",
+      "position_before": 22,
+      "position_after": 22,
+      "cache_equal": true,
+      "cache_bytes": 158402552,
+      "trace_tokens": 3252,
+      "circuit_seconds": 8.63532,
+      "output_bytes": []
+    },
+    "output": "",
+    "trace_tokens_per_second": 376.5928766970998,
+    "passed": true
+  },
+  "estimated_full_circuit_seconds": 135.921317601476,
+  "first_story_token": {
+    "returncode": 0,
+    "expected_trace_tokens": 51187,
+    "actual_trace_tokens": 51187,
+    "first_difference": null,
+    "resources": {
+      "baseline": {
+        "system_cpu_pct": 8.7,
+        "gpu_mib": 1045,
+        "system_ram_used_bytes": 14730014720,
+        "available_ram_bytes": 19548856320
+      },
+      "stages": {
+        "first-story-token": {
+          "tree_cpu_pct": 31.55964177026411,
+          "system_cpu_pct": 28.6,
+          "working_set_bytes": 4775145472,
+          "private_commit_bytes": 6657626112,
+          "system_ram_used_bytes": 19554492416,
+          "gpu_mib": 4959
+        }
+      }
+    },
+    "wall_seconds": 140.96881759999087,
+    "result": {
+      "phase": "result",
+      "position_before": 22,
+      "position_after": 22,
+      "cache_equal": true,
+      "cache_bytes": 158402552,
+      "trace_tokens": 51187,
+      "circuit_seconds": 137.527,
+      "output_bytes": [
+        79,
+        110,
+        99,
+        101,
+        10
+      ]
+    },
+    "output": "Once\n",
+    "trace_tokens_per_second": 372.1960051480801,
+    "passed": true
+  }
+}

@@ -1,0 +1,10 @@
+* text=auto
+*.patch text eol=lf
+*.py text eol=lf
+*.cpp text eol=lf
+*.cu text eol=lf
+*.h text eol=lf
+*.ps1 text eol=crlf
+*.elf binary
+licenses/** -text
+results/**/*.json -text

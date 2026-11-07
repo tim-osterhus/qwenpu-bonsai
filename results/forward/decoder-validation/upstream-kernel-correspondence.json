@@ -1,0 +1,17 @@
+{
+  "method": "upstream IR FFN BF16 invariants and Torch DeltaNet recurrent/chunk read emulation",
+  "cases": [
+    {
+      "digit": "3",
+      "tokens": 50,
+      "owned_checked": 46,
+      "passed": true
+    },
+    {
+      "digit": "1",
+      "tokens": 50,
+      "owned_checked": 46,
+      "passed": true
+    }
+  ]
+}

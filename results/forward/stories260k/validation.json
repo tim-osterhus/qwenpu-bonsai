@@ -1,0 +1,250 @@
+{
+  "prompt": "Run<tool_call></tool_call>",
+  "prefix": [
+    6516,
+    248058,
+    248059
+  ],
+  "guests": {
+    "one": {
+      "elf": "<qwenputer>\\dist\\local-bench\\qwenpu-trace\\stories_vx.elf",
+      "elf_sha256": "2a9f6da85bb5abc71f178711f0d9eef2ca64b7c6c4eb59bfa88074fe86821a40",
+      "snapshot_sha256": "ce808f4db086b30dca670865ee59e3f33c6faac3117c624370e33c829103cedb",
+      "reference_sha256": "15dc55f0ae5448c1b5de488f27cbe945e17717bdc2791b2aad6b2d76baa0e0b7",
+      "record_tokens": 51187,
+      "first_vmat": {
+        "first_record_token": 3184,
+        "last_record_token": 3252,
+        "selected_tokens_through": 3253
+      },
+      "last_vmat": {
+        "first_record_token": 50856,
+        "last_record_token": 50924,
+        "selected_tokens_through": 50925
+      },
+      "vmat_count": 242,
+      "output": "Once\n"
+    },
+    "three": {
+      "elf": "<qwenputer>\\dist\\local-bench\\bonsai-forward\\stories260k\\stories_vx_three.elf",
+      "elf_sha256": "bed6feefe630ae8079aba4f0d7d1b6d2c25f3f23f4f9149e99fa5d33a35a7b11",
+      "snapshot_sha256": "9f56591bf91ba2d838fa43de8fde2309bed14618692f00a8d086d8e40b31af6a",
+      "reference_sha256": "fa8413c015f6f4ceb54e54eca3648c04bb6d4e8c63ec56845dbb95443ff16eb6",
+      "record_tokens": 150405,
+      "first_vmat": {
+        "first_record_token": 2982,
+        "last_record_token": 3050,
+        "selected_tokens_through": 3051
+      },
+      "last_vmat": {
+        "first_record_token": 150152,
+        "last_record_token": 150220,
+        "selected_tokens_through": 150230
+      },
+      "vmat_count": 726,
+      "output": "Once upon a\n"
+    }
+  },
+  "runs": {
+    "first-vmat": {
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 3252,
+      "actual_record_tokens": 3252,
+      "expected_selected_tokens": 3253,
+      "actual_selected_tokens": 3253,
+      "first_difference": null,
+      "echo": "",
+      "wall_seconds": 32.10675249993801,
+      "record_tokens_per_second": 626.2565572065722,
+      "selected_tokens_per_second": 626.4491330236715,
+      "native": {
+        "phase": "result",
+        "released": false,
+        "chip_only_steps": 3253,
+        "echoed_text_tokens": 0,
+        "cuda_layer_calls": 74888,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 5.19276,
+        "echoed_bytes": []
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 18.7,
+          "gpu_mib": 1147,
+          "system_ram_used_bytes": 17976164352,
+          "available_ram_bytes": 16302706688
+        },
+        "stages": {
+          "first-vmat": {
+            "tree_cpu_pct": 477.0914713396203,
+            "system_cpu_pct": 33.0,
+            "working_set_bytes": 5436792832,
+            "private_commit_bytes": 7358103552,
+            "system_ram_used_bytes": 21903192064,
+            "gpu_mib": 5269
+          }
+        }
+      }
+    },
+    "first-story-token": {
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 51187,
+      "actual_record_tokens": 51187,
+      "expected_selected_tokens": 51194,
+      "actual_selected_tokens": 51194,
+      "first_difference": null,
+      "echo": "Once\n\n",
+      "wall_seconds": 83.8167157000862,
+      "record_tokens_per_second": 635.6098996549202,
+      "selected_tokens_per_second": 635.6968215158925,
+      "native": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 51188,
+        "echoed_text_tokens": 6,
+        "cuda_layer_calls": 1177531,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 80.5321,
+        "echoed_bytes": [
+          79,
+          110,
+          99,
+          101,
+          10,
+          10
+        ]
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 8.6,
+          "gpu_mib": 1123,
+          "system_ram_used_bytes": 17107656704,
+          "available_ram_bytes": 17171214336
+        },
+        "stages": {
+          "first-story-token": {
+            "tree_cpu_pct": 504.0610709156334,
+            "system_cpu_pct": 44.7,
+            "working_set_bytes": 5327507456,
+            "private_commit_bytes": 7331463168,
+            "system_ram_used_bytes": 21792800768,
+            "gpu_mib": 5423
+          }
+        }
+      }
+    },
+    "three-story-tokens": {
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 150405,
+      "actual_record_tokens": 150405,
+      "expected_selected_tokens": 150419,
+      "actual_selected_tokens": 150419,
+      "first_difference": null,
+      "echo": "Once upon a\n\n",
+      "wall_seconds": 239.1836059000343,
+      "record_tokens_per_second": 638.4780615363717,
+      "selected_tokens_per_second": 638.5374923588943,
+      "native": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 150406,
+        "echoed_text_tokens": 13,
+        "cuda_layer_calls": 3459706,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 235.568,
+        "echoed_bytes": [
+          79,
+          110,
+          99,
+          101,
+          32,
+          117,
+          112,
+          111,
+          110,
+          32,
+          97,
+          10,
+          10
+        ]
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 10.9,
+          "gpu_mib": 1178,
+          "system_ram_used_bytes": 17135525888,
+          "available_ram_bytes": 17143345152
+        },
+        "stages": {
+          "three-story-tokens": {
+            "tree_cpu_pct": 523.2104601551879,
+            "system_cpu_pct": 42.4,
+            "working_set_bytes": 5456142336,
+            "private_commit_bytes": 7333449728,
+            "system_ram_used_bytes": 21723688960,
+            "gpu_mib": 5437
+          }
+        }
+      }
+    }
+  },
+  "practical_first_story_token_seconds": 300,
+  "reference_matches_previous_baseline": true,
+  "checkpoint": {
+    "original_tensors": 851,
+    "q1_0_tensors": 498,
+    "original_metadata_equal": true,
+    "original_tensor_bytes_equal": true,
+    "original_tensor_data_sha256": "a0eb5d7f8a56015984e34abab4ed103d47316cb93219e06652681b773973dc03",
+    "circuit_payloads_equal": true,
+    "circuit_payload_bytes": 21760512,
+    "source_bytes": 3803452480,
+    "checkpoint_bytes": 3825213248,
+    "graph_sha256": "ed842a828806f88f9a828e31ee5d10902db48126dcfb1eb57f0c1b0c32c9447c",
+    "sha256": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1"
+  },
+  "runtime_sha256": {
+    "llama.dll": "5b5fbe0d2895fc97707522f6bbe3897f9b4cd9f9e846bb0f36ff84d4aa46f579",
+    "qwenpu-forward-cuda.cubin": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49"
+  },
+  "probe_sha256": "15b117014379f97c970b8d3f5af35cc464c1c962c799cd9d8d4163b1de3470b9",
+  "estimated_first_story_token_seconds": 81.7209208238549,
+  "estimated_three_story_tokens_seconds": 236.62065769230767,
+  "temporary_checkpoint_removed": true
+}

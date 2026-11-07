@@ -1,0 +1,55 @@
+qwenpu-bonsai
+
+This is an independent port. Created using Bonsai by Prism ML.
+
+The original overlay code and documentation are copyright (c) 2026 Tim
+Osterhus and use the MIT license. The upstream components and derivatives
+listed below retain their applicable license terms. The Hugging Face model
+distribution includes the Bonsai Apache-2.0 license and upstream notices.
+
+Bonsai-27B and Qwen3.6-27B
+------------------------
+The GGUF exporter uses Prism ML's Bonsai-27B-Q1_0.gguf, derived from Qwen3.6-27B.
+The exporter adds circuit and program snapshot tensors and metadata. It copies
+the original tensor payloads and retains their metadata entries.
+
+Bonsai source:
+https://huggingface.co/prism-ml/Bonsai-27B-gguf/tree/f10afb355f104535e3e3e98cf7ab7795c72bd292
+
+See licenses/Bonsai-27B-NOTICE.txt for the exact Prism attribution notice,
+licenses/Bonsai-27B-LICENSE.txt for the Bonsai Apache-2.0 terms, and
+licenses/Qwen3.6-27B-LICENSE.txt for the Qwen3.6-27B Apache-2.0 terms and
+Copyright 2026 Alibaba Cloud notice.
+
+Qwenputer and QwenPU
+-------------------
+Copyright (c) 2026 Divyansh Agrawal. See licenses/Qwenputer-QwenPU-MIT.txt
+for the shared upstream license text. The overlay and patch change the
+Qwenputer source tree. QwenPU supplies the compiled circuit design, reference
+machine, and code used to build the stories260K guest programs.
+
+https://github.com/divagr18/qwenputer/tree/bec1a0c9654ac8151b6f36ed0154a19c53141384
+https://github.com/divagr18/QwenPU/tree/6e2767aaa59b69ea03300c0a5199d7b36debbe50
+
+Prism llama.cpp fork
+-------------------
+Copyright (c) 2023-2026 The ggml authors. See licenses/llama.cpp-MIT.txt.
+The runtime patches add a CUDA-backed circuit path to this revision.
+https://github.com/PrismML-Eng/llama.cpp/tree/9fcaed763ccda38ea81068ad9d7f991aaddca451
+
+stories260K and guest runtime
+----------------------------
+The guest ELFs and the corresponding story snapshots embed int4 weights
+derived from Andrej Karpathy's stories260K through QwenPU's self-distillation
+and vector export. The tinyllamas model card labels the weights MIT.
+https://huggingface.co/karpathy/tinyllamas/tree/0bd21da7698eaf29a0d7de3992de8a46ef624add
+
+For the companion llama2.c project, see licenses/llama2.c-MIT.txt.
+https://github.com/karpathy/llama2.c/blob/731657856eae1f0f7a21964c6d78f072d9884745/LICENSE
+
+The ELFs also include GCC runtime routines from xPack GNU RISC-V Embedded GCC
+14.3.0-1. libgcc/libgcc2.c is copyright (C) 1989-2024 Free Software
+Foundation, Inc. See licenses/GPL-3.0.txt and
+licenses/GCC-Runtime-Exception.txt.
+https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v14.3.0-1
+https://github.com/gcc-mirror/gcc/blob/releases/gcc-14.3.0/libgcc/libgcc2.c

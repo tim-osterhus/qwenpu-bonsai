@@ -1,0 +1,360 @@
+{
+  "checkpoint": "Bonsai-27B-Q1_0-QwenPU-stories260k.gguf",
+  "prompt": "Run<tool_call></tool_call>",
+  "requested_tests": [
+    "first-vmat",
+    "first-story-token",
+    "three-story-tokens"
+  ],
+  "tests": {
+    "first-vmat": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 3252,
+      "actual_record_tokens": 3252,
+      "expected_selected_tokens": 3253,
+      "actual_selected_tokens": 3253,
+      "first_difference": null,
+      "echo": "",
+      "wall_seconds": 32.71473390003666,
+      "record_tokens_per_second": 627.4757991537181,
+      "selected_tokens_per_second": 627.6687498914653,
+      "native": {
+        "phase": "result",
+        "released": false,
+        "chip_only_steps": 3253,
+        "echoed_text_tokens": 0,
+        "cuda_layer_calls": 74888,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 5.18267,
+        "echoed_bytes": []
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 20.8,
+          "gpu_mib": 1231,
+          "system_ram_used_bytes": 18279804928,
+          "available_ram_bytes": 15999066112
+        },
+        "stages": {
+          "first-vmat": {
+            "tree_cpu_pct": 188.7723554014754,
+            "system_cpu_pct": 35.3,
+            "working_set_bytes": 5189713920,
+            "private_commit_bytes": 7101972480,
+            "system_ram_used_bytes": 22611247104,
+            "gpu_mib": 5374
+          }
+        }
+      }
+    },
+    "first-story-token": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 51187,
+      "actual_record_tokens": 51187,
+      "expected_selected_tokens": 51194,
+      "actual_selected_tokens": 51194,
+      "first_difference": null,
+      "echo": "Once\n\n",
+      "wall_seconds": 93.56961640005466,
+      "record_tokens_per_second": 595.8489511791959,
+      "selected_tokens_per_second": 595.9304355923916,
+      "native": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 51188,
+        "echoed_text_tokens": 6,
+        "cuda_layer_calls": 1177531,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 85.906,
+        "echoed_bytes": [
+          79,
+          110,
+          99,
+          101,
+          10,
+          10
+        ]
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 14.7,
+          "gpu_mib": 1189,
+          "system_ram_used_bytes": 17668136960,
+          "available_ram_bytes": 16610734080
+        },
+        "stages": {
+          "first-story-token": {
+            "tree_cpu_pct": 196.95002855966868,
+            "system_cpu_pct": 42.7,
+            "working_set_bytes": 5202149376,
+            "private_commit_bytes": 7080828928,
+            "system_ram_used_bytes": 22140325888,
+            "gpu_mib": 5408
+          }
+        }
+      }
+    },
+    "three-story-tokens": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": {
+        "exact_bridge_trace": true,
+        "exact_instruction_trace": true,
+        "first_prediction_from_tool_close": true,
+        "free_running_selection": true,
+        "cuda_layers_executed": true,
+        "cache_and_position_preserved": true,
+        "ownership_boundary": true,
+        "expected_echo": true
+      },
+      "passed": true,
+      "expected_record_tokens": 150405,
+      "actual_record_tokens": 150405,
+      "expected_selected_tokens": 150419,
+      "actual_selected_tokens": 150419,
+      "first_difference": null,
+      "echo": "Once upon a\n\n",
+      "wall_seconds": 246.9487388000125,
+      "record_tokens_per_second": 618.3653332236978,
+      "selected_tokens_per_second": 618.4228919130042,
+      "native": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 150406,
+        "echoed_text_tokens": 13,
+        "cuda_layer_calls": 3459706,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 243.23,
+        "echoed_bytes": [
+          79,
+          110,
+          99,
+          101,
+          32,
+          117,
+          112,
+          111,
+          110,
+          32,
+          97,
+          10,
+          10
+        ]
+      },
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 18.8,
+          "gpu_mib": 1192,
+          "system_ram_used_bytes": 17597849600,
+          "available_ram_bytes": 16681021440
+        },
+        "stages": {
+          "three-story-tokens": {
+            "tree_cpu_pct": 225.8300781181145,
+            "system_cpu_pct": 58.3,
+            "working_set_bytes": 5156696064,
+            "private_commit_bytes": 7084630016,
+            "system_ram_used_bytes": 22018920448,
+            "gpu_mib": 5403
+          }
+        }
+      }
+    }
+  },
+  "timeouts_seconds": {
+    "first-vmat": 150,
+    "first-story-token": 360,
+    "three-story-tokens": 960
+  },
+  "artifact": {
+    "format": "qwenpu-forward-stories260k-v1",
+    "revisions": {
+      "qwenputer": "bec1a0c9654ac8151b6f36ed0154a19c53141384",
+      "qwenpu": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+      "prism_llama_cpp": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+      "bonsai_27b_gguf": "f10afb355f104535e3e3e98cf7ab7795c72bd292",
+      "qwen_3_5_0_8b": "2fc06364715b967f1860aea9cf38778875588b17"
+    },
+    "stock_gguf": {
+      "bytes": 3803452480,
+      "sha256": "17ef842e47450caeb8eaa3ebfbbab5d2f2278b62b79be107985fb69a2f819aa0"
+    },
+    "tokenizer": {
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+    },
+    "guests": {
+      "one": {
+        "bytes": 377332,
+        "sha256": "2a9f6da85bb5abc71f178711f0d9eef2ca64b7c6c4eb59bfa88074fe86821a40"
+      },
+      "three": {
+        "bytes": 377356,
+        "sha256": "bed6feefe630ae8079aba4f0d7d1b6d2c25f3f23f4f9149e99fa5d33a35a7b11"
+      }
+    },
+    "checkpoint": {
+      "bytes": 3825213248,
+      "sha256": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1"
+    },
+    "payloads": {
+      "qwenpu.forward.graph": {
+        "bytes": 18212552,
+        "sha256": "ed842a828806f88f9a828e31ee5d10902db48126dcfb1eb57f0c1b0c32c9447c"
+      },
+      "qwenpu.forward.program.stories260k.one": {
+        "bytes": 1765248,
+        "sha256": "ce808f4db086b30dca670865ee59e3f33c6faac3117c624370e33c829103cedb"
+      },
+      "qwenpu.forward.program.stories260k.three": {
+        "bytes": 1782712,
+        "sha256": "9f56591bf91ba2d838fa43de8fde2309bed14618692f00a8d086d8e40b31af6a"
+      }
+    },
+    "tensor_verification": {
+      "original_tensors": 851,
+      "q1_0_tensors": 498,
+      "original_metadata_equal": true,
+      "original_tensor_bytes_equal": true,
+      "original_tensor_data_sha256": "a0eb5d7f8a56015984e34abab4ed103d47316cb93219e06652681b773973dc03",
+      "circuit_payloads_equal": true,
+      "circuit_payload_bytes": 21760512,
+      "source_bytes": 3803452480,
+      "checkpoint_bytes": 3825213248
+    },
+    "circuit": {
+      "text_vocab": 248320,
+      "chip_dims": 6914,
+      "allocated_slots": 2517,
+      "widened_width": 7680,
+      "ballast_slots": 30,
+      "chip_layers": 23
+    }
+  },
+  "manifest_sha256": "a1e16fdc29c612e0a5c0eb152d131ed8ac4c7a2560b126dc5584e5dacc51bc73",
+  "checkpoint_sha256_before": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1",
+  "prefix": [
+    6516,
+    248058,
+    248059
+  ],
+  "guests": {
+    "one": {
+      "elf": "stories_vx.elf",
+      "elf_sha256": "2a9f6da85bb5abc71f178711f0d9eef2ca64b7c6c4eb59bfa88074fe86821a40",
+      "reference_sha256": "15dc55f0ae5448c1b5de488f27cbe945e17717bdc2791b2aad6b2d76baa0e0b7",
+      "selected_reference_sha256": "c621ccdd2576cab33601ea93d916606783d677d14adeaa0f10f87b7f5b2a15d7",
+      "record_tokens": 51187,
+      "selected_tokens": 51194,
+      "first_vmat": {
+        "first_record_token": 3184,
+        "last_record_token": 3252,
+        "selected_tokens_through": 3253
+      },
+      "last_vmat": {
+        "first_record_token": 50856,
+        "last_record_token": 50924,
+        "selected_tokens_through": 50925
+      },
+      "vmat_count": 242,
+      "output": "Once\n"
+    },
+    "three": {
+      "elf": "stories_vx_three.elf",
+      "elf_sha256": "bed6feefe630ae8079aba4f0d7d1b6d2c25f3f23f4f9149e99fa5d33a35a7b11",
+      "reference_sha256": "fa8413c015f6f4ceb54e54eca3648c04bb6d4e8c63ec56845dbb95443ff16eb6",
+      "selected_reference_sha256": "edf84cec4c3df115f21da6508fffe118d191df645d5f9a0feb5beac6eee9a412",
+      "record_tokens": 150405,
+      "selected_tokens": 150419,
+      "first_vmat": {
+        "first_record_token": 2982,
+        "last_record_token": 3050,
+        "selected_tokens_through": 3051
+      },
+      "last_vmat": {
+        "first_record_token": 150152,
+        "last_record_token": 150220,
+        "selected_tokens_through": 150230
+      },
+      "vmat_count": 726,
+      "output": "Once upon a\n"
+    }
+  },
+  "probe": {
+    "name": "probe_forward.exe",
+    "bytes": 292352,
+    "sha256": "74a3d486e3ef3aff24e0acc67bb824552784025e63935c4ee7915ef90dac5e4e"
+  },
+  "runtime": {
+    "cublas64_12.dll": {
+      "bytes": 100033536,
+      "sha256": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c"
+    },
+    "cublasLt64_12.dll": {
+      "bytes": 473551360,
+      "sha256": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f"
+    },
+    "cudart64_12.dll": {
+      "bytes": 553984,
+      "sha256": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc"
+    },
+    "ggml-base.dll": {
+      "bytes": 645120,
+      "sha256": "012e304ef636eeb84a871d91f0a43e5bd0f0401945590b9597c2e303dc526772"
+    },
+    "ggml-cpu.dll": {
+      "bytes": 914944,
+      "sha256": "86489061b8a99b31f53a47e5be1971229a60cb0fd99e70c9e9fbf9fb2638a201"
+    },
+    "ggml-cuda.dll": {
+      "bytes": 583418368,
+      "sha256": "dd222c5fdd4d214f49826930de9c53750080ca6f59b0ab6e2ecf3ed413ff29dd"
+    },
+    "ggml-rpc.dll": {
+      "bytes": 121856,
+      "sha256": "43459de8b080d7ffe7679658e24f956f4f7f39fcfebadbd5f4797520572b881b"
+    },
+    "ggml.dll": {
+      "bytes": 67072,
+      "sha256": "0f7d8f92b754215a70fbe7334e0db70a9605295faba4c388f366d2bdef1c7be8"
+    },
+    "llama.dll": {
+      "bytes": 2179584,
+      "sha256": "f8323505a4356a1bc5148dae5a09f8f7b2e83b4e0561d68880bfb5e3ee1efcf9"
+    },
+    "qwenpu-forward-cuda.cubin": {
+      "bytes": 62880,
+      "sha256": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49"
+    }
+  },
+  "checkpoint_sha256_after": "688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1",
+  "status": "PASS",
+  "full_suite_passed": true
+}

@@ -1,0 +1,2194 @@
+{
+  "checkpoint": "Bonsai-27B-Q1_0-QwenPU-forward.gguf",
+  "cubin_sha256": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49",
+  "runs": {
+    "original": {
+      "exit_code": 0,
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 23.6,
+          "gpu_mib": 1266,
+          "system_ram_used_bytes": 19244736512,
+          "available_ram_bytes": 15034134528
+        },
+        "stages": {
+          "original": {
+            "tree_cpu_pct": 22.12183308583826,
+            "system_cpu_pct": 99.9,
+            "working_set_bytes": 5074579456,
+            "private_commit_bytes": 6978969600,
+            "system_ram_used_bytes": 24178954240,
+            "gpu_mib": 5422
+          }
+        }
+      },
+      "wall_seconds": 33.227030199952424,
+      "architecture": {
+        "phase": "architecture",
+        "text_vocab": 248320,
+        "chip_width": 6914,
+        "widened_width": 7680,
+        "chip_layers": 23
+      },
+      "result": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 44,
+        "echoed_text_tokens": 2,
+        "cuda_layer_calls": 1150,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 0.517702,
+        "echoed_bytes": [
+          56,
+          10
+        ]
+      },
+      "steps": [
+        {
+          "phase": "step",
+          "id": 642482,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 1,
+          "cuda_layer_calls": 115
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 2,
+          "cuda_layer_calls": 138
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 3,
+          "cuda_layer_calls": 161
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 4,
+          "cuda_layer_calls": 184
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281139,
+          "position": 3,
+          "chip_only_steps": 5,
+          "cuda_layer_calls": 207
+        },
+        {
+          "phase": "step",
+          "id": 281139,
+          "prediction": 281091,
+          "position": 3,
+          "chip_only_steps": 6,
+          "cuda_layer_calls": 230
+        },
+        {
+          "phase": "step",
+          "id": 281091,
+          "prediction": 281093,
+          "position": 3,
+          "chip_only_steps": 7,
+          "cuda_layer_calls": 253
+        },
+        {
+          "phase": "step",
+          "id": 281093,
+          "prediction": 480684,
+          "position": 3,
+          "chip_only_steps": 8,
+          "cuda_layer_calls": 276
+        },
+        {
+          "phase": "step",
+          "id": 480684,
+          "prediction": 511407,
+          "position": 3,
+          "chip_only_steps": 9,
+          "cuda_layer_calls": 299
+        },
+        {
+          "phase": "step",
+          "id": 511407,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 10,
+          "cuda_layer_calls": 322
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 511409,
+          "position": 3,
+          "chip_only_steps": 11,
+          "cuda_layer_calls": 345
+        },
+        {
+          "phase": "step",
+          "id": 511409,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 12,
+          "cuda_layer_calls": 368
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 13,
+          "cuda_layer_calls": 391
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 285184,
+          "position": 3,
+          "chip_only_steps": 14,
+          "cuda_layer_calls": 414
+        },
+        {
+          "phase": "step",
+          "id": 285184,
+          "prediction": 283136,
+          "position": 3,
+          "chip_only_steps": 15,
+          "cuda_layer_calls": 437
+        },
+        {
+          "phase": "step",
+          "id": 283136,
+          "prediction": 281088,
+          "position": 3,
+          "chip_only_steps": 16,
+          "cuda_layer_calls": 460
+        },
+        {
+          "phase": "step",
+          "id": 281088,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 17,
+          "cuda_layer_calls": 483
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 18,
+          "cuda_layer_calls": 506
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281087,
+          "position": 3,
+          "chip_only_steps": 19,
+          "cuda_layer_calls": 529
+        },
+        {
+          "phase": "step",
+          "id": 281087,
+          "prediction": 313856,
+          "position": 3,
+          "chip_only_steps": 20,
+          "cuda_layer_calls": 552
+        },
+        {
+          "phase": "step",
+          "id": 313856,
+          "prediction": 479660,
+          "position": 3,
+          "chip_only_steps": 21,
+          "cuda_layer_calls": 575
+        },
+        {
+          "phase": "step",
+          "id": 479660,
+          "prediction": 482732,
+          "position": 3,
+          "chip_only_steps": 22,
+          "cuda_layer_calls": 598
+        },
+        {
+          "phase": "step",
+          "id": 482732,
+          "prediction": 486828,
+          "position": 3,
+          "chip_only_steps": 23,
+          "cuda_layer_calls": 621
+        },
+        {
+          "phase": "step",
+          "id": 486828,
+          "prediction": 490924,
+          "position": 3,
+          "chip_only_steps": 24,
+          "cuda_layer_calls": 644
+        },
+        {
+          "phase": "step",
+          "id": 490924,
+          "prediction": 499115,
+          "position": 3,
+          "chip_only_steps": 25,
+          "cuda_layer_calls": 667
+        },
+        {
+          "phase": "step",
+          "id": 499115,
+          "prediction": 499379,
+          "position": 3,
+          "chip_only_steps": 26,
+          "cuda_layer_calls": 690
+        },
+        {
+          "phase": "step",
+          "id": 499379,
+          "prediction": 576943,
+          "position": 3,
+          "chip_only_steps": 27,
+          "cuda_layer_calls": 713
+        },
+        {
+          "phase": "step",
+          "id": 576943,
+          "prediction": 576945,
+          "position": 3,
+          "chip_only_steps": 28,
+          "cuda_layer_calls": 736
+        },
+        {
+          "phase": "step",
+          "id": 576945,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 29,
+          "cuda_layer_calls": 759
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281218,
+          "position": 3,
+          "chip_only_steps": 30,
+          "cuda_layer_calls": 782
+        },
+        {
+          "phase": "step",
+          "id": 281218,
+          "prediction": 479148,
+          "position": 3,
+          "chip_only_steps": 31,
+          "cuda_layer_calls": 805
+        },
+        {
+          "phase": "step",
+          "id": 479148,
+          "prediction": 487852,
+          "position": 3,
+          "chip_only_steps": 32,
+          "cuda_layer_calls": 828
+        },
+        {
+          "phase": "step",
+          "id": 487852,
+          "prediction": 495021,
+          "position": 3,
+          "chip_only_steps": 33,
+          "cuda_layer_calls": 851
+        },
+        {
+          "phase": "step",
+          "id": 495021,
+          "prediction": 511412,
+          "position": 3,
+          "chip_only_steps": 34,
+          "cuda_layer_calls": 874
+        },
+        {
+          "phase": "step",
+          "id": 511412,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 35,
+          "cuda_layer_calls": 897
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 36,
+          "cuda_layer_calls": 920
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 37,
+          "cuda_layer_calls": 943
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 281096,
+          "position": 3,
+          "chip_only_steps": 38,
+          "cuda_layer_calls": 966
+        },
+        {
+          "phase": "step",
+          "id": 281096,
+          "prediction": 281144,
+          "position": 3,
+          "chip_only_steps": 39,
+          "cuda_layer_calls": 989
+        },
+        {
+          "phase": "step",
+          "id": 281144,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 40,
+          "cuda_layer_calls": 1012
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 477756,
+          "position": 3,
+          "chip_only_steps": 41,
+          "cuda_layer_calls": 1035
+        },
+        {
+          "phase": "step",
+          "id": 477756,
+          "prediction": 23,
+          "position": 3,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1058
+        },
+        {
+          "phase": "step",
+          "id": 23,
+          "prediction": 281181,
+          "position": 4,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1081
+        },
+        {
+          "phase": "step",
+          "id": 281181,
+          "prediction": 642481,
+          "position": 4,
+          "chip_only_steps": 43,
+          "cuda_layer_calls": 1104
+        },
+        {
+          "phase": "step",
+          "id": 642481,
+          "prediction": 198,
+          "position": 4,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1127
+        },
+        {
+          "phase": "step",
+          "id": 198,
+          "prediction": -1,
+          "position": 5,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1150
+        }
+      ],
+      "tokens": [
+        44712,
+        248058,
+        18,
+        248059,
+        642482,
+        248320,
+        313857,
+        248320,
+        313857,
+        281139,
+        281091,
+        281093,
+        480684,
+        511407,
+        576940,
+        511409,
+        576940,
+        642476,
+        285184,
+        283136,
+        281088,
+        248320,
+        313857,
+        281087,
+        313856,
+        479660,
+        482732,
+        486828,
+        490924,
+        499115,
+        499379,
+        576943,
+        576945,
+        642476,
+        281218,
+        479148,
+        487852,
+        495021,
+        511412,
+        576940,
+        642476,
+        281089,
+        281096,
+        281144,
+        281089,
+        477756,
+        23,
+        281181,
+        642481,
+        198
+      ],
+      "ownership": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "echo": "8\n"
+    },
+    "stock": {
+      "exit_code": 0,
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 48.8,
+          "gpu_mib": 1255,
+          "system_ram_used_bytes": 19424903168,
+          "available_ram_bytes": 14853967872
+        },
+        "stages": {
+          "stock": {
+            "tree_cpu_pct": 32.406761537364076,
+            "system_cpu_pct": 36.9,
+            "working_set_bytes": 4533121024,
+            "private_commit_bytes": 6429134848,
+            "system_ram_used_bytes": 23383982080,
+            "gpu_mib": 5158
+          }
+        }
+      },
+      "wall_seconds": 8.34329569991678,
+      "architecture": {},
+      "result": {},
+      "steps": [],
+      "tokens": [
+        44712,
+        248058,
+        18,
+        248059
+      ],
+      "ownership": [],
+      "echo": ""
+    },
+    "alternate_input": {
+      "exit_code": 0,
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 23.0,
+          "gpu_mib": 1249,
+          "system_ram_used_bytes": 19310972928,
+          "available_ram_bytes": 14967898112
+        },
+        "stages": {
+          "alternate_input": {
+            "tree_cpu_pct": 39.672851561290386,
+            "system_cpu_pct": 60.8,
+            "working_set_bytes": 4770275328,
+            "private_commit_bytes": 6706540544,
+            "system_ram_used_bytes": 23648215040,
+            "gpu_mib": 5369
+          }
+        }
+      },
+      "wall_seconds": 4.918190099997446,
+      "architecture": {
+        "phase": "architecture",
+        "text_vocab": 248320,
+        "chip_width": 6914,
+        "widened_width": 7680,
+        "chip_layers": 23
+      },
+      "result": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 44,
+        "echoed_text_tokens": 2,
+        "cuda_layer_calls": 1150,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 0.515076,
+        "echoed_bytes": [
+          54,
+          10
+        ]
+      },
+      "steps": [
+        {
+          "phase": "step",
+          "id": 642482,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 1,
+          "cuda_layer_calls": 115
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 2,
+          "cuda_layer_calls": 138
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 3,
+          "cuda_layer_calls": 161
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 4,
+          "cuda_layer_calls": 184
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281137,
+          "position": 3,
+          "chip_only_steps": 5,
+          "cuda_layer_calls": 207
+        },
+        {
+          "phase": "step",
+          "id": 281137,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 6,
+          "cuda_layer_calls": 230
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 281093,
+          "position": 3,
+          "chip_only_steps": 7,
+          "cuda_layer_calls": 253
+        },
+        {
+          "phase": "step",
+          "id": 281093,
+          "prediction": 480684,
+          "position": 3,
+          "chip_only_steps": 8,
+          "cuda_layer_calls": 276
+        },
+        {
+          "phase": "step",
+          "id": 480684,
+          "prediction": 511405,
+          "position": 3,
+          "chip_only_steps": 9,
+          "cuda_layer_calls": 299
+        },
+        {
+          "phase": "step",
+          "id": 511405,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 10,
+          "cuda_layer_calls": 322
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 511409,
+          "position": 3,
+          "chip_only_steps": 11,
+          "cuda_layer_calls": 345
+        },
+        {
+          "phase": "step",
+          "id": 511409,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 12,
+          "cuda_layer_calls": 368
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 13,
+          "cuda_layer_calls": 391
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 285184,
+          "position": 3,
+          "chip_only_steps": 14,
+          "cuda_layer_calls": 414
+        },
+        {
+          "phase": "step",
+          "id": 285184,
+          "prediction": 283136,
+          "position": 3,
+          "chip_only_steps": 15,
+          "cuda_layer_calls": 437
+        },
+        {
+          "phase": "step",
+          "id": 283136,
+          "prediction": 281088,
+          "position": 3,
+          "chip_only_steps": 16,
+          "cuda_layer_calls": 460
+        },
+        {
+          "phase": "step",
+          "id": 281088,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 17,
+          "cuda_layer_calls": 483
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 18,
+          "cuda_layer_calls": 506
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281087,
+          "position": 3,
+          "chip_only_steps": 19,
+          "cuda_layer_calls": 529
+        },
+        {
+          "phase": "step",
+          "id": 281087,
+          "prediction": 313856,
+          "position": 3,
+          "chip_only_steps": 20,
+          "cuda_layer_calls": 552
+        },
+        {
+          "phase": "step",
+          "id": 313856,
+          "prediction": 479660,
+          "position": 3,
+          "chip_only_steps": 21,
+          "cuda_layer_calls": 575
+        },
+        {
+          "phase": "step",
+          "id": 479660,
+          "prediction": 482732,
+          "position": 3,
+          "chip_only_steps": 22,
+          "cuda_layer_calls": 598
+        },
+        {
+          "phase": "step",
+          "id": 482732,
+          "prediction": 486828,
+          "position": 3,
+          "chip_only_steps": 23,
+          "cuda_layer_calls": 621
+        },
+        {
+          "phase": "step",
+          "id": 486828,
+          "prediction": 490924,
+          "position": 3,
+          "chip_only_steps": 24,
+          "cuda_layer_calls": 644
+        },
+        {
+          "phase": "step",
+          "id": 490924,
+          "prediction": 499115,
+          "position": 3,
+          "chip_only_steps": 25,
+          "cuda_layer_calls": 667
+        },
+        {
+          "phase": "step",
+          "id": 499115,
+          "prediction": 499379,
+          "position": 3,
+          "chip_only_steps": 26,
+          "cuda_layer_calls": 690
+        },
+        {
+          "phase": "step",
+          "id": 499379,
+          "prediction": 576941,
+          "position": 3,
+          "chip_only_steps": 27,
+          "cuda_layer_calls": 713
+        },
+        {
+          "phase": "step",
+          "id": 576941,
+          "prediction": 576945,
+          "position": 3,
+          "chip_only_steps": 28,
+          "cuda_layer_calls": 736
+        },
+        {
+          "phase": "step",
+          "id": 576945,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 29,
+          "cuda_layer_calls": 759
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281218,
+          "position": 3,
+          "chip_only_steps": 30,
+          "cuda_layer_calls": 782
+        },
+        {
+          "phase": "step",
+          "id": 281218,
+          "prediction": 479148,
+          "position": 3,
+          "chip_only_steps": 31,
+          "cuda_layer_calls": 805
+        },
+        {
+          "phase": "step",
+          "id": 479148,
+          "prediction": 487852,
+          "position": 3,
+          "chip_only_steps": 32,
+          "cuda_layer_calls": 828
+        },
+        {
+          "phase": "step",
+          "id": 487852,
+          "prediction": 495021,
+          "position": 3,
+          "chip_only_steps": 33,
+          "cuda_layer_calls": 851
+        },
+        {
+          "phase": "step",
+          "id": 495021,
+          "prediction": 511410,
+          "position": 3,
+          "chip_only_steps": 34,
+          "cuda_layer_calls": 874
+        },
+        {
+          "phase": "step",
+          "id": 511410,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 35,
+          "cuda_layer_calls": 897
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 36,
+          "cuda_layer_calls": 920
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 37,
+          "cuda_layer_calls": 943
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 281094,
+          "position": 3,
+          "chip_only_steps": 38,
+          "cuda_layer_calls": 966
+        },
+        {
+          "phase": "step",
+          "id": 281094,
+          "prediction": 281142,
+          "position": 3,
+          "chip_only_steps": 39,
+          "cuda_layer_calls": 989
+        },
+        {
+          "phase": "step",
+          "id": 281142,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 40,
+          "cuda_layer_calls": 1012
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 477754,
+          "position": 3,
+          "chip_only_steps": 41,
+          "cuda_layer_calls": 1035
+        },
+        {
+          "phase": "step",
+          "id": 477754,
+          "prediction": 21,
+          "position": 3,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1058
+        },
+        {
+          "phase": "step",
+          "id": 21,
+          "prediction": 281181,
+          "position": 4,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1081
+        },
+        {
+          "phase": "step",
+          "id": 281181,
+          "prediction": 642481,
+          "position": 4,
+          "chip_only_steps": 43,
+          "cuda_layer_calls": 1104
+        },
+        {
+          "phase": "step",
+          "id": 642481,
+          "prediction": 198,
+          "position": 4,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1127
+        },
+        {
+          "phase": "step",
+          "id": 198,
+          "prediction": -1,
+          "position": 5,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1150
+        }
+      ],
+      "tokens": [
+        44712,
+        248058,
+        16,
+        248059,
+        642482,
+        248320,
+        313857,
+        248320,
+        313857,
+        281137,
+        281089,
+        281093,
+        480684,
+        511405,
+        576940,
+        511409,
+        576940,
+        642476,
+        285184,
+        283136,
+        281088,
+        248320,
+        313857,
+        281087,
+        313856,
+        479660,
+        482732,
+        486828,
+        490924,
+        499115,
+        499379,
+        576941,
+        576945,
+        642476,
+        281218,
+        479148,
+        487852,
+        495021,
+        511410,
+        576940,
+        642476,
+        281089,
+        281094,
+        281142,
+        281089,
+        477754,
+        21,
+        281181,
+        642481,
+        198
+      ],
+      "ownership": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "echo": "6\n"
+    },
+    "mutated": {
+      "exit_code": 0,
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 28.1,
+          "gpu_mib": 1221,
+          "system_ram_used_bytes": 20384256000,
+          "available_ram_bytes": 13894615040
+        },
+        "stages": {
+          "mutated": {
+            "tree_cpu_pct": 241.8518066353459,
+            "system_cpu_pct": 54.1,
+            "working_set_bytes": 4951269376,
+            "private_commit_bytes": 6888275968,
+            "system_ram_used_bytes": 24253628416,
+            "gpu_mib": 5344
+          }
+        }
+      },
+      "wall_seconds": 5.947679099976085,
+      "architecture": {
+        "phase": "architecture",
+        "text_vocab": 248320,
+        "chip_width": 6914,
+        "widened_width": 7680,
+        "chip_layers": 23
+      },
+      "result": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 44,
+        "echoed_text_tokens": 2,
+        "cuda_layer_calls": 1150,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 0.84416,
+        "echoed_bytes": [
+          48,
+          10
+        ]
+      },
+      "steps": [
+        {
+          "phase": "step",
+          "id": 642482,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 1,
+          "cuda_layer_calls": 115
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 2,
+          "cuda_layer_calls": 138
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 3,
+          "cuda_layer_calls": 161
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 4,
+          "cuda_layer_calls": 184
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281139,
+          "position": 3,
+          "chip_only_steps": 5,
+          "cuda_layer_calls": 207
+        },
+        {
+          "phase": "step",
+          "id": 281139,
+          "prediction": 281091,
+          "position": 3,
+          "chip_only_steps": 6,
+          "cuda_layer_calls": 230
+        },
+        {
+          "phase": "step",
+          "id": 281091,
+          "prediction": 281093,
+          "position": 3,
+          "chip_only_steps": 7,
+          "cuda_layer_calls": 253
+        },
+        {
+          "phase": "step",
+          "id": 281093,
+          "prediction": 480684,
+          "position": 3,
+          "chip_only_steps": 8,
+          "cuda_layer_calls": 276
+        },
+        {
+          "phase": "step",
+          "id": 480684,
+          "prediction": 511407,
+          "position": 3,
+          "chip_only_steps": 9,
+          "cuda_layer_calls": 299
+        },
+        {
+          "phase": "step",
+          "id": 511407,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 10,
+          "cuda_layer_calls": 322
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 511409,
+          "position": 3,
+          "chip_only_steps": 11,
+          "cuda_layer_calls": 345
+        },
+        {
+          "phase": "step",
+          "id": 511409,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 12,
+          "cuda_layer_calls": 368
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 13,
+          "cuda_layer_calls": 391
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 285184,
+          "position": 3,
+          "chip_only_steps": 14,
+          "cuda_layer_calls": 414
+        },
+        {
+          "phase": "step",
+          "id": 285184,
+          "prediction": 283136,
+          "position": 3,
+          "chip_only_steps": 15,
+          "cuda_layer_calls": 437
+        },
+        {
+          "phase": "step",
+          "id": 283136,
+          "prediction": 281088,
+          "position": 3,
+          "chip_only_steps": 16,
+          "cuda_layer_calls": 460
+        },
+        {
+          "phase": "step",
+          "id": 281088,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 17,
+          "cuda_layer_calls": 483
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 18,
+          "cuda_layer_calls": 506
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281087,
+          "position": 3,
+          "chip_only_steps": 19,
+          "cuda_layer_calls": 529
+        },
+        {
+          "phase": "step",
+          "id": 281087,
+          "prediction": 313856,
+          "position": 3,
+          "chip_only_steps": 20,
+          "cuda_layer_calls": 552
+        },
+        {
+          "phase": "step",
+          "id": 313856,
+          "prediction": 479660,
+          "position": 3,
+          "chip_only_steps": 21,
+          "cuda_layer_calls": 575
+        },
+        {
+          "phase": "step",
+          "id": 479660,
+          "prediction": 482732,
+          "position": 3,
+          "chip_only_steps": 22,
+          "cuda_layer_calls": 598
+        },
+        {
+          "phase": "step",
+          "id": 482732,
+          "prediction": 486828,
+          "position": 3,
+          "chip_only_steps": 23,
+          "cuda_layer_calls": 621
+        },
+        {
+          "phase": "step",
+          "id": 486828,
+          "prediction": 490924,
+          "position": 3,
+          "chip_only_steps": 24,
+          "cuda_layer_calls": 644
+        },
+        {
+          "phase": "step",
+          "id": 490924,
+          "prediction": 499115,
+          "position": 3,
+          "chip_only_steps": 25,
+          "cuda_layer_calls": 667
+        },
+        {
+          "phase": "step",
+          "id": 499115,
+          "prediction": 499379,
+          "position": 3,
+          "chip_only_steps": 26,
+          "cuda_layer_calls": 690
+        },
+        {
+          "phase": "step",
+          "id": 499379,
+          "prediction": 576943,
+          "position": 3,
+          "chip_only_steps": 27,
+          "cuda_layer_calls": 713
+        },
+        {
+          "phase": "step",
+          "id": 576943,
+          "prediction": 576945,
+          "position": 3,
+          "chip_only_steps": 28,
+          "cuda_layer_calls": 736
+        },
+        {
+          "phase": "step",
+          "id": 576945,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 29,
+          "cuda_layer_calls": 759
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281218,
+          "position": 3,
+          "chip_only_steps": 30,
+          "cuda_layer_calls": 782
+        },
+        {
+          "phase": "step",
+          "id": 281218,
+          "prediction": 479148,
+          "position": 3,
+          "chip_only_steps": 31,
+          "cuda_layer_calls": 805
+        },
+        {
+          "phase": "step",
+          "id": 479148,
+          "prediction": 487852,
+          "position": 3,
+          "chip_only_steps": 32,
+          "cuda_layer_calls": 828
+        },
+        {
+          "phase": "step",
+          "id": 487852,
+          "prediction": 495021,
+          "position": 3,
+          "chip_only_steps": 33,
+          "cuda_layer_calls": 851
+        },
+        {
+          "phase": "step",
+          "id": 495021,
+          "prediction": 511412,
+          "position": 3,
+          "chip_only_steps": 34,
+          "cuda_layer_calls": 874
+        },
+        {
+          "phase": "step",
+          "id": 511412,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 35,
+          "cuda_layer_calls": 897
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 36,
+          "cuda_layer_calls": 920
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 37,
+          "cuda_layer_calls": 943
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 281096,
+          "position": 3,
+          "chip_only_steps": 38,
+          "cuda_layer_calls": 966
+        },
+        {
+          "phase": "step",
+          "id": 281096,
+          "prediction": 281144,
+          "position": 3,
+          "chip_only_steps": 39,
+          "cuda_layer_calls": 989
+        },
+        {
+          "phase": "step",
+          "id": 281144,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 40,
+          "cuda_layer_calls": 1012
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 477748,
+          "position": 3,
+          "chip_only_steps": 41,
+          "cuda_layer_calls": 1035
+        },
+        {
+          "phase": "step",
+          "id": 477748,
+          "prediction": 15,
+          "position": 3,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1058
+        },
+        {
+          "phase": "step",
+          "id": 15,
+          "prediction": 281181,
+          "position": 4,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1081
+        },
+        {
+          "phase": "step",
+          "id": 281181,
+          "prediction": 642481,
+          "position": 4,
+          "chip_only_steps": 43,
+          "cuda_layer_calls": 1104
+        },
+        {
+          "phase": "step",
+          "id": 642481,
+          "prediction": 198,
+          "position": 4,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1127
+        },
+        {
+          "phase": "step",
+          "id": 198,
+          "prediction": -1,
+          "position": 5,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1150
+        }
+      ],
+      "tokens": [
+        44712,
+        248058,
+        18,
+        248059,
+        642482,
+        248320,
+        313857,
+        248320,
+        313857,
+        281139,
+        281091,
+        281093,
+        480684,
+        511407,
+        576940,
+        511409,
+        576940,
+        642476,
+        285184,
+        283136,
+        281088,
+        248320,
+        313857,
+        281087,
+        313856,
+        479660,
+        482732,
+        486828,
+        490924,
+        499115,
+        499379,
+        576943,
+        576945,
+        642476,
+        281218,
+        479148,
+        487852,
+        495021,
+        511412,
+        576940,
+        642476,
+        281089,
+        281096,
+        281144,
+        281089,
+        477748,
+        15,
+        281181,
+        642481,
+        198
+      ],
+      "ownership": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "echo": "0\n"
+    },
+    "restored": {
+      "exit_code": 0,
+      "resources": {
+        "baseline": {
+          "system_cpu_pct": 23.8,
+          "gpu_mib": 1222,
+          "system_ram_used_bytes": 20231856128,
+          "available_ram_bytes": 14047014912
+        },
+        "stages": {
+          "restored": {
+            "tree_cpu_pct": 261.11137577850593,
+            "system_cpu_pct": 41.2,
+            "working_set_bytes": 5108334592,
+            "private_commit_bytes": 7041540096,
+            "system_ram_used_bytes": 24208363520,
+            "gpu_mib": 5345
+          }
+        }
+      },
+      "wall_seconds": 4.978538700030185,
+      "architecture": {
+        "phase": "architecture",
+        "text_vocab": 248320,
+        "chip_width": 6914,
+        "widened_width": 7680,
+        "chip_layers": 23
+      },
+      "result": {
+        "phase": "result",
+        "released": true,
+        "chip_only_steps": 44,
+        "echoed_text_tokens": 2,
+        "cuda_layer_calls": 1150,
+        "position_correct": true,
+        "cache_equal_during_chip": true,
+        "elapsed_seconds": 0.539978,
+        "echoed_bytes": [
+          56,
+          10
+        ]
+      },
+      "steps": [
+        {
+          "phase": "step",
+          "id": 642482,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 1,
+          "cuda_layer_calls": 115
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 2,
+          "cuda_layer_calls": 138
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 3,
+          "cuda_layer_calls": 161
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 4,
+          "cuda_layer_calls": 184
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281139,
+          "position": 3,
+          "chip_only_steps": 5,
+          "cuda_layer_calls": 207
+        },
+        {
+          "phase": "step",
+          "id": 281139,
+          "prediction": 281091,
+          "position": 3,
+          "chip_only_steps": 6,
+          "cuda_layer_calls": 230
+        },
+        {
+          "phase": "step",
+          "id": 281091,
+          "prediction": 281093,
+          "position": 3,
+          "chip_only_steps": 7,
+          "cuda_layer_calls": 253
+        },
+        {
+          "phase": "step",
+          "id": 281093,
+          "prediction": 480684,
+          "position": 3,
+          "chip_only_steps": 8,
+          "cuda_layer_calls": 276
+        },
+        {
+          "phase": "step",
+          "id": 480684,
+          "prediction": 511407,
+          "position": 3,
+          "chip_only_steps": 9,
+          "cuda_layer_calls": 299
+        },
+        {
+          "phase": "step",
+          "id": 511407,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 10,
+          "cuda_layer_calls": 322
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 511409,
+          "position": 3,
+          "chip_only_steps": 11,
+          "cuda_layer_calls": 345
+        },
+        {
+          "phase": "step",
+          "id": 511409,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 12,
+          "cuda_layer_calls": 368
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 13,
+          "cuda_layer_calls": 391
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 285184,
+          "position": 3,
+          "chip_only_steps": 14,
+          "cuda_layer_calls": 414
+        },
+        {
+          "phase": "step",
+          "id": 285184,
+          "prediction": 283136,
+          "position": 3,
+          "chip_only_steps": 15,
+          "cuda_layer_calls": 437
+        },
+        {
+          "phase": "step",
+          "id": 283136,
+          "prediction": 281088,
+          "position": 3,
+          "chip_only_steps": 16,
+          "cuda_layer_calls": 460
+        },
+        {
+          "phase": "step",
+          "id": 281088,
+          "prediction": 248320,
+          "position": 3,
+          "chip_only_steps": 17,
+          "cuda_layer_calls": 483
+        },
+        {
+          "phase": "step",
+          "id": 248320,
+          "prediction": 313857,
+          "position": 3,
+          "chip_only_steps": 18,
+          "cuda_layer_calls": 506
+        },
+        {
+          "phase": "step",
+          "id": 313857,
+          "prediction": 281087,
+          "position": 3,
+          "chip_only_steps": 19,
+          "cuda_layer_calls": 529
+        },
+        {
+          "phase": "step",
+          "id": 281087,
+          "prediction": 313856,
+          "position": 3,
+          "chip_only_steps": 20,
+          "cuda_layer_calls": 552
+        },
+        {
+          "phase": "step",
+          "id": 313856,
+          "prediction": 479660,
+          "position": 3,
+          "chip_only_steps": 21,
+          "cuda_layer_calls": 575
+        },
+        {
+          "phase": "step",
+          "id": 479660,
+          "prediction": 482732,
+          "position": 3,
+          "chip_only_steps": 22,
+          "cuda_layer_calls": 598
+        },
+        {
+          "phase": "step",
+          "id": 482732,
+          "prediction": 486828,
+          "position": 3,
+          "chip_only_steps": 23,
+          "cuda_layer_calls": 621
+        },
+        {
+          "phase": "step",
+          "id": 486828,
+          "prediction": 490924,
+          "position": 3,
+          "chip_only_steps": 24,
+          "cuda_layer_calls": 644
+        },
+        {
+          "phase": "step",
+          "id": 490924,
+          "prediction": 499115,
+          "position": 3,
+          "chip_only_steps": 25,
+          "cuda_layer_calls": 667
+        },
+        {
+          "phase": "step",
+          "id": 499115,
+          "prediction": 499379,
+          "position": 3,
+          "chip_only_steps": 26,
+          "cuda_layer_calls": 690
+        },
+        {
+          "phase": "step",
+          "id": 499379,
+          "prediction": 576943,
+          "position": 3,
+          "chip_only_steps": 27,
+          "cuda_layer_calls": 713
+        },
+        {
+          "phase": "step",
+          "id": 576943,
+          "prediction": 576945,
+          "position": 3,
+          "chip_only_steps": 28,
+          "cuda_layer_calls": 736
+        },
+        {
+          "phase": "step",
+          "id": 576945,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 29,
+          "cuda_layer_calls": 759
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281218,
+          "position": 3,
+          "chip_only_steps": 30,
+          "cuda_layer_calls": 782
+        },
+        {
+          "phase": "step",
+          "id": 281218,
+          "prediction": 479148,
+          "position": 3,
+          "chip_only_steps": 31,
+          "cuda_layer_calls": 805
+        },
+        {
+          "phase": "step",
+          "id": 479148,
+          "prediction": 487852,
+          "position": 3,
+          "chip_only_steps": 32,
+          "cuda_layer_calls": 828
+        },
+        {
+          "phase": "step",
+          "id": 487852,
+          "prediction": 495021,
+          "position": 3,
+          "chip_only_steps": 33,
+          "cuda_layer_calls": 851
+        },
+        {
+          "phase": "step",
+          "id": 495021,
+          "prediction": 511412,
+          "position": 3,
+          "chip_only_steps": 34,
+          "cuda_layer_calls": 874
+        },
+        {
+          "phase": "step",
+          "id": 511412,
+          "prediction": 576940,
+          "position": 3,
+          "chip_only_steps": 35,
+          "cuda_layer_calls": 897
+        },
+        {
+          "phase": "step",
+          "id": 576940,
+          "prediction": 642476,
+          "position": 3,
+          "chip_only_steps": 36,
+          "cuda_layer_calls": 920
+        },
+        {
+          "phase": "step",
+          "id": 642476,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 37,
+          "cuda_layer_calls": 943
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 281096,
+          "position": 3,
+          "chip_only_steps": 38,
+          "cuda_layer_calls": 966
+        },
+        {
+          "phase": "step",
+          "id": 281096,
+          "prediction": 281144,
+          "position": 3,
+          "chip_only_steps": 39,
+          "cuda_layer_calls": 989
+        },
+        {
+          "phase": "step",
+          "id": 281144,
+          "prediction": 281089,
+          "position": 3,
+          "chip_only_steps": 40,
+          "cuda_layer_calls": 1012
+        },
+        {
+          "phase": "step",
+          "id": 281089,
+          "prediction": 477756,
+          "position": 3,
+          "chip_only_steps": 41,
+          "cuda_layer_calls": 1035
+        },
+        {
+          "phase": "step",
+          "id": 477756,
+          "prediction": 23,
+          "position": 3,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1058
+        },
+        {
+          "phase": "step",
+          "id": 23,
+          "prediction": 281181,
+          "position": 4,
+          "chip_only_steps": 42,
+          "cuda_layer_calls": 1081
+        },
+        {
+          "phase": "step",
+          "id": 281181,
+          "prediction": 642481,
+          "position": 4,
+          "chip_only_steps": 43,
+          "cuda_layer_calls": 1104
+        },
+        {
+          "phase": "step",
+          "id": 642481,
+          "prediction": 198,
+          "position": 4,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1127
+        },
+        {
+          "phase": "step",
+          "id": 198,
+          "prediction": -1,
+          "position": 5,
+          "chip_only_steps": 44,
+          "cuda_layer_calls": 1150
+        }
+      ],
+      "tokens": [
+        44712,
+        248058,
+        18,
+        248059,
+        642482,
+        248320,
+        313857,
+        248320,
+        313857,
+        281139,
+        281091,
+        281093,
+        480684,
+        511407,
+        576940,
+        511409,
+        576940,
+        642476,
+        285184,
+        283136,
+        281088,
+        248320,
+        313857,
+        281087,
+        313856,
+        479660,
+        482732,
+        486828,
+        490924,
+        499115,
+        499379,
+        576943,
+        576945,
+        642476,
+        281218,
+        479148,
+        487852,
+        495021,
+        511412,
+        576940,
+        642476,
+        281089,
+        281096,
+        281144,
+        281089,
+        477756,
+        23,
+        281181,
+        642481,
+        198
+      ],
+      "ownership": [
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "echo": "8\n"
+    }
+  },
+  "mutation": {
+    "graph_offset": 14097128,
+    "original_hex": "00008035",
+    "replacement_hex": "00000000",
+    "node": "exit.code8",
+    "sublayer": 22,
+    "unit": 680,
+    "coefficient": 9.5367431640625e-07,
+    "expected_first_divergence_stream_index": 45,
+    "original_selected_id": 477756,
+    "mutated_selected_id": 477748,
+    "original_echo_id": 23,
+    "mutated_echo_id": 15,
+    "expected_original_output": "8",
+    "expected_mutated_output": "0",
+    "ir_invariants_checked": true,
+    "checkpoint_offset": 3817549768,
+    "field_bytes": 4,
+    "all_other_bytes_equal": true,
+    "original_sha256": "0368485626d314216eacd33155976118568f57e386535385c36884205cec5a54",
+    "mutant_sha256": "e953c30810737d7b911e8cd4505df877d6a3adb530eaf6a1480c9d71e672253b",
+    "restored_sha256": "0368485626d314216eacd33155976118568f57e386535385c36884205cec5a54"
+  },
+  "reference_sha256": "b95d5c8edea154c8e99a879bd11fc090fd4537206c9d7df79587dbaaa92f5313",
+  "ordinary_logits": {
+    "original": {
+      "bitwise_equal": false,
+      "max_abs_difference": 0.1055145263671875,
+      "greedy_id_equal": true
+    },
+    "mutated": {
+      "bitwise_equal": false,
+      "max_abs_difference": 0.1055145263671875,
+      "greedy_id_equal": true
+    },
+    "restored": {
+      "bitwise_equal": false,
+      "max_abs_difference": 0.1055145263671875,
+      "greedy_id_equal": true
+    }
+  },
+  "resumed_logits": {
+    "bitwise_equal": false,
+    "max_abs_difference": 0.10677766799926758,
+    "greedy_id_equal": true
+  },
+  "cuda_schedule": {
+    "original": {
+      "cuda_circuit_split": true,
+      "cuda_input_embedding": true,
+      "cuda_chip_norm_edge": true
+    },
+    "alternate_input": {
+      "cuda_circuit_split": true,
+      "cuda_input_embedding": true,
+      "cuda_chip_norm_edge": true
+    },
+    "mutated": {
+      "cuda_circuit_split": true,
+      "cuda_input_embedding": true,
+      "cuda_chip_norm_edge": true
+    },
+    "restored": {
+      "cuda_circuit_split": true,
+      "cuda_input_embedding": true,
+      "cuda_chip_norm_edge": true
+    }
+  },
+  "checks": {
+    "original_exact": true,
+    "alternate_input_exact": true,
+    "mutant_changed_selected_output": true,
+    "restored_exact": true,
+    "token_ownership_matches": true,
+    "mutation_leaves_idle_logits_identical": true,
+    "restored_model_logits_identical": true,
+    "stock_idle_greedy_token_equal": true,
+    "stock_resumed_greedy_token_equal": true,
+    "cuda_and_text_state_checks": true,
+    "cuda_schedule_has_circuit_norm_and_embeddings": true,
+    "reference_hash_matches_frozen_oracle": true
+  },
+  "passed": true
+}

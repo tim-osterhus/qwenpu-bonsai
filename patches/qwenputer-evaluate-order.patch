@@ -1,0 +1,36 @@
+diff --git a/chipformer/q35/ir.py b/chipformer/q35/ir.py
+index 0e380ce..67f245b 100644
+--- a/chipformer/q35/ir.py
++++ b/chipformer/q35/ir.py
+@@ -437,7 +437,7 @@ def conv(c: Chan, m: np.ndarray, check: bool, carry: dict | None = None,
+ 
+ 
+ def evaluate(g: Graph, tokens: list[int], check: bool = True,
+-             carry: dict | None = None) -> np.ndarray:
++             carry: dict | None = None, *, order: str = "C") -> np.ndarray:
+     """Residual stream after every node: (n_tokens, n_dims), exact in float64.
+ 
+     Text tokens (ids outside the chip vocabulary) can be passed as -1: all chip dims are 0.
+@@ -445,7 +445,7 @@ def evaluate(g: Graph, tokens: list[int], check: bool = True,
+     head states and conv windows pass from one call to the next.
+     """
+     n = len(tokens)
+-    m = np.zeros((n, len(g.dims)))
++    m = np.zeros((n, len(g.dims)), order=order)
+     toks = np.asarray(tokens, dtype=np.int64)
+     chip = toks >= 0
+     m[:, ONE] = chip
+diff --git a/chipformer/q35/overlay.py b/chipformer/q35/overlay.py
+index bd97f19..358883f 100644
+--- a/chipformer/q35/overlay.py
++++ b/chipformer/q35/overlay.py
+@@ -208,7 +208,8 @@ def activity(g: Graph, traces: list[list[int]]) -> Activity:
+ 
+     for toks in traces:
+         txt = _text_mask(toks)
+-        m = ir.evaluate(g, toks, check=False)
++        # Most accesses scan one residual dimension across the entire trace.
++        m = ir.evaluate(g, toks, check=False, order="F")
+         act.zero &= ~(m[txt] != 0).any(0)
+         for i, n in enumerate(g.nodes):
+             if isinstance(n, FFN):

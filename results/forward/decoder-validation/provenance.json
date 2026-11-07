@@ -1,0 +1,14 @@
+{
+  "runtime_revision": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+  "hardware": "NVIDIA GeForce GTX 1080, 8192 MiB, 582.66",
+  "sha256": {
+    "candidate/llama.dll": "5b5fbe0d2895fc97707522f6bbe3897f9b4cd9f9e846bb0f36ff84d4aa46f579",
+    "candidate/qwenpu-forward-cuda.cubin": "03f12ce515e94735a6aade9b57f0001847ef826395b4e69db802a0df79b20a49",
+    "probe_forward.exe": "67ac534262212c262cc3e8d035fca8b90b95665fbca077df3622c032fa0b37cc",
+    "reference.json": "b95d5c8edea154c8e99a879bd11fc090fd4537206c9d7df79587dbaaa92f5313",
+    "validation/20261106-183930/validation.json": "311e931e05937ef8633836fda4c09a271f00081ff7b7e8af9119afe1b69e2985"
+  },
+  "checkpoint_sha256": "0368485626d314216eacd33155976118568f57e386535385c36884205cec5a54",
+  "mutant_sha256": "e953c30810737d7b911e8cd4505df877d6a3adb530eaf6a1480c9d71e672253b",
+  "restored_sha256": "0368485626d314216eacd33155976118568f57e386535385c36884205cec5a54"
+}
