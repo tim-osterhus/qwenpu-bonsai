@@ -15,6 +15,10 @@ This v0.1 experimental checkpoint adds QwenPU's RISC-V and vector circuit to Bon
 
 **Runtime requirement.** Build the patched Windows CUDA version of Prism llama.cpp at revision `9fcaed763ccda38ea81068ad9d7f991aaddca451`. The validated build targets Pascal `sm_61`. Stock llama.cpp, LM Studio, and Ollama are incompatible with this format. [Windows build and launch commands](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [Runtime identity](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/results/forward/release-v0.1/runtime-identity.json)
 
+## Research update on stock Prism
+
+A separate 6.92 GB research checkpoint matched the vector fixtures and the original stories260K reference through its first matrix-vector multiply on an 8 GB GTX 1080 with unmodified Windows Prism b9596. The stock build's three-token run is pending. The files on this card are the v0.1 checkpoint validated through three tokens with patched Prism. [GitHub research update](https://github.com/tim-osterhus/qwenpu-bonsai#research-update-on-stock-prism)
+
 ## Model files
 
 | File | Bytes | SHA-256 |

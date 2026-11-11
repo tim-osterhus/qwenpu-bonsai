@@ -4,6 +4,15 @@ This experimental port runs QwenPU's RISC-V and vector circuit as sparse CUDA op
 
 This source release contains the overlay, guest programs, build scripts, and validation reports. Build the patched Prism llama.cpp runtime on Windows, then download the retained GGUF or export it from the pinned stock Bonsai GGUF. [Windows reproduction guide](docs/REPRODUCE.md) · [Model files on Hugging Face](https://huggingface.co/millrace-ai/qwenpu-bonsai) · [Validation evidence](results/README.md)
 
+## Research update on stock Prism
+
+A separate **6.92 GB research checkpoint** runs the RV32 and vector circuit using standard model operations with packed Bonsai-27B weights. We tested it on an 8 GB GTX 1080 using unmodified Windows Prism b9596. A research launcher loads the guest ELF and relays the model's selections through Prism's built-in MTP APIs.
+
+- The checksum, dot product, and division suite matched **2,520 architectural states** across nine runs, including A → B → A reset. Changing one active circuit coefficient changed the vector result from 25 to 16. Restoring the coefficient recovered the exact trace and result.
+- The original stories260K guest matched all **1,830 architectural states** through its first matrix-vector multiply in **21m 27s**, with Bonsai's parked text state preserved. Device-wide VRAM peaked at **7.56 GiB**.
+
+The stock build's three-token story run is pending. The published **3.825 GB v0.1** checkpoint produced **`Once upon a`** using patched Prism and remains the release download. [Stock Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
+
 ## How it works
 
 The exporter retargets the upstream circuit for Bonsai's geometry and adds its sparse coefficients and guest snapshots to the same GGUF as Bonsai's tensors. The circuit has 23 active sublayers, which the pinned QwenPU standard-layer emitter groups into 13 blocks. This port runs those sublayers as custom CUDA-backed GGML nodes. The retained circuit coordinates contribute to Bonsai's residual RMS normalization. During chip-only steps, the circuit advances while the language model's position and cache are held. [Decoder implementation](overlay/experimental/bonsai-qwenpu/FORWARD.md) · [Pinned upstream emitter](https://github.com/divagr18/QwenPU/blob/6e2767aaa59b69ea03300c0a5199d7b36debbe50/chipformer/q35/emit.py)

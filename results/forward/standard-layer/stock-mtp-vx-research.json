@@ -1,0 +1,318 @@
+{
+  "schema": "stock-mtp-rv32-vx-v1",
+  "status": "Packed VX suite and original story through first VMAT passed; sustained story gate open",
+  "reference_commit": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+  "checkpoint": {
+    "bytes": 6920450208,
+    "sha256": "bc94c1ab8112499ba5b2690f3e0a1ceb11beaa5ae92ea11606812504b37353bc",
+    "width": 5120,
+    "mtp_layer": 64,
+    "mtp_ffn_rows": 21248,
+    "mtp_ffn_rows_used": 21132,
+    "mtp_ffn_type": "BF16",
+    "language_tensors_byte_equal": 659,
+    "language_tensors_zero_extended": 192,
+    "language_original_packed_blocks_equal": true,
+    "source_bonsai_sha256": "17ef842e47450caeb8eaa3ebfbbab5d2f2278b62b79be107985fb69a2f819aa0",
+    "source_bonsai_bytes": 3803452480,
+    "sha256_rechecked_after_runs": true,
+    "temporary_gguf_removed_after_archiving": true
+  },
+  "execution_contract": "Raw ELF loads at runtime. Stock Prism MTP weights select addresses, arithmetic, writes, retirements and next actions. The Windows launcher transports feedback and cache requests. The CPU oracle is offline. The guest and original Bonsai text use separate stock contexts in the same model.",
+  "comparison_scope": "Exact architectural traces under the stock MTP micro-action codec for pinned valid operands; invalid VX exception compatibility remains unqualified.",
+  "fixture_suite": {
+    "status": "pass",
+    "runs": [
+      {
+        "fixture": "vmat-checksum-dot-div-a",
+        "architectural_attempts": 645,
+        "decodes": 32826,
+        "seconds": 340.478646,
+        "seed_sha256": "6ee38c668dfa8aff38db2fc32173f855e4f50d13463a76dbe99f9e2e0e5c9165",
+        "final_kv_sha256": "c32bb2722605fca29268d69fa334e8ab632407b6a84e521021983411621543be",
+        "final_vx_trackers": {
+          "vmx": 13272,
+          "vsum": 84504,
+          "varg": 64,
+          "vbest": 18040
+        }
+      },
+      {
+        "fixture": "vmat-checksum-dot-div-b",
+        "architectural_attempts": 645,
+        "decodes": 32826,
+        "seconds": 340.076178,
+        "seed_sha256": "c57bd82c883a1d3a337cd128b98ebf2d3e071fbcd4d881d5ae1e4d2785c79b92",
+        "final_kv_sha256": "e4450945bc869bf8c5b846e9b40089dfc054abf0af4a54f7b771c9528597a690",
+        "final_vx_trackers": {
+          "vmx": 14224,
+          "vsum": 84504,
+          "varg": 64,
+          "vbest": 20658
+        }
+      },
+      {
+        "fixture": "vmat-checksum-dot-div-a",
+        "architectural_attempts": 645,
+        "decodes": 32826,
+        "seconds": 340.498731,
+        "seed_sha256": "6ee38c668dfa8aff38db2fc32173f855e4f50d13463a76dbe99f9e2e0e5c9165",
+        "final_kv_sha256": "c32bb2722605fca29268d69fa334e8ab632407b6a84e521021983411621543be",
+        "final_vx_trackers": {
+          "vmx": 13272,
+          "vsum": 84504,
+          "varg": 64,
+          "vbest": 18040
+        }
+      },
+      {
+        "fixture": "vew-add-glu-rope",
+        "architectural_attempts": 62,
+        "decodes": 7177,
+        "seconds": 74.5197323,
+        "seed_sha256": "ed9bae607b240f6e23f2214ded994d6f53260cab72d267842286b2c244cbacc7",
+        "final_kv_sha256": "c048328f9cf119070b648851b2ebc9397a46d2c1a930a5ba229af09d288fa38e",
+        "final_vx_trackers": {
+          "vmx": 2423,
+          "vsum": 0,
+          "varg": 0,
+          "vbest": null
+        }
+      },
+      {
+        "fixture": "attention-odd-cache",
+        "architectural_attempts": 110,
+        "decodes": 11742,
+        "seconds": 121.144114,
+        "seed_sha256": "4c7a31c3a592a7e54e2dc80fbb835a020194991cb0928103e7b259b35b491fa7",
+        "final_kv_sha256": "bc796a9d2b7e3d5d6a59c40e017097414fe01e0c1bd6fe313e559474fdcb1e94",
+        "final_vx_trackers": {
+          "vmx": 7620,
+          "vsum": 127,
+          "varg": 0,
+          "vbest": null
+        }
+      },
+      {
+        "fixture": "vq-round-clamp-cache",
+        "architectural_attempts": 85,
+        "decodes": 9371,
+        "seconds": 97.4228601,
+        "seed_sha256": "b8a49d78204bf82f9c5de5b36312824de6870a90259015f9cf4f2c437cd3563e",
+        "final_kv_sha256": "cf2a891b042be7f687a732c68dfa19d8221d9fd68051e4e7be34b0e36f33573b",
+        "final_vx_trackers": {
+          "vmx": 0,
+          "vsum": 145426,
+          "varg": 0,
+          "vbest": null
+        }
+      },
+      {
+        "fixture": "vmat-k3",
+        "architectural_attempts": 255,
+        "decodes": 42651,
+        "seconds": 440.727494,
+        "seed_sha256": "7d1659554bedd491b1158a2073b05aa881a849a958fa04954e0ca5d8c9f247a8",
+        "final_kv_sha256": "ec16e7bc8b3a79a33dea7f384018916e9c4bf928444f8788dad751d7d5710b1b",
+        "final_vx_trackers": {
+          "vmx": 56936,
+          "vsum": 0,
+          "varg": 0,
+          "vbest": null
+        }
+      },
+      {
+        "fixture": "vmat-outside-file-zero-scale",
+        "architectural_attempts": 33,
+        "decodes": 2116,
+        "seconds": 22.4424473,
+        "seed_sha256": "19e9e111889466c23fb819c90b5a35c491bf78e918213249443a14917e4b97f5",
+        "final_kv_sha256": "f2cdd1a5b3c34d747328b137b25c3bf4de0256d8b606e63413780126291661d3",
+        "final_vx_trackers": {
+          "vmx": 0,
+          "vsum": 0,
+          "varg": 0,
+          "vbest": null
+        }
+      },
+      {
+        "fixture": "vmat-keep-retains-maximum",
+        "architectural_attempts": 40,
+        "decodes": 2990,
+        "seconds": 31.3723752,
+        "seed_sha256": "dc6df2b80c2ad8c4cf2226e4400b58f670b28a3090324a6998c28aaf56224a35",
+        "final_kv_sha256": "636c3d3f7dd9327af89d174f564c9a309f1e6dbb141b11e6de4c6dfb029a62c0",
+        "final_vx_trackers": {
+          "vmx": 1252,
+          "vsum": 0,
+          "varg": 0,
+          "vbest": null
+        }
+      }
+    ],
+    "architectural_attempts": 2520,
+    "nonseed_decodes": 174525,
+    "all_eight_vx_operations": true,
+    "aba": {
+      "status": "pass",
+      "architectural_states": 1935,
+      "raw_actions_equal": true,
+      "kv_artifacts_sha256": {
+        "seed-kv.bin": "6ee38c668dfa8aff38db2fc32173f855e4f50d13463a76dbe99f9e2e0e5c9165",
+        "final-kv.bin": "c32bb2722605fca29268d69fa334e8ab632407b6a84e521021983411621543be",
+        "kv-witness.bin": "b28c038c9649932a0b23f0122eae71e2465a642d09998116d2aa2451c90678a0"
+      },
+      "per_case_seconds": [
+        340.478646,
+        340.076178,
+        340.498731
+      ],
+      "nonseed_decodes": [
+        32826,
+        32826,
+        32826
+      ]
+    },
+    "packed_text_parked": {
+      "position": 5,
+      "state_sha256": "9ed1f29dbbf8bff3c2a0fdc74118393562a51548333ded041e2e5c7303f69624",
+      "kv_sha256": "127cbe28183b806734a88b202c755072f73672b79d3071a4733905cf6223e660",
+      "recurrent_sha256": "b1a8ec861d9760f1fe0d1ef8e1807783eb490a4434f6392db219377eaa139776",
+      "logits_sha256": "626f7b0f50cdb0764f0eea63e1498176b522428041992f8989e15826a6d8ae33"
+    },
+    "all_nine_matched_history_handoffs_exact": true,
+    "measurement": {
+      "exit_code": 0,
+      "budget_failure": null,
+      "budget": {
+        "wall_seconds": 3600,
+        "working_set_bytes": 25769803776,
+        "shared_gpu_bytes": 4294967296
+      },
+      "identity": {
+        "probe_sha256": "add8240bf34db656d16573e33d9bc00ed97d4b731670fbc89caeaca2584ebd83",
+        "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+      },
+      "wall_seconds": 1847.795916400035,
+      "nvml_baseline_bytes": 956112896,
+      "nvml_peak_bytes": 8127873024,
+      "process_dedicated_peak_bytes": 7202848768,
+      "process_shared_peak_bytes": 77594624,
+      "sampled_working_set_peak_bytes": 7524065280,
+      "samples": 7367
+    }
+  },
+  "active_mutation": {
+    "status": "pass",
+    "tensor": "blk.64.ffn_gate.weight",
+    "row": 16308,
+    "column": 4473,
+    "coefficient_before": 4,
+    "coefficient_mutated": -4,
+    "changed_byte_offset": 6434714515,
+    "original_sha256": "bc94c1ab8112499ba5b2690f3e0a1ceb11beaa5ae92ea11606812504b37353bc",
+    "mutated_sha256": "fc703b7b6bd9ae6de3bc86122a1c809553a717a64974d54bdbc9f4c7cd50948c",
+    "restored_sha256": "bc94c1ab8112499ba5b2690f3e0a1ceb11beaa5ae92ea11606812504b37353bc",
+    "original_guest_sha256": "8058ec6173c627c0692693714d7aa3e3b36710f5c7eaa402538ffc9d9f82f4e5",
+    "baseline_result": 25,
+    "mutated_result": 16,
+    "affected_square_bits": [
+      0,
+      3
+    ],
+    "baseline_report_sha256": "1d6460bef5a09d54b510c276371e087af4786dda93fd104282f54d0666cc1e99",
+    "map_sha256": "96844dec21c2aa75a1ba0a4548cb4f60bbb98bd828093075cfce151a58b4d943",
+    "restored_complete_trace_exact": true,
+    "original_checkpoint_unchanged": true
+  },
+  "source_report_sha256": "cec431ed2236b83ccfe6880626d702a5f407ebcbc63e21935095c113b2aea052",
+  "runtime": {
+    "build": "b9596",
+    "revision": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+    "gpu": "NVIDIA GeForce GTX 1080, 582.66, 8192 MiB"
+  },
+  "story": {
+    "first_vmat": {
+      "status": "pass",
+      "measurement": {
+        "exit_code": 0,
+        "budget_failure": null,
+        "budget": {
+          "wall_seconds": 3600,
+          "working_set_bytes": 25769803776,
+          "shared_gpu_bytes": 4294967296
+        },
+        "identity": {
+          "probe_sha256": "62bd4df06b11c6c16d5c0d5f9c331704b45862d1141a0dd7f644ac73b4233818",
+          "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+        },
+        "wall_seconds": 1286.5355949000223,
+        "nvml_baseline_bytes": 689414144,
+        "nvml_peak_bytes": 8116461568,
+        "process_dedicated_peak_bytes": 7460810752,
+        "process_shared_peak_bytes": 83886080,
+        "sampled_working_set_peak_bytes": 7954833408,
+        "samples": 5128
+      },
+      "validation": {
+        "status": "pass",
+        "scope": "exact architectural trace under changed codec",
+        "runs": [
+          {
+            "guest": "one",
+            "architectural_attempts": 1830,
+            "normalized_trace_sha256": "4c3e81a0cd2288b07549b555acdf5fe8ade0619ad51b53a460b2408856fb1fe2",
+            "reference_codec_tokens": 3252,
+            "halted": false,
+            "reference_codec_sha256": "41c7875e5e94d398b98116075e25c6b55a6c0114813b3e920c67fd884148bafe",
+            "completed_vmats": 1,
+            "through_first_vmat": true,
+            "output": "",
+            "final_vector_sha256": "61146c3a730822b65835f3b7ae8d460441dedc2edc4ee955933aee95d5b2b35a",
+            "decode_positions": 155531,
+            "seconds": 1280.2871
+          }
+        ],
+        "original_text_handoff": false
+      },
+      "bootstrap_validation": {
+        "status": "pass",
+        "scope": "Exact bootstrapped KV content from original ELF; execution parity remains separate",
+        "seed_cells": 50068,
+        "full_snapshot": {
+          "cells": 50068,
+          "bytes": 206079936,
+          "sha256": "566cfe7f755defbc9e17a31e489673d761c854025a0bea6681cf8187703e442d"
+        },
+        "actual_kv_witnesses": 50068,
+        "minimum_observed_magnitude": 0.044124603271484375
+      },
+      "original_bonsai_parked_exact": true,
+      "story_handoff": "not reached before the prefix boundary",
+      "nonseed_decodes": 105463,
+      "sustained_decodes_per_second": 84.75440568351837,
+      "rate_window_samples": 248,
+      "flash_attention": true,
+      "mtp_seed_batch": 64,
+      "guest_context_cells": 65536,
+      "performance_target_seconds": 1800,
+      "within_performance_target": true,
+      "seed_snapshot_time_from_launch_seconds_approx": 38.73,
+      "kv_allocation_mib": 256,
+      "cuda_compute_buffer_mib": 71.13
+    },
+    "once": {
+      "status": "not run: projected time exceeds declared budget",
+      "estimated_neural_decodes": 3098930,
+      "estimated_seconds_at_measured_prefix_rate": 36563.64498114378,
+      "budget_seconds": 7200
+    },
+    "three": {
+      "status": "not run: projected time exceeds declared budget",
+      "estimated_neural_decodes": 9737221,
+      "estimated_seconds_at_measured_prefix_rate": 114887.4907619526,
+      "budget_seconds": 21600
+    }
+  },
+  "release_scope": "Research measurements. The stock build checkpoint and launcher are not part of the v0.1.0 release."
+}
