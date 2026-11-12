@@ -1,0 +1,47 @@
+{
+  "status": "pass",
+  "date_utc": "2026-11-12",
+  "scope": "Clean public download and exact vector smoke test on stock Windows Prism",
+  "package": {
+    "hub_repo": "millrace-ai/qwenpu-bonsai",
+    "hub_commit": "122fc7ca76562f618ba701966df2092c3f23b305",
+    "gguf_bytes": 6920450208,
+    "gguf_sha256": "bc94c1ab8112499ba5b2690f3e0a1ceb11beaa5ae92ea11606812504b37353bc",
+    "download": "Public HTTPS byte ranges into a fresh directory, followed by SHA-256 verification",
+    "packaged_checksums_verified": true
+  },
+  "runtime": {
+    "release": "prism-b9596-9fcaed7",
+    "revision": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+    "platform": "Windows x64, CUDA 12.4",
+    "official_archives_and_dll_hashes_verified": true,
+    "gpu": "NVIDIA GeForce GTX 1080",
+    "gpu_capacity_mib": 8192,
+    "layers_offloaded": 66,
+    "layers_total": 66,
+    "launcher_sha256": "62bd4df06b11c6c16d5c0d5f9c331704b45862d1141a0dd7f644ac73b4233818"
+  },
+  "verification": {
+    "fixture": "vmat-keep-retains-maximum",
+    "guest_kv_capacity": 4096,
+    "architectural_retirements": 40,
+    "decode_positions": 3110,
+    "architectural_trace_exact": true,
+    "retained_kv_witnesses_exact": true,
+    "result": "vmx=1252,vsum=0,varg=0,vbest=null",
+    "parked_bonsai_exact": true,
+    "matched_history_handoff_exact": true,
+    "original_control_sha256": "17ef842e47450caeb8eaa3ebfbbab5d2f2278b62b79be107985fb69a2f819aa0",
+    "qwenpu_reference_commit": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+    "trace_capture_sha256": "bdeb690c6a91ef2be29d48726fcc9805be0151e984ae62ffa0ec81c096b056fe"
+  },
+  "measurements": {
+    "guest_probe_wall_seconds": 40.67,
+    "control_probe_wall_seconds": 8.307,
+    "device_vram_baseline_bytes": 923856896,
+    "peak_device_vram_bytes": 8018788352,
+    "peak_process_dedicated_vram_bytes": 7200747520,
+    "peak_process_shared_gpu_bytes": 75497472,
+    "peak_process_working_set_bytes": 7527374848
+  }
+}

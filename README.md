@@ -12,7 +12,9 @@ A separate **6.92 GB research checkpoint** runs the RV32 and vector circuit usin
 - The original stories260K guest matched all **1,830 architectural states** through its first matrix-vector multiply in **21m 27s**, with Bonsai's parked text state preserved. Device-wide VRAM peaked at **7.56 GiB**.
 - On an **8 GiB RTX 3070** running unmodified Linux Prism b9596, the same checkpoint ran the original three-token stories260K guest through halt. It printed **“Once upon a”** and a newline. All **37,080 architectural retirements** matched the independent reference, and Bonsai's parked state and matched-history handoff matched the original model. The run took **18h 29m** and peaked at **7.06 GiB device VRAM** and **6.74 GiB process RSS**. [Three-token report](results/forward/standard-layer/stock-mtp-vx-stories-three.json)
 
-The full three-token Windows run is pending. The published **3.825 GB v0.1** checkpoint remains the release download for patched Prism. [Windows stock-Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
+The **6.92 GB stock checkpoint** is available with a Windows launcher, setup commands, and the reference verifier. A fresh download passed all **40 vector fixture retirements**, Bonsai's parked state, and its matched-history handoff on a GTX 1080. The full three-token Windows run is pending. [Stock checkpoint package](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism) · [Windows smoke-test report](results/forward/standard-layer/stock-mtp-vx-package-smoke.json)
+
+The published **3.825 GB v0.1** checkpoint remains the default download for patched Prism. [Windows stock-Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
 
 ## How it works
 
