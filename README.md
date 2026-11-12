@@ -10,8 +10,9 @@ A separate **6.92 GB research checkpoint** runs the RV32 and vector circuit usin
 
 - The checksum, dot product, and division suite matched **2,520 architectural states** across nine runs, including A → B → A reset. Changing one active circuit coefficient changed the vector result from 25 to 16. Restoring the coefficient recovered the exact trace and result.
 - The original stories260K guest matched all **1,830 architectural states** through its first matrix-vector multiply in **21m 27s**, with Bonsai's parked text state preserved. Device-wide VRAM peaked at **7.56 GiB**.
+- On an **8 GiB RTX 3070** running unmodified Linux Prism b9596, the same checkpoint ran the original three-token stories260K guest through halt. It printed **“Once upon a”** and a newline. All **37,080 architectural retirements** matched the independent reference, and Bonsai's parked state and matched-history handoff matched the original model. The run took **18h 29m** and peaked at **7.06 GiB device VRAM** and **6.74 GiB process RSS**. [Three-token report](results/forward/standard-layer/stock-mtp-vx-stories-three.json)
 
-The stock build's three-token story run is pending. The published **3.825 GB v0.1** checkpoint produced **`Once upon a`** using patched Prism and remains the release download. [Stock Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
+The full three-token Windows run is pending. The published **3.825 GB v0.1** checkpoint remains the release download for patched Prism. [Windows stock-Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
 
 ## How it works
 

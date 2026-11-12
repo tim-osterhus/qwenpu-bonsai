@@ -1,0 +1,84 @@
+{
+  "status": "pass",
+  "scope": "Original three-token stories260K guest through halt, with exact architectural trace and matched-history Bonsai handoff",
+  "date_utc": "2026-11-12",
+  "checkpoint": {
+    "bytes": 6920450208,
+    "sha256": "bc94c1ab8112499ba5b2690f3e0a1ceb11beaa5ae92ea11606812504b37353bc",
+    "original_bonsai_q1_0_sha256": "17ef842e47450caeb8eaa3ebfbbab5d2f2278b62b79be107985fb69a2f819aa0",
+    "original_packed_language_blocks_equal": true
+  },
+  "runtime": {
+    "release": "prism-b9596-9fcaed7",
+    "revision": "9fcaed763ccda38ea81068ad9d7f991aaddca451",
+    "archive": "llama-prism-b9596-9fcaed7-bin-linux-cuda-12.4-x64.tar.gz",
+    "archive_sha256": "c9c266bdcedda6f457d69ac28cf7a43166affa5ee0f87c5067d47484e4098a71",
+    "patched": false,
+    "cuda_runtime_version": "12.4.127",
+    "cublas_version": "12.4.5.8",
+    "launcher_sha256": "029ab08e2cec6be37cc37bd2bf563747f38f0c5dc83369da40bf65c68fb0d4fe"
+  },
+  "hardware": {
+    "platform": "Linux x86_64",
+    "provider": "Vast.ai",
+    "gpu": "NVIDIA GeForce RTX 3070",
+    "gpu_capacity_mib": 8192,
+    "layers_offloaded": 66,
+    "layers_total": 66
+  },
+  "inputs": {
+    "guest": "stories_vx_three.elf",
+    "guest_sha256": "5c50c2ac365a5e342f4abf236848751c69e46219712a76ec7f33ea6525a72ed2",
+    "observer_sha256": "b677a68d344c4ea442e56ae43a7cb68a6d19b340c0b7a1ab1746991de7417454",
+    "expected_control_result_sha256": "135e91147103a9f90a70edb2bd040385ae58051646d58750aa9709c2297534ca",
+    "reference_commit": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+    "reference_audit_sha256": "40c1d1bf6cd4e98f3f906fb1f903c7d60ce199e7549c7265ca40b6b623cbb725",
+    "guest_kv_capacity": 65536,
+    "guest_flash_attention": true,
+    "seed_batch": 64
+  },
+  "guest": {
+    "architectural_attempts": 37080,
+    "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+    "reference_codec_tokens": 150405,
+    "reference_codec_sha256": "fa8413c015f6f4ceb54e54eca3648c04bb6d4e8c63ec56845dbb95443ff16eb6",
+    "halted": true,
+    "completed_vmats": 726,
+    "first_vmat_verified": true,
+    "output_milestones": {
+      "Once": 12840,
+      "Once upon": 24977,
+      "Once upon a": 37048
+    },
+    "output": "Once upon a\n",
+    "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+    "decode_positions": 9787842
+  },
+  "bonsai": {
+    "parked_state_unchanged_during_guest": true,
+    "matches_original_bonsai_control": true,
+    "handoff_uses_verified_guest_output": true,
+    "parked_position": 5,
+    "position_after_result": 14,
+    "next_token_id": 1619,
+    "position_after_next_token": 15
+  },
+  "measurements": {
+    "guest_wall_seconds": 66548.1391,
+    "mean_decode_positions_per_second": 147.079124,
+    "peak_process_rss_bytes": 7235690496,
+    "gpu_sample_interval_ms": 500,
+    "device_vram_baseline_mib": 1,
+    "peak_device_vram_mib": 7229,
+    "posted_rental_usd_at_compute_stop": 2.71,
+    "posted_rental_includes_post_run_idle_time": true
+  },
+  "retained_capture_sha256": {
+    "story.json": "32ff579774edf65c8510c06d0b7c700f906569cd6a6627776132e5acef6a3d8a",
+    "story.run-0.seed-kv.bin": "f345827f3fab406d88c820d96e7d25818db459e5b64a6f85bd8b422ebc281af3",
+    "story.run-0.kv-witness.bin": "52af1797e08aa8ebbb32172d0a025f395eb001923a4b6729dd8a7debbeac3efc",
+    "story.run-0.final-kv.bin": "5c9c79d95fd093c3abe400c2f0b2505e77e915bfd4feb29842b552bd38369375",
+    "text-control.json": "519c08aaecf76373a41b7ab5f6dafb6bf18e7860cc49db225761e6321352c3c3",
+    "validation.json": "0da016e77b75d1cebbef9bee70367375d8e07267dd4abcbf0acbeca03c8a245f"
+  }
+}
