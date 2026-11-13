@@ -1,6 +1,6 @@
 # Reproduce Bonsai–QwenPU on stock Prism b9596
 
-This guide uses the **6,920,450,208-byte stock GGUF** and the packaged Windows launcher. The full three-token story passed on Linux with an RTX 3070. The Windows GTX 1080 passed the vector smoke test and the story through its first matrix multiply. **A full stock Windows run is pending.** The earlier v0.1.0 artifact uses a patched CUDA runtime. The b12128 Step 3.5 experiments use a separate research checkpoint and rebuild procedure. [Stock release write-up](STOCK-PRISM-RELEASE.md) · [Earlier patched build](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [Step 3.5 scope](STOCK-PRISM-RELEASE.md#later-windows-research)
+This guide uses the **6,920,450,208-byte stock GGUF** and the packaged Windows launcher. The full three-token story passed on Linux with an RTX 3070. The Windows GTX 1080 passed the vector smoke test and the story through its first matrix multiply. **A full stock Windows run is pending.** The earlier v0.1.0 artifact uses a patched CUDA runtime. The FP16 projection experiments used a separate research checkpoint on Prism b12128. [Stock release write-up](STOCK-PRISM-RELEASE.md) · [Earlier patched build](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [FP16 projection experiment](STOCK-PRISM-RELEASE.md#fp16-circuit-projections-on-windows)
 
 ## Download and verify the Windows package
 

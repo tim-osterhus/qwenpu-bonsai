@@ -39,7 +39,7 @@
   ],
   "benchmarks": {
     "fixture": {
-      "stage3_f32": {
+      "earlier_f32": {
         "wall_seconds": 188.8907011,
         "decodes": 32826,
         "seed_ready_elapsed_ns": 132650500,
@@ -119,7 +119,7 @@
       }
     },
     "story": {
-      "stage3_f32": {
+      "earlier_f32": {
         "wall_seconds": 177.7578139,
         "decodes": 25494,
         "seed_ready_elapsed_ns": 34173452300,
@@ -224,14 +224,14 @@
     "Not all NVTX events might have been collected.",
     "Not all CUDA events might have been collected."
   ],
-  "artifacts_sha256": {
-    "stage35-fp16\\r8a-fp16-projections.manifest.json": "2b8529ba92cbf84c342355fb42d7bd4de02d563731e0878b1ccb9e83e043308b",
-    "stage35-fp16\\projection-cuda.json": "ecef0e5ecc92d1c507651dd7aa7193202768370a30fcdc5631ced9f0d1db36c2",
-    "stage35\\comparison.json": "93b9f51d4c8159ec37f0165a96be35f4e748231f49fa1dcb3cc05dac2aee344f",
-    "stage35\\seed-comparison\\summary.json": "391ce48db45f9cc5ebf56bd586532c52d4e69637d91bc517c4a48e3563566bc2",
-    "stage35\\timeline-f16\\summary.json": "0b80cc884f8d0d201dda9dc28ee94e4a31472b761463ac4fb9bc7b0cc73e79c1",
-    "stage35\\nsight-pascal-pin.json": "2944b6c432ff3a0aaf118006bbe0c67fb577e952749bcdbe9577630329fc3550",
-    "stage35\\timeline-f16\\cuda.nsys-rep": "f54a1980a27044fc69aae0e17f27cf213ddfae088162042a164b5826749a654c",
-    "stage35\\timeline-f16\\cuda.sqlite": "4fb190cf972a2e0c834cbd15e9db0cf9b75aacabcc59e2ae4db6e7aa8772e28b"
+  "source_artifacts_sha256": {
+    "FP16 projection export manifest": "2b8529ba92cbf84c342355fb42d7bd4de02d563731e0878b1ccb9e83e043308b",
+    "CUDA projection parity": "ecef0e5ecc92d1c507651dd7aa7193202768370a30fcdc5631ced9f0d1db36c2",
+    "Timing and trace comparison": "93b9f51d4c8159ec37f0165a96be35f4e748231f49fa1dcb3cc05dac2aee344f",
+    "Seed batch parity": "391ce48db45f9cc5ebf56bd586532c52d4e69637d91bc517c4a48e3563566bc2",
+    "GPU timeline summary": "0b80cc884f8d0d201dda9dc28ee94e4a31472b761463ac4fb9bc7b0cc73e79c1",
+    "Nsight Systems version pin": "2944b6c432ff3a0aaf118006bbe0c67fb577e952749bcdbe9577630329fc3550",
+    "Nsight Systems capture": "f54a1980a27044fc69aae0e17f27cf213ddfae088162042a164b5826749a654c",
+    "Nsight Systems capture database": "4fb190cf972a2e0c834cbd15e9db0cf9b75aacabcc59e2ae4db6e7aa8772e28b"
   }
 }

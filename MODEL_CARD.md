@@ -13,7 +13,7 @@ tags:
 
 ## Stock Prism research release
 
-The downloadable **6.920 GB stock Prism b9596** checkpoint includes the Windows launcher and offline verifier. [GitHub release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.2.0) · [Windows reproduction guide](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.2.0/docs/REPRODUCE-STOCK-PRISM.md) · [Download the stock checkpoint](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism)
+The downloadable **6.920 GB stock Prism b9596** checkpoint includes the Windows launcher and offline verifier. [GitHub release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.2.0) · [Windows reproduction guide](https://github.com/tim-osterhus/qwenpu-bonsai/blob/main/docs/REPRODUCE-STOCK-PRISM.md) · [Download the stock checkpoint](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism)
 
 This checkpoint ran the original three-token stories260K guest through halt on an **8 GiB RTX 3070** with unmodified Linux Prism b9596. It printed **“Once upon a”** and a newline. All **37,080 architectural retirements** matched the reference, and Bonsai's parked state and matched-history handoff matched the original model. The guest took **18h 29m** and peaked at **7.06 GiB device VRAM**. [Full Linux report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/fecd02bd0764263f1456b4bbd787293d5268a928/results/forward/standard-layer/stock-mtp-vx-stories-three.json)
 
