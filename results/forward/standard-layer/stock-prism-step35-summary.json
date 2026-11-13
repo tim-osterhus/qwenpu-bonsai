@@ -1,0 +1,237 @@
+{
+  "status": "pass",
+  "normalized_story_trace_sha256": "2dfa4147444a52b58f37864cdfe373e3909ec56230c15e4f03cbf129e47ac3e8",
+  "fp16_checkpoint_sha256": "551c835c7b114f122b57785f528415693ed3b7dd3cdf187eacaf0401edcee2c6",
+  "fp16_checkpoint_bytes": 5588152192,
+  "fp16_checkpoint_bytes_saved": 241172480,
+  "projection_outputs_exact": 3289088,
+  "matched_seed_batches": [
+    {
+      "batch": 8,
+      "seed_positions": 120,
+      "emitted_actions": 41,
+      "seed_exact": true,
+      "final_kv_exact": true,
+      "actions_exact": true,
+      "bonsai_exact": true,
+      "witness_exact": true
+    },
+    {
+      "batch": 1,
+      "seed_positions": 120,
+      "emitted_actions": 41,
+      "seed_exact": true,
+      "final_kv_exact": true,
+      "actions_exact": true,
+      "bonsai_exact": true,
+      "witness_exact": true
+    },
+    {
+      "batch": 64,
+      "seed_positions": 120,
+      "emitted_actions": 41,
+      "seed_exact": true,
+      "final_kv_exact": true,
+      "actions_exact": true,
+      "bonsai_exact": true,
+      "witness_exact": true
+    }
+  ],
+  "benchmarks": {
+    "fixture": {
+      "stage3_f32": {
+        "wall_seconds": 188.8907011,
+        "decodes": 32826,
+        "seed_ready_elapsed_ns": 132650500,
+        "decode_call_seconds_excluding_witness": 183.5057159,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 900,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 259.15799929993227,
+          "nvml_baseline_bytes": 839172096,
+          "nvml_peak_bytes": 7078256640,
+          "process_dedicated_peak_bytes": 6181535744,
+          "process_shared_peak_bytes": 81788928,
+          "sampled_working_set_peak_bytes": 6499618816,
+          "samples": 1032
+        }
+      },
+      "fresh_f32": {
+        "wall_seconds": 182.1349891,
+        "decodes": 32826,
+        "seed_ready_elapsed_ns": 139951300,
+        "decode_call_seconds_excluding_witness": 177.9291581,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 900,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 260.0594955999404,
+          "nvml_baseline_bytes": 854503424,
+          "nvml_peak_bytes": 7030018048,
+          "process_dedicated_peak_bytes": 6181535744,
+          "process_shared_peak_bytes": 81788928,
+          "sampled_working_set_peak_bytes": 6500139008,
+          "samples": 1037
+        }
+      },
+      "fp16": {
+        "wall_seconds": 154.0906628,
+        "decodes": 32826,
+        "seed_ready_elapsed_ns": 153719700,
+        "decode_call_seconds_excluding_witness": 150.0157085,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 900,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 215.25695750000887,
+          "nvml_baseline_bytes": 797356032,
+          "nvml_peak_bytes": 7092842496,
+          "process_dedicated_peak_bytes": 6183632896,
+          "process_shared_peak_bytes": 81788928,
+          "sampled_working_set_peak_bytes": 6258360320,
+          "samples": 858
+        }
+      }
+    },
+    "story": {
+      "stage3_f32": {
+        "wall_seconds": 177.7578139,
+        "decodes": 25494,
+        "seed_ready_elapsed_ns": 34173452300,
+        "decode_call_seconds_excluding_witness": 174.3735189,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 2400,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 832.1024118999485,
+          "nvml_baseline_bytes": 923717632,
+          "nvml_peak_bytes": 7369895936,
+          "process_dedicated_peak_bytes": 6433214464,
+          "process_shared_peak_bytes": 90177536,
+          "sampled_working_set_peak_bytes": 6933020672,
+          "samples": 3311
+        }
+      },
+      "fresh_f32": {
+        "wall_seconds": 188.6968185,
+        "decodes": 25494,
+        "seed_ready_elapsed_ns": 36369408900,
+        "decode_call_seconds_excluding_witness": 180.0257673,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 2400,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 861.9084316999651,
+          "nvml_baseline_bytes": 748597248,
+          "nvml_peak_bytes": 7277768704,
+          "process_dedicated_peak_bytes": 6433214464,
+          "process_shared_peak_bytes": 90177536,
+          "sampled_working_set_peak_bytes": 6922838016,
+          "samples": 3437
+        }
+      },
+      "fp16": {
+        "wall_seconds": 154.3871211,
+        "decodes": 25494,
+        "seed_ready_elapsed_ns": 38214977600,
+        "decode_call_seconds_excluding_witness": 150.2869789,
+        "memory": {
+          "exit_code": 0,
+          "budget_failure": null,
+          "budget": {
+            "wall_seconds": 2400,
+            "working_set_bytes": 25769803776,
+            "shared_gpu_bytes": 4294967296
+          },
+          "identity": {
+            "probe_sha256": "3bb73a450a67ff1c77f81fd21b7bec4522e0d7d984d380d3d16e7b21ca4d4abe",
+            "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+          },
+          "wall_seconds": 722.4193208999932,
+          "nvml_baseline_bytes": 802058240,
+          "nvml_peak_bytes": 8114327552,
+          "process_dedicated_peak_bytes": 6435307520,
+          "process_shared_peak_bytes": 90177536,
+          "sampled_working_set_peak_bytes": 6536794112,
+          "samples": 2875
+        }
+      }
+    }
+  },
+  "model_buffer_mib": {
+    "f32": 5378.3,
+    "f16": 5148.3
+  },
+  "timeline": {
+    "source": "nsight_systems_2025.1.3.140",
+    "decodes": 512,
+    "range_elapsed_ns": 3181395688,
+    "gpu_kernel_events": 17408,
+    "cuda_api_events": 26632,
+    "gpu_copy_events": 5123,
+    "gpu_event_span_ns": 3180919252,
+    "gpu_event_union_ns": 2754150832,
+    "gpu_category_ns": {
+      "matrix_products": 1997629923,
+      "flash_attention": 689641733,
+      "other_kernels": 46847540,
+      "top_k": 7227202
+    }
+  },
+  "profiler_warnings": [
+    "Installed CUDA driver version (13.0) is not supported by this build of Nsight Systems. CUDA trace will be collected using libraries for driver version 12.9",
+    "Not all NVTX events might have been collected.",
+    "Not all CUDA events might have been collected."
+  ],
+  "artifacts_sha256": {
+    "stage35-fp16\\r8a-fp16-projections.manifest.json": "2b8529ba92cbf84c342355fb42d7bd4de02d563731e0878b1ccb9e83e043308b",
+    "stage35-fp16\\projection-cuda.json": "ecef0e5ecc92d1c507651dd7aa7193202768370a30fcdc5631ced9f0d1db36c2",
+    "stage35\\comparison.json": "93b9f51d4c8159ec37f0165a96be35f4e748231f49fa1dcb3cc05dac2aee344f",
+    "stage35\\seed-comparison\\summary.json": "391ce48db45f9cc5ebf56bd586532c52d4e69637d91bc517c4a48e3563566bc2",
+    "stage35\\timeline-f16\\summary.json": "0b80cc884f8d0d201dda9dc28ee94e4a31472b761463ac4fb9bc7b0cc73e79c1",
+    "stage35\\nsight-pascal-pin.json": "2944b6c432ff3a0aaf118006bbe0c67fb577e952749bcdbe9577630329fc3550",
+    "stage35\\timeline-f16\\cuda.nsys-rep": "f54a1980a27044fc69aae0e17f27cf213ddfae088162042a164b5826749a654c",
+    "stage35\\timeline-f16\\cuda.sqlite": "4fb190cf972a2e0c834cbd15e9db0cf9b75aacabcc59e2ae4db6e7aa8772e28b"
+  }
+}

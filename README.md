@@ -1,8 +1,8 @@
 # QwenPU on Bonsai-27B
 
-This experimental port runs QwenPU's RISC-V and vector circuit as sparse CUDA operations inside the patched Bonsai-27B Q1_0 forward pass. A clean Windows build on an 8 GB GeForce GTX 1080 validated the retained 3.825 GB GGUF. The three-token stories260K guest returned `Once upon a`, and all 150,405 execution-trace tokens matched an independent reference interpreter.
+The stock Prism research release runs QwenPU's RISC-V and vector circuit with packed Bonsai-27B in one **6.920 GB GGUF** on official Prism b9596. The complete three-token stories260K run passed on Linux. Windows validation covers the vector fixture and story prefix. The full stock Windows story run is pending. [Stock Prism research release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.2.0) · [Windows reproduction guide](docs/REPRODUCE-STOCK-PRISM.md) · [Download the stock checkpoint](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism)
 
-This source release contains the overlay, guest programs, build scripts, and validation reports. Build the patched Prism llama.cpp runtime on Windows, then download the retained GGUF or export it from the pinned stock Bonsai GGUF. [Windows reproduction guide](docs/REPRODUCE.md) · [Model files on Hugging Face](https://huggingface.co/millrace-ai/qwenpu-bonsai) · [Validation evidence](results/README.md)
+The original **v0.1.0** release uses a separate **3.825 GB** checkpoint and a patched Windows CUDA runtime. All 150,405 encoded trace tokens matched the reference for the three-token guest. [Original patched release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.1.0) · [Patched build guide](docs/REPRODUCE.md)
 
 ## Research update on stock Prism
 
@@ -16,7 +16,7 @@ The **6.92 GB stock checkpoint** is available with a Windows launcher, setup com
 
 The published **3.825 GB v0.1** checkpoint remains the default download for patched Prism. [Windows stock-Prism validation summary](results/forward/standard-layer/stock-mtp-vx-research.json)
 
-## How it works
+## How the v0.1 patched build works
 
 The exporter retargets the upstream circuit for Bonsai's geometry and adds its sparse coefficients and guest snapshots to the same GGUF as Bonsai's tensors. The circuit has 23 active sublayers, which the pinned QwenPU standard-layer emitter groups into 13 blocks. This port runs those sublayers as custom CUDA-backed GGML nodes. The retained circuit coordinates contribute to Bonsai's residual RMS normalization. During chip-only steps, the circuit advances while the language model's position and cache are held. [Decoder implementation](overlay/experimental/bonsai-qwenpu/FORWARD.md) · [Pinned upstream emitter](https://github.com/divagr18/QwenPU/blob/6e2767aaa59b69ea03300c0a5199d7b36debbe50/chipformer/q35/emit.py)
 
@@ -38,10 +38,10 @@ A **separate vector fixture** tested whether the decoder used the stored coeffic
 
 An earlier CPU circuit backend in a shared llama context recorded a first-token story run and a small autonomous dispatch test with 6/6 expected calls and 7/7 expected no-calls. Those results concern the earlier backend. The CUDA story demo uses the fixed prefix above. [Historical shared-context reports](results/in-graph/)
 
-## Scope
+## v0.1 scope
 
 - The CUDA demo uses a single fully offloaded NVIDIA GPU, sequence zero, and one input token per decode call. The kernel build targets Pascal `sm_61`.
-- The GGUF requires this patched Prism runtime. Stock llama.cpp, LM Studio, and Ollama are incompatible with this experimental format.
+- The v0.1 GGUF requires this patched Prism runtime. Stock llama.cpp, LM Studio, and Ollama are incompatible with this experimental format.
 - Story coverage ends at three guest tokens. General text quality, autonomous dispatch on the CUDA path, circuit-state serialization and batched decoding are outside the validation scope.
 
 ## Attribution

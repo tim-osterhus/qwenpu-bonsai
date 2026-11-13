@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "scope": "exact architectural trace under changed codec",
+  "runs": [
+    {
+      "guest": "three",
+      "architectural_attempts": 1716,
+      "normalized_trace_sha256": "2dfa4147444a52b58f37864cdfe373e3909ec56230c15e4f03cbf129e47ac3e8",
+      "reference_codec_tokens": 3310,
+      "halted": false,
+      "reference_codec_sha256": "de582591d0d8d54b3e2bd4fc9d5da1e01968720ab701af4051700603bbd50421",
+      "completed_vmats": 4,
+      "through_first_vmat": false,
+      "first_vmat_verified": true,
+      "output_milestones": {},
+      "output": "",
+      "final_vector_sha256": "ee466085fad41d919c315167d53a1cf2cd349cb5149bc9742f84c45c10b76b02",
+      "decode_positions": 161556,
+      "seconds": 716.926618
+    }
+  ],
+  "original_text_handoff": false
+}
