@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "budget_failure": null,
+  "budget": {
+    "wall_seconds": 151200,
+    "working_set_bytes": 25769803776,
+    "shared_gpu_bytes": 4294967296
+  },
+  "identity": {
+    "probe_sha256": "1b9b3e2dfd48419c51b9de5e2abbda852ac953f406a428c3337f3a76d5cfef45",
+    "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+  },
+  "wall_seconds": 52898.87890060013,
+  "nvml_baseline_bytes": 703897600,
+  "nvml_peak_bytes": 7795671040,
+  "process_dedicated_peak_bytes": 7079137280,
+  "process_shared_peak_bytes": 90177536,
+  "sampled_working_set_peak_bytes": 7132672000,
+  "samples": 210674
+}

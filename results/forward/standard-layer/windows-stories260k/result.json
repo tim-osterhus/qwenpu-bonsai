@@ -1,0 +1,94 @@
+{
+  "status": "pass",
+  "platform": "Windows native",
+  "runtime": "b12128",
+  "gpu": "NVIDIA GeForce GTX 1080, 8192",
+  "checkpoint_sha256": "8f335ef91555304dcc62f44fbece0185c48499c7c18626b5d1c19b87f597178d",
+  "trace": {
+    "guest": "three",
+    "architectural_attempts": 37080,
+    "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+    "reference_codec_tokens": 150405,
+    "halted": true,
+    "reference_codec_sha256": "fa8413c015f6f4ceb54e54eca3648c04bb6d4e8c63ec56845dbb95443ff16eb6",
+    "completed_vmats": 726,
+    "through_first_vmat": false,
+    "first_vmat_verified": true,
+    "output_milestones": {
+      "Once": 12840,
+      "Once upon": 24977,
+      "Once upon a": 37048
+    },
+    "output": "Once upon a\n",
+    "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+    "decode_positions": 6854580,
+    "seconds": 52890.8409
+  },
+  "timing": {
+    "run_index": 0,
+    "requested_start_after": 0,
+    "seed_positions": 55229,
+    "seed_ready_elapsed_ns": 47875095200,
+    "end_attempts": 37080,
+    "end_position": 6854580,
+    "end_elapsed_ns": 52888779727700,
+    "stop_reason": "halt",
+    "start_attempts": 0,
+    "start_position": 55229,
+    "start_elapsed_ns": 47875095200,
+    "wall_seconds": 52840.9046325,
+    "decode_calls": 6799351,
+    "output_calls": 6799351,
+    "logits_f32_payload_bytes": 54394808,
+    "candidate_i32_payload_bytes": 54394808,
+    "seconds": {
+      "decode_call_excluding_witness_callback": 51926.3437236,
+      "logits_get": 321.2200012,
+      "logits_scan": 8.0446853,
+      "feedback_get": 3.3119723,
+      "feedback_check_and_copy": 129.613962,
+      "kv_witness_callback": 6.4051515,
+      "kv_host": 238.7007393,
+      "trace_and_observation": 204.7854426,
+      "other_transport_and_overhead": 2.4789547
+    }
+  },
+  "memory": {
+    "exit_code": 0,
+    "budget_failure": null,
+    "budget": {
+      "wall_seconds": 151200,
+      "working_set_bytes": 25769803776,
+      "shared_gpu_bytes": 4294967296
+    },
+    "identity": {
+      "probe_sha256": "1b9b3e2dfd48419c51b9de5e2abbda852ac953f406a428c3337f3a76d5cfef45",
+      "sampler_sha256": "584e2ffac5ea1bfa175f9bc5c0dba23daf1d20381ecd4475871a448bd5b3fd15"
+    },
+    "wall_seconds": 52898.87890060013,
+    "nvml_baseline_bytes": 703897600,
+    "nvml_peak_bytes": 7795671040,
+    "process_dedicated_peak_bytes": 7079137280,
+    "process_shared_peak_bytes": 90177536,
+    "sampled_working_set_peak_bytes": 7132672000,
+    "samples": 210674
+  },
+  "process_dedicated_within_8gib": true,
+  "device_peak_within_8gib": true,
+  "parked_bonsai_exact": true,
+  "matched_history_handoff_exact": true,
+  "parked_position": 5,
+  "result_position": 14,
+  "post_result_token_id": 1619,
+  "artifact_sha256": {
+    "story.json": "bedae8d7bd99bc8734c951c8aaa331cece9644b9a483ebfe2e4ecef1fc2d5125",
+    "story.run-0.seed-kv.bin": "a47a91668c997c25e7effb2f7d10090bd01f6fc1d274c2cc382497c1c983aaf5",
+    "story.run-0.final-kv.bin": "a4c05e8369f9931087dee7de8d53fdef6bf2db40e5b98cee6dfdc1d3e3d60ee6",
+    "story.run-0.kv-witness.bin": "f40de24de8fc77517e69956ec08f23e937e0864193297e3398c29b745f078fc6",
+    "story.measurement.json": "9603b27535a9f6bd43c7b97b64c5ee30f89a9e54ec65579cda091110c3883081",
+    "story.validation.json": "0d9360a1bfdb828c91deef3c0cf11f917b67704f653b0a5482d0b2c27be63663",
+    "text-control.json": "002025da9c564b1a8bcf4ec40c336fce345c67a6c569c60542a745fe50fc314a",
+    "selection.json": "dd3b853ab7f6fac81150a47d71b7d5063d65456b77229e9cfb89d1e8cb73ab23",
+    "inputs.sha256.json": "662cbaa8ce6f166206d31c501aaf536a4e94cb6f9e01d91de57e13e7e213a3a9"
+  }
+}

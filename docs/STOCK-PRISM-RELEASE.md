@@ -1,17 +1,20 @@
-# Bonsai–QwenPU on stock Prism b9596
+# Bonsai–QwenPU on stock Prism
 
 The current downloadable stock Prism research package runs QwenPU's RISC-V and vector circuit with packed Bonsai-27B in a single **6.920 GB GGUF**. It uses official Prism b9596 CUDA binaries and includes a Windows launcher and an offline reference verifier. The original **v0.1.0** release is the earlier **3.825 GB patched CUDA** implementation. Start with the stock package to reproduce stock-runtime execution. [Pinned stock download](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism) · [Reproduction guide](REPRODUCE-STOCK-PRISM.md) · [Historical v0.1.0 release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.1.0)
 
-## What we verified
+## Downloadable Prism b9596 checkpoint
 
 | Platform and workload | Result |
 | --- | --- |
 | **Linux, RTX 3070 (8 GiB), complete three-token stories260K** | Printed `Once upon a` and a newline, then halted. All **37,080 architectural attempts** matched the reference. Bonsai's parked state and matched-history result handoff matched the original model. Guest wall time was **18h 29m**, with **7.06 GiB** peak device VRAM and **6.74 GiB** peak process RSS. [Full story report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/fecd02bd0764263f1456b4bbd787293d5268a928/results/forward/standard-layer/stock-mtp-vx-stories-three.json) |
 | **Windows, GTX 1080 (8 GiB), stories260K through the first matrix multiply** | All **1,830 architectural attempts** matched, and Bonsai's parked text state matched the original. The run took **21m 27s** and peaked at **7.56 GiB** device VRAM. [Windows validation summary](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-research.json) |
 | **Windows, GTX 1080, clean-download vector smoke test** | All **40 architectural attempts** and retained KV witnesses matched. The check also matched Bonsai's parked state and result handoff against the original model. The guest probe took **40.67 s**, plus a separate original-Bonsai control. [Clean-download report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-package-smoke.json) |
-| **Windows, GTX 1080, complete three-token stories260K on stock Prism** | **Pending.** |
 
 The stock graph uses Prism's MTP block for guest execution. The launcher loads the ELF, relays model-selected actions and feedback, and applies cache requests through stock Prism APIs. Bonsai's language state lives in a separate text context in the same loaded model. The pinned CPU interpreter checks the resulting architectural trace offline. The GGUF preserves the original packed language blocks and adds zero-scale padding to 192 language FFN tensors. The Windows fixture tests include a coefficient mutation that changed a vector reduction from 25 to 16. Restoring the coefficient recovered the original trace. [Runtime and fixture details](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/README.md#research-update-on-stock-prism)
+
+## Full stories260K validation on Windows GTX 1080
+
+The separate **6.047 GB** research checkpoint with the width-aware vector elementwise multiplier ran the original three-token guest to halt on an **8 GiB GTX 1080** using unmodified **Prism b12128**. It printed `Once upon a` and a newline. All **37,080 architectural retirements**, including **726 matrix multiplies**, matched the CPU reference. Bonsai's parked state, result handoff, and next decode matched the original model at the same text history. Probe wall time through halt was **14h 41m**, with all 66 layers offloaded. Sampled peaks were **7.26 GiB device VRAM**, **6.59 GiB process-dedicated VRAM**, **86 MiB process-shared GPU memory**, and **6.64 GiB process RAM**. The temporary checkpoint was removed after verification. [Full Windows evidence](../results/forward/standard-layer/windows-stories260k/README.md)
 
 ## FP16 circuit projections on Windows
 

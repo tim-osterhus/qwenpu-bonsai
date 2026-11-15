@@ -17,9 +17,13 @@ The downloadable **6.920 GB stock Prism b9596** checkpoint includes the Windows 
 
 This checkpoint ran the original three-token stories260K guest through halt on an **8 GiB RTX 3070** with unmodified Linux Prism b9596. It printed **“Once upon a”** and a newline. All **37,080 architectural retirements** matched the reference, and Bonsai's parked state and matched-history handoff matched the original model. The guest took **18h 29m** and peaked at **7.06 GiB device VRAM**. [Full Linux report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/fecd02bd0764263f1456b4bbd787293d5268a928/results/forward/standard-layer/stock-mtp-vx-stories-three.json)
 
-The same GGUF matched the reference through the first matrix multiply on an 8 GiB GTX 1080 with unmodified Windows Prism b9596. **The full stock Windows run is pending.** [Windows prefix report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-research.json)
+The same GGUF matched the reference through the first matrix multiply on an 8 GiB GTX 1080 with unmodified Windows Prism b9596. [Windows prefix report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-research.json)
 
 A fresh public download passed all **40 vector fixture retirements**, Bonsai's parked state, and its matched-history handoff on a GTX 1080. [Windows smoke-test report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-package-smoke.json)
+
+## Full Windows validation on Prism b12128
+
+A separate **6.047 GB research checkpoint** completed the same original three-token stories260K guest on an **8 GiB GTX 1080** with unmodified Windows Prism b12128. It printed `Once upon a` and a newline, then halted after **37,080 exact reference retirements**. Bonsai's parked state, result handoff, and next decode matched the original model at the same text history. Probe wall time through halt was **14h 41m**, with **7.26 GiB peak device VRAM** and **6.64 GiB peak process RAM**. The temporary b12128 checkpoint was removed after verification. The stock download above uses b9596. [Full Windows validation evidence](https://github.com/tim-osterhus/qwenpu-bonsai/blob/main/results/forward/standard-layer/windows-stories260k/README.md)
 
 ## Original patched release (v0.1.0)
 

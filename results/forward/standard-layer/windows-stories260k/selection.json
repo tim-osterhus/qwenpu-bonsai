@@ -1,0 +1,13 @@
+{
+  "checkpoint": "vew16.gguf",
+  "checkpoint_sha256": "8f335ef91555304dcc62f44fbece0185c48499c7c18626b5d1c19b87f597178d",
+  "criterion": "lower matched-window elapsed time among exact candidates within 8 GiB dedicated",
+  "glu_elapsed_reduction_pct": 8.59234854163592,
+  "runtime": "b12128",
+  "runtime_revision": "d7b28968306207fd176e7ff10796ccb6be607865",
+  "device": "NVIDIA GeForce GTX 1080, 8192",
+  "capacity": 65536,
+  "max_decode_positions": 12000000,
+  "max_wall_seconds": 151200,
+  "reference_commit": "6e2767aaa59b69ea03300c0a5199d7b36debbe50"
+}
