@@ -9,27 +9,15 @@ tags:
   - stories260k
 ---
 
-# QwenPU on Bonsai-27B Q1_0
+# Bonsai–QwenPU 27B — original patched CUDA release (v0.1.0)
 
-## Stock Prism research release
+This page contains the original **3.825 GB** checkpoint for the patched Windows CUDA build of Prism. If you want the release for official, unmodified Prism binaries, start at the stock Prism model card. [Stock Prism model card](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism) · [Original GitHub release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.1.0)
 
-The downloadable **6.920 GB stock Prism b9596** checkpoint includes the Windows launcher and offline verifier. [GitHub release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.2.0) · [Windows reproduction guide](https://github.com/tim-osterhus/qwenpu-bonsai/blob/main/docs/REPRODUCE-STOCK-PRISM.md) · [Download the stock checkpoint](https://huggingface.co/millrace-ai/qwenpu-bonsai/tree/122fc7ca76562f618ba701966df2092c3f23b305/stock-prism)
-
-This checkpoint ran the original three-token stories260K guest through halt on an **8 GiB RTX 3070** with unmodified Linux Prism b9596. It printed **“Once upon a”** and a newline. All **37,080 architectural retirements** matched the reference, and Bonsai's parked state and matched-history handoff matched the original model. The guest took **18h 29m** and peaked at **7.06 GiB device VRAM**. [Full Linux report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/fecd02bd0764263f1456b4bbd787293d5268a928/results/forward/standard-layer/stock-mtp-vx-stories-three.json)
-
-The same GGUF matched the reference through the first matrix multiply on an 8 GiB GTX 1080 with unmodified Windows Prism b9596. [Windows prefix report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-research.json)
-
-A fresh public download passed all **40 vector fixture retirements**, Bonsai's parked state, and its matched-history handoff on a GTX 1080. [Windows smoke-test report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/aefc7d348a794926d8804feda2c363fdfb668db9/results/forward/standard-layer/stock-mtp-vx-package-smoke.json)
-
-## Full Windows validation on Prism b12128
-
-A separate **6.047 GB research checkpoint** completed the same original three-token stories260K guest on an **8 GiB GTX 1080** with unmodified Windows Prism b12128. It printed `Once upon a` and a newline, then halted after **37,080 exact reference retirements**. Bonsai's parked state, result handoff, and next decode matched the original model at the same text history. Probe wall time through halt was **14h 41m**, with **7.26 GiB peak device VRAM** and **6.64 GiB peak process RAM**. The temporary b12128 checkpoint was removed after verification. The stock download above uses b9596. [Full Windows validation evidence](https://github.com/tim-osterhus/qwenpu-bonsai/blob/main/results/forward/standard-layer/windows-stories260k/README.md)
-
-## Original patched release (v0.1.0)
+## About the checkpoint
 
 The original v0.1.0 patched release adds QwenPU's RISC-V and vector circuit to Bonsai-27B Q1_0. The patched Bonsai decoder runs the sparse circuit inside its CUDA forward pass. A clean Windows build on a GTX 1080 validated the exact retained checkpoint. The three-token stories260K guest produced `Once upon a` from the fixed prefix `Run<tool_call></tool_call>`.
 
-**Runtime requirement.** Build the patched Windows CUDA version of Prism llama.cpp at revision `9fcaed763ccda38ea81068ad9d7f991aaddca451`. The validated build targets Pascal `sm_61`. Stock llama.cpp, LM Studio, and Ollama are incompatible with this format. [Windows build and launch commands](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [Runtime identity](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/results/forward/release-v0.1/runtime-identity.json)
+**Runtime requirement.** Use the v0.1.0 build guide to compile the patched Windows CUDA version of Prism llama.cpp. The validated build targets Pascal `sm_61`. Stock llama.cpp, LM Studio, and Ollama are incompatible with this format. [Windows build and launch commands](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [Runtime identity](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/results/forward/release-v0.1/runtime-identity.json)
 
 ### Model files
 
@@ -42,7 +30,7 @@ Keep the manifest beside the GGUF when running the validator. The release manife
 
 ### Checkpoint contents
 
-The exporter adds sparse circuit coefficients and named guest snapshots to the stock Bonsai GGUF. The snapshots provide initial program and machine state, including the guest's int4 stories260K weights. The export verified byte equality of all 851 stock tensor payloads and equality of the original GGUF metadata entries.
+The exporter adds sparse circuit coefficients and named guest snapshots to the original Bonsai GGUF. The snapshots provide initial program and machine state, including the guest's int4 stories260K weights. The export verified byte equality of all 851 original tensor payloads and equality of the original GGUF metadata entries.
 
 The patched decoder executes 23 active circuit sublayers as custom CUDA-backed GGML nodes. The pinned upstream standard-layer emitter groups them into 13 blocks. Retained circuit coordinates contribute to the language model's residual normalization, so equal stock tensor bytes can still produce different logits.
 
@@ -63,7 +51,7 @@ An execution-trace token is one element of the circuit's encoded record stream. 
 | Check | Recorded result |
 |---|---|
 | Coefficient mutation | Output `8` became `0`, and restoring the coefficient restored the exact trace |
-| Stock comparison | Matching greedy IDs with maximum absolute logit differences of about 0.106 during idle and 0.107 after handoff |
+| Original Bonsai comparison | Matching greedy IDs with maximum absolute logit differences of about 0.106 during idle and 0.107 after handoff |
 
 The clean Windows run repeated the historical vector checks on a separate fixture checkpoint with SHA-256 `0368485626d314216eacd33155976118568f57e386535385c36884205cec5a54`. [v0.1 vector fixture report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/results/forward/release-v0.1/vector-validation.json) · [Historical vector fixture report](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/results/forward/decoder-validation/validation.json)
 
