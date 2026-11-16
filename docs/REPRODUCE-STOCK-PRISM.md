@@ -2,6 +2,8 @@
 
 This guide uses the **6,920,450,208-byte stock GGUF** and the packaged Windows launcher. The full three-token story passed on Linux with an RTX 3070. The Windows GTX 1080 passed the vector smoke test and the story through its first matrix multiply. A separate **6.047 GB b12128 research checkpoint** passed the full Windows run. The commands below apply to the b9596 package. The original v0.1.0 artifact uses a patched CUDA runtime. [Full Windows b12128 evidence](../results/forward/standard-layer/windows-stories260k/README.md) · [Stock release write-up](STOCK-PRISM-RELEASE.md) · [Earlier patched build](https://github.com/tim-osterhus/qwenpu-bonsai/blob/v0.1.0/docs/REPRODUCE.md) · [FP16 projection experiment](STOCK-PRISM-RELEASE.md#fp16-circuit-projections-on-windows)
 
+The downloadable Bonsai 2 4B checkpoint uses Prism **b12128** and has a verified full Windows run. Its model card provides its own setup and verification commands. [4B package and instructions](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism)
+
 ## Download and verify the Windows package
 
 Use Windows x64, PowerShell 7, Git, Python 3.11 with the `py` launcher, the Hugging Face `hf` CLI, and an NVIDIA driver compatible with CUDA 12.4. The combined checkpoint and original Bonsai control require about 10.72 GB on disk, plus space for the runtime, dependencies, and output. Close other GPU jobs if memory is tight. [Pinned package README](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism/blob/stock-prism-b9596/stock-prism/README.md) · [Official Prism b9596 binaries](https://github.com/PrismML-Eng/llama.cpp/releases/tag/prism-b9596-9fcaed7)

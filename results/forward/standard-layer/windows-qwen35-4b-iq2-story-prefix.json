@@ -1,0 +1,116 @@
+{
+  "scope": "Summary of a saved bounded story capture and separate controls. Full three-token execution remains unverified for this Qwen3.5 checkpoint.",
+  "environment": {
+    "gpu": "NVIDIA GeForce GTX 1080 (8 GiB)",
+    "os": "Windows x64",
+    "prism_build": "b12128",
+    "prism_revision": "d7b28968306207fd176e7ff10796ccb6be607865"
+  },
+  "checkpoint": {
+    "name": "Qwen3.5-4B UD-IQ2_M with QwenPU",
+    "bytes": 5121315968,
+    "sha256": "d2f72c076264d28ec5e4a2d4d31a2834b8f32e09053a681b904b489c227ba519",
+    "base_repo": "unsloth/Qwen3.5-4B-GGUF",
+    "base_revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+    "base_sha256": "cb4c45ca42c0d7777667e94e3963f8e59e939b3665098328ce601feb5be129c1",
+    "circuit_donor_sha256": "ec6d177b3af28436f8aef2c82166ccd01ee087c5aed889b13a269fa414b6c973",
+    "circuit_tensor_count": 18,
+    "source_tensor_extents_byte_equal": 426,
+    "ffn_width_before": 9216,
+    "ffn_width_after": 36352,
+    "zero_padded_tensor_count": 96
+  },
+  "padding_only": {
+    "serial_history_lengths": [
+      1,
+      8,
+      25
+    ],
+    "batched_history_lengths": [
+      8,
+      25,
+      64
+    ],
+    "logits_kv_recurrent_bit_exact": true
+  },
+  "fixtures": {
+    "scalar": {
+      "architectural_records": 174,
+      "ordered_guest_writes": 141,
+      "matched_history_handoffs": 3,
+      "capture_sha256": "17ecb616789f7a46839e2422c9ce6c8574634c2514d03a988399eeea194ef41f"
+    },
+    "vector": {
+      "architectural_records": 142,
+      "ordered_guest_writes": 166,
+      "matched_history_handoffs": 3,
+      "capture_sha256": "4c473dfeaa37a2afe5d5d274a73a3aaec498260b9b2f4f16705b1d51e9e671c0"
+    }
+  },
+  "story_prefix": {
+    "elf_sha256": "5c50c2ac365a5e342f4abf236848751c69e46219712a76ec7f33ea6525a72ed2",
+    "cpu_reference_revision": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+    "capture_sha256": "232a85b30919139c3576e0c777a1056860916b29f740563067868ef339040823",
+    "architectural_attempts": 2578,
+    "checked_guest_writes": 2760,
+    "completed_vmats": 8,
+    "normalized_trace_sha256": "7e0a268e41a4998076956063ba8adeaf956fcde2c308a22d824b6335caf3a071",
+    "ordered_writes_sha256": "c7e1b80304e737b3eea80333aa5f905a9ef222fe6f7739277fc7c3e2374b0ef6",
+    "final_vector_sha256": "6f5a73c43084f61466d215bd7f99494fda041b47c2b3be9a37bb1d2814a4f470",
+    "halted": false,
+    "output": "",
+    "matched_history_handoffs": 0,
+    "first_matrix_multiply_record": 1677,
+    "signed_f16_cache_matches_donor": true,
+    "signed_wrom_f16_sha256": {
+      "seed": "4a8e9f4d74d793065820f4b22c93386a5de362ab993d1484451c69b8b06d7586",
+      "final": "4a8e9f4d74d793065820f4b22c93386a5de362ab993d1484451c69b8b06d7586"
+    },
+    "parked_text_comparison": {
+      "capture": {
+        "position": 5,
+        "state_sha256": "9e3cb1a068309ea0a8c858feb81ce5596acb5ce4cf0e28a8d978d105949b36e7",
+        "kv_sha256": "e6b08b46524a4ce37db5b7ec80c3cc2faff7353dc5aab0e5324386e73be862e9",
+        "recurrent_sha256": "2537f6439ce81f5380fbd45dacd5215048fb487c99153480b6b452a22653c89a",
+        "logits_sha256": "4a1dbc4b56266065dd3307398d4454ef0be5aa17e8d4d5290140f8369182d09a"
+      },
+      "original_control": {
+        "position": 5,
+        "state_sha256": "9e3cb1a068309ea0a8c858feb81ce5596acb5ce4cf0e28a8d978d105949b36e7",
+        "kv_sha256": "e6b08b46524a4ce37db5b7ec80c3cc2faff7353dc5aab0e5324386e73be862e9",
+        "recurrent_sha256": "2537f6439ce81f5380fbd45dacd5215048fb487c99153480b6b452a22653c89a",
+        "logits_sha256": "4a1dbc4b56266065dd3307398d4454ef0be5aa17e8d4d5290140f8369182d09a"
+      }
+    },
+    "timed_record_range_inclusive": [
+      1717,
+      2578
+    ],
+    "live_cells_at_window_boundaries": {
+      "start": 55454,
+      "end": 55720
+    },
+    "reserved_guest_cells": 65536,
+    "window_seconds": 518.7814103,
+    "window_decode_positions": 82090,
+    "sampled_memory_bytes": {
+      "nvml_baseline_bytes": 1038123008,
+      "nvml_peak_bytes": 7827312640,
+      "process_dedicated_peak_bytes": 6152192000,
+      "process_shared_peak_bytes": 88080384,
+      "sampled_working_set_peak_bytes": 6143041536
+    }
+  },
+  "local_source_report_sha256": {
+    "export_manifest": "dec8b7366837f8232452c309245c7489f41ead037afa23925ead32489911a25a",
+    "padding_control": "9536e5458046d1b3c6bff8d926226038f5e6624ac92548b353295f95b4a463a2",
+    "scalar_verdict": "f857b517d51134d275e45d215dabb2cd6d90b26ce863772a83efdb02d934e764",
+    "scalar_result": "8dbc1e7bf0e72736c7361a8c004ae45240c8630ef04868859c552fef52ff48c0",
+    "vector_verdict": "689befd6043cc35a8e1e322cff5531da243649c2a12352143350468fb23106ee",
+    "vector_result": "8690f3392b113fb5d0d07881efb84f6659fc5dbe7519ecb049ad65f2edf66c00",
+    "prefix_run": "5f1b7f1b0954c313d6dc2d897e29fe1994fc5b5bf576c04d2bc8eb79b6ce81f1",
+    "prefix_verdict": "70df43b87c8c846bc79a467f9f65c2123f6226116a563b429f514b2c5f236dfd",
+    "original_text_control": "39ef24f1d836e3d5f9bee241c011642060a65c63596a5cb20476a12a457cc613",
+    "bonsai_4b_prefix_verdict": "6bfc3f040d793a11c0b5fbccd39de41733c90bd8cebfd654cd44d60359a11108"
+  }
+}
