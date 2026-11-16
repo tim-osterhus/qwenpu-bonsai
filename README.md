@@ -18,6 +18,10 @@ The **6.92 GB stock checkpoint** is available with a Windows launcher, setup com
 
 The full Windows run used a separate **6.047 GB b12128 research checkpoint**. It printed `Once upon a` and a newline, matched all **37,080 architectural retirements**, and preserved Bonsai's parked state and matched-history handoff. Probe wall time through halt was **14h 41m**. Sampled peaks were **7.26 GiB device VRAM** and **6.64 GiB process RAM**. The temporary checkpoint was removed after verification. [Windows b12128 evidence](results/forward/standard-layer/windows-stories260k/README.md)
 
+### stories260K prefix validation on 9B and 4B
+
+Native-width packed Bonsai 9B and 4B matched the same 2,578-record stories260K prefix as a 27B control on the GTX 1080 with stock Windows Prism b12128. All three preserved their parked text state. This prefix ends before story output. Full three-token validation remains pending for 9B and 4B. [Checkpoint comparison and verification](docs/BONSAI-PORTABILITY.md)
+
 ## How the v0.1 patched build works
 
 The exporter retargets the upstream circuit for Bonsai's geometry and adds its sparse coefficients and guest snapshots to the same GGUF as Bonsai's tensors. The circuit has 23 active sublayers, which the pinned QwenPU standard-layer emitter groups into 13 blocks. This port runs those sublayers as custom CUDA-backed GGML nodes. The retained circuit coordinates contribute to Bonsai's residual RMS normalization. During chip-only steps, the circuit advances while the language model's position and cache are held. [Decoder implementation](overlay/experimental/bonsai-qwenpu/FORWARD.md) · [Pinned upstream emitter](https://github.com/divagr18/QwenPU/blob/6e2767aaa59b69ea03300c0a5199d7b36debbe50/chipformer/q35/emit.py)
