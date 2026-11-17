@@ -4,11 +4,13 @@ This recipe regenerates the compiled RISC-V and vector circuit, packs it beside 
 
 A clean rebuild from a Git archive in a fresh Windows Python environment matched all **4,031,384,384 bytes** of a separately downloaded release. [Verification record](rebuild-verification.json)
 
-The build runs on the CPU with native Windows x64 and Python 3.11. Budget 10 GiB of free scratch space after downloading the inputs. The optional byte comparison also requires space for the 4.03 GB released file. For executing the resulting GGUF, use the stock Windows Prism b12128 launcher and verifier in the model package.
+The build runs on the CPU with native Windows x64 and Python 3.11. Budget 10 GiB of free scratch space on a volume that supports hard links after downloading the inputs. The optional byte comparison also requires space for the 4.03 GB released file. For executing the resulting GGUF, use the stock Windows Prism b12128 launcher and verifier in the model package.
 
 ## Rebuild
 
 From this directory in a clean checkout, create a Python environment and download the exact original model revision. The build checks the base file size and SHA-256 before using it.
+
+Prism ML distributes the original Bonsai 2 4B weights under Apache 2.0. [Pinned base model card](https://huggingface.co/prism-ml/Ternary-Bonsai-2-4B-gguf/tree/50ebba61be85e5be07e8083db468ace0fc1bac43)
 
 ```powershell
 py -3.11 -m venv .venv
@@ -34,7 +36,7 @@ curl.exe --fail --location --output released.gguf "https://huggingface.co/millra
 .\.venv\Scripts\python.exe -B .\rebuild.py --base .\Ternary-Bonsai-2-4B-PQ2_0.gguf --output-dir .\compared --released .\released.gguf
 ```
 
-The output directory contains the final GGUF and `rebuild-verification.json`. The latter records the model identities, the compiler and conditioning checks, and the number of bytes compared when using `--released`.
+The output directory contains the final GGUF and `rebuild-verification.json`. The latter records the model identities, the compiler and conditioning checks, and the number of bytes compared when using `--released`. The published record adds a `verification` section with the tested Git commit, manifest hash, and independent output hash.
 
 ## Source provenance
 

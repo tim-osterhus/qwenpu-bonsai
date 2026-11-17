@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "runtime": {
+    "os": "Windows x64",
+    "python": "3.11.9",
+    "numpy": "1.23.5"
+  },
+  "base": {
+    "revision": "50ebba61be85e5be07e8083db468ace0fc1bac43",
+    "bytes": 1146465120,
+    "sha256": "d406b1e912c0d2a4c124ad10bf38a76ae662fdc4d24b176451403dc7b7f30409"
+  },
+  "released": {
+    "revision": "c0b9de4dd5ad7057ad677fb01f7e99e4ce350e00",
+    "bytes": 4031384384,
+    "sha256": "ec6d177b3af28436f8aef2c82166ccd01ee087c5aed889b13a269fa414b6c973"
+  },
+  "rebuild": {
+    "bytes": 4031384384,
+    "sha256": "ec6d177b3af28436f8aef2c82166ccd01ee087c5aed889b13a269fa414b6c973",
+    "unconditioned_sha256": "31c46924342d983a60ca6654507720e29a41aa4017b607b98820b06c53bf3a29",
+    "ffn_coefficient_stream_sha256": "4a9ecd64992230ae1fe8b49a3747d8b69769aacace482ef2bd3dd5d1cb1f6f2a",
+    "unchanged_language_tensor_extents": 426,
+    "padded_language_tensors": 96,
+    "circuit_tensors": 18,
+    "conditioned_tensor": "blk.32.ffn_gate.weight",
+    "changed_gate_coefficients": 1024
+  },
+  "exact_bytes_compared_with_release": 4031384384,
+  "elapsed_seconds": 347.032,
+  "verification": {
+    "date": "2026-11-16",
+    "scope": "CPU reconstruction from a Git archive in a fresh native Windows Python environment",
+    "source_commit": "d31768131c9c278fb886c646fac4e0ad71af2286",
+    "source_checksums_sha256": "84ed3260b9ab52604198753200317a92e9253dff79886dff49f2c2a0e989424d",
+    "output_file_sha256_readback": "ec6d177b3af28436f8aef2c82166ccd01ee087c5aed889b13a269fa414b6c973",
+    "base_hub_repository": "prism-ml/Ternary-Bonsai-2-4B-gguf",
+    "released_hub_repository": "millrace-ai/qwenpu-bonsai-4b-stock-prism"
+  }
+}
