@@ -1,0 +1,2 @@
+/frozen/** -text whitespace=cr-at-eol
+/vendor/** -text whitespace=cr-at-eol

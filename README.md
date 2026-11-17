@@ -16,7 +16,7 @@ Bonsai 2 9B also matched the shared 2,578-record prefix and preserved its parked
 
 ## Downloads
 
-- **Bonsai 2 4B on Prism b12128.** The model card includes the GGUF, Windows launcher, smoke test, and full-story verifier. [4B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism)
+- **Bonsai 2 4B on Prism b12128.** The model card includes the GGUF, Windows launcher, smoke test, and full-story verifier. [4B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism) · [Reconstruct the 4B GGUF from source](reconstruction/bonsai-4b/README.md)
 - **Bonsai-27B on Prism b9596.** This separate **6.920 GB** GGUF passed the full story on Linux and the vector smoke test and story prefix on Windows. [27B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism) · [Windows reproduction guide](docs/REPRODUCE-STOCK-PRISM.md)
 - **Original patched v0.1.0.** The earlier **3.825 GB** 27B GGUF uses a patched Windows CUDA runtime. [Historical release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.1.0) · [Patched build guide](docs/REPRODUCE.md)
 
