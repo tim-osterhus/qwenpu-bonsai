@@ -1,5 +1,5 @@
 {
-  "freeze_date": "2026-11-16",
+  "freeze_date": "2026-11-17",
   "scope": "Compact author-derived evidence for the stock Prism manuscript. Linked public artifacts identify the released results and 4B rebuild. Archived fingerprints identify source captures and diagnostics. Full raw captures are retained in the lab.",
   "public_revisions": {
     "four_b_package": "https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism/tree/c0b9de4dd5ad7057ad677fb01f7e99e4ce350e00",
@@ -15,8 +15,8 @@
   "full_status": {
     "Bonsai-27B b12128 Windows": "passed",
     "Bonsai 2 4B b12128 Windows": "passed",
-    "Bonsai 2 9B b12128 Windows": "pending, exact 2578-record prefix",
-    "Qwen3.5-4B UD-IQ2_M b12128 Windows": "pending, exact 2578-record prefix",
+    "Bonsai 2 9B b12128 Windows": "passed",
+    "Qwen3.5-4B UD-IQ2_M b12128 Windows": "passed",
     "Bonsai-27B b9596 Linux": "passed on separate checkpoint"
   },
   "archived_sources": {
@@ -1160,7 +1160,7 @@
     "verification_record_sha256": "4fc19496fa8367aca01a9758196931b7c440e83ce4c580676b7a2c710ad97018"
   },
   "instruction_coverage": {
-    "method": "Stream each saved capture and decode the word at each recorded architectural retirement with the pinned upstream decoder. Check identical ordered PC and word pairs across both Windows runs and the same normalized trace digest against both full verdicts.",
+    "method": "Decode recorded architectural instruction words with the pinned upstream decoder. Both original captures and both new captures agree on the ordered PC and word pairs via the Bonsai 2 4B capture, and on all per-mnemonic counts. The four full verdicts report the same normalized architectural trace and final vector hashes.",
     "reference_pin": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
     "workload_elf_sha256": "5c50c2ac365a5e342f4abf236848751c69e46219712a76ec7f33ea6525a72ed2",
     "traces": {
@@ -1175,6 +1175,17 @@
         "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
         "records": 37080,
         "public_verdict_raw_url": "https://raw.githubusercontent.com/tim-osterhus/qwenpu-bonsai/af2be747d41004a58f50e7654c8653d99314565e/results/forward/standard-layer/windows-stories260k/story.validation.json"
+      },
+      "Bonsai 2 9B": {
+        "raw_capture_sha256": "d8cd5770672e8a9c15003e0f4e059f947aee170f5d908496914681e963fd505c",
+        "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+        "records": 37080,
+        "public_verdict_raw_url": "https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism/raw/a410a122a9005acb999cb595fb0cc96ddbc68b52/evidence/story-three-token-windows.json"
+      },
+      "Qwen3.5-4B UD-IQ2_M": {
+        "raw_capture_sha256": "6f7b50a1c0865e607ec11bf558f0af711c907285c1b0f99a8a57cb443cf1c760",
+        "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+        "records": 37080
       }
     },
     "distinct_mnemonics": 49,
@@ -1314,6 +1325,229 @@
         ],
         "records": 2850
       }
+    }
+  },
+  "full_windows_b12128": {
+    "runtime_revision": "d7b28968306207fd176e7ff10796ccb6be607865",
+    "gpu": "GTX 1080 (8 GiB)",
+    "elf_sha256": "5c50c2ac365a5e342f4abf236848751c69e46219712a76ec7f33ea6525a72ed2",
+    "reference_revision": "6e2767aaa59b69ea03300c0a5199d7b36debbe50",
+    "runs": {
+      "Bonsai-27B": {
+        "checkpoint": {
+          "path": "stock-prism-b12128/Bonsai-27B-Q1_0-QwenPU-Stock-Prism-b12128.gguf",
+          "bytes": 6047231872,
+          "sha256": "8f335ef91555304dcc62f44fbece0185c48499c7c18626b5d1c19b87f597178d",
+          "hub_repository": "millrace-ai/qwenpu-bonsai-27b-stock-prism",
+          "hub_revision": "764da1a0a9f6f5cd68670a7a28eb2410a773c491"
+        },
+        "verification": {
+          "source_sha256": "0d9360a1bfdb828c91deef3c0cf11f917b67704f653b0a5482d0b2c27be63663",
+          "records": 37080,
+          "vmat": 726,
+          "ordered_writes": null,
+          "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+          "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+          "output": "Once upon a\n",
+          "halted": true,
+          "parked_text_exact": true,
+          "result_and_next_decode_exact": true,
+          "matched_text_positions": [
+            5,
+            14,
+            15
+          ]
+        },
+        "timing": {
+          "capture_wall_seconds": 52898.87890060013,
+          "probe_guest_wall_seconds": 52890.8409,
+          "post_seed_seconds": 52840.9046325,
+          "post_seed_decodes": 6799351,
+          "post_seed_decodes_per_second": 128.67590074939847,
+          "seed_positions": 55229,
+          "total_positions": 6854580
+        },
+        "sampled_memory": {
+          "nvml_baseline_bytes": 703897600,
+          "nvml_peak_bytes": 7795671040,
+          "process_dedicated_peak_bytes": 7079137280,
+          "process_shared_peak_bytes": 90177536,
+          "sampled_working_set_peak_bytes": 7132672000,
+          "samples": 210674
+        }
+      },
+      "Bonsai 2 9B": {
+        "checkpoint": {
+          "path": "Bonsai-2-9B-PQ2_0-QwenPU-Stock-Prism.gguf",
+          "bytes": 4500267552,
+          "sha256": "01ea2741eae025dd7f5c2731d23091c989fa69f056c2c7f52cea08b2b275a688",
+          "hub_repository": "millrace-ai/qwenpu-bonsai-9b-stock-prism",
+          "hub_revision": "a410a122a9005acb999cb595fb0cc96ddbc68b52"
+        },
+        "verification": {
+          "source_sha256": "cc5bc2e2f77575846b3bd2a835bedda07bb41b467802ed1743f4cc0ea88c9cd5",
+          "records": 37080,
+          "vmat": 726,
+          "ordered_writes": null,
+          "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+          "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+          "output": "Once upon a\n",
+          "halted": true,
+          "parked_text_exact": true,
+          "result_and_next_decode_exact": true,
+          "matched_text_positions": [
+            5,
+            14,
+            15
+          ]
+        },
+        "timing": {
+          "capture_wall_seconds": 36631.3575137998,
+          "probe_guest_wall_seconds": 36625.4572,
+          "post_seed_seconds": 36590.3336156,
+          "post_seed_decodes": 6365239,
+          "post_seed_decodes_per_second": 173.95957814624109,
+          "seed_positions": 55229,
+          "total_positions": 6420468
+        },
+        "sampled_memory": {
+          "nvml_baseline_bytes": 1003720704,
+          "nvml_peak_bytes": 6728011776,
+          "process_dedicated_peak_bytes": 5304934400,
+          "process_shared_peak_bytes": 90177536,
+          "sampled_working_set_peak_bytes": 4985589760,
+          "samples": 146125
+        },
+        "public_earlier_verdict": "https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism/raw/a410a122a9005acb999cb595fb0cc96ddbc68b52/evidence/story-three-token-windows.json"
+      },
+      "Bonsai 2 4B": {
+        "checkpoint": {
+          "path": "Bonsai-2-4B-PQ2_0-QwenPU-Stock-Prism.gguf",
+          "bytes": 4031384384,
+          "sha256": "ec6d177b3af28436f8aef2c82166ccd01ee087c5aed889b13a269fa414b6c973",
+          "hub_repository": "millrace-ai/qwenpu-bonsai-4b-stock-prism",
+          "hub_revision": "1cc982803744f899c1adc30304b1ee05cd9c8d99"
+        },
+        "verification": {
+          "source_sha256": "dd2d0ac57e7617f623f1caa09a0b7609d16a568a3c833828847c85f840d371a2",
+          "records": 37080,
+          "vmat": 726,
+          "ordered_writes": 55375,
+          "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+          "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+          "output": "Once upon a\n",
+          "halted": true,
+          "parked_text_exact": true,
+          "result_and_next_decode_exact": true,
+          "matched_text_positions": [
+            5,
+            14,
+            15
+          ]
+        },
+        "timing": {
+          "capture_wall_seconds": 31738.807903499808,
+          "probe_guest_wall_seconds": 31733.2136,
+          "post_seed_seconds": 31696.2193652,
+          "post_seed_decodes": 5049851,
+          "post_seed_decodes_per_second": 159.32029438010346,
+          "seed_positions": 55229,
+          "total_positions": 5105080
+        },
+        "sampled_memory": {
+          "nvml_baseline_bytes": 1206554624,
+          "nvml_peak_bytes": 7341879296,
+          "process_dedicated_peak_bytes": 5074239488,
+          "process_shared_peak_bytes": 88080384,
+          "sampled_working_set_peak_bytes": 4784648192,
+          "samples": 125471
+        }
+      },
+      "Qwen3.5-4B UD-IQ2_M": {
+        "checkpoint": {
+          "path": "Qwen3.5-4B-UD-IQ2_M-QwenPU-Stock-Prism.gguf",
+          "bytes": 5121315968,
+          "sha256": "d2f72c076264d28ec5e4a2d4d31a2834b8f32e09053a681b904b489c227ba519",
+          "hub_repository": "millrace-ai/qwenpu-qwen35-4b-iq2-m-stock-prism",
+          "hub_revision": "9c838982adeee4fda2a74db18e37e87e247d36dd"
+        },
+        "verification": {
+          "source_sha256": "7c9703bddc739436419325e4e512d26da18bc52bf1f11031cad77641525788ff",
+          "records": 37080,
+          "vmat": 726,
+          "ordered_writes": 55375,
+          "normalized_trace_sha256": "227fa356e8585aefbf14e590909c7a5d7aa76c7154197eb0d6c66556308c2a10",
+          "final_vector_sha256": "25c2890b073af92d6bbb0a7efa575156d8d22cc06211bd364334779f077a0e62",
+          "output": "Once upon a\n",
+          "halted": true,
+          "parked_text_exact": true,
+          "result_and_next_decode_exact": true,
+          "matched_text_positions": [
+            5,
+            14,
+            15
+          ]
+        },
+        "timing": {
+          "capture_wall_seconds": 29620.19449319993,
+          "probe_guest_wall_seconds": 29612.8987,
+          "post_seed_seconds": 29576.9063892,
+          "post_seed_decodes": 5049851,
+          "post_seed_decodes_per_second": 170.73628098724862,
+          "seed_positions": 55229,
+          "total_positions": 5105080
+        },
+        "sampled_memory": {
+          "nvml_baseline_bytes": 1069019136,
+          "nvml_peak_bytes": 7212494848,
+          "process_dedicated_peak_bytes": 6152183808,
+          "process_shared_peak_bytes": 88080384,
+          "sampled_working_set_peak_bytes": 6146048000,
+          "samples": 117165
+        }
+      }
+    }
+  },
+  "compact_4b_experiments": {
+    "scope": "Standalone predecoded vector fixture, captured-operand arithmetic replay, and partial CPU compiler census.",
+    "standalone_fixture": {
+      "source_sha256": "a195a70c4d737f82fc05263fa33e1882f9c49f3b81bc89195359bd6f8fe07a32",
+      "bank_audit_sha256": "286d4da05cbc27cea9e4de3658a709e1da5bc5d8ed5e486f2360b5b45308e5f4",
+      "width": 2560,
+      "ffn_rows": 9216,
+      "active_rows": 4651,
+      "n": 32,
+      "live_f16_kv_cells": 55720,
+      "both_flash_attention_modes": true,
+      "a_b_a_replay_bitwise": true,
+      "audited_action_frames": 23580,
+      "vmatr": 120,
+      "vget": 600,
+      "ordered_vm_writes": 2400,
+      "scope": "Runtime-loaded operands, fixed predecoded instruction configuration and synthetic KV occupancy."
+    },
+    "captured_operand_replay": {
+      "source_sha256": "2a366ccd8c66cedb20d0689499d1035bc00ca65f2750bc2858cfeb453ddac6c2",
+      "query_ms_per_action": 5.589075487701441,
+      "dedicated_peak_bytes": 921825280,
+      "scope": "Standalone arithmetic replay. Real p and scale come from the CPU oracle."
+    },
+    "compiler_census": {
+      "source_sha256": "5620431e75e21b32552e42b0322cfa3d7ae5ae8dc1ebeab4554b85b8fda704e2",
+      "production_row_audit_sha256": "7835517a5e2fc780c47ab1a23612a23bf4c1d010bb49a54303cf1a762eebc16f",
+      "reserved_lanes": 1982,
+      "compiled_ffn_rows": 4023,
+      "synthetic_rom_entries": 1024,
+      "production_rows": 36352,
+      "production_rows_omitting_vmatr_vget": 35150,
+      "full_fit": null,
+      "unlowered_requirements": [
+        "real opcode-to-micro-PC entry map and complete microprogram",
+        "branch/return, kernel ID to sampled action, descriptor/operand scheduling and faults",
+        "canonical wide arithmetic sequencing and vector per-mode range/sign/clamp rules",
+        "typed query/readback, hit/miss, model-issued write/retire and graph projection wiring",
+        "architectural commit, guest trace, matched-history host state and stock CUDA parity"
+      ]
     }
   }
 }
