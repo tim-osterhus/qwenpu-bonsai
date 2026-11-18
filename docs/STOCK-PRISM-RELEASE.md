@@ -18,11 +18,11 @@ The stock graph uses Prism's MTP block for guest execution. The launcher loads t
 
 ## Full stories260K validation on Windows GTX 1080
 
-The separate **6.047 GB Bonsai-27B** research checkpoint with the width-aware vector elementwise multiplier ran the original three-token guest to halt on an **8 GiB GTX 1080** using unmodified **Prism b12128**. It printed `Once upon a` and a newline. All **37,080 architectural retirements**, including **726 matrix multiplies**, matched the CPU reference. Bonsai's parked state, result handoff, and next decode matched the original model at the same text history. Probe wall time through halt was **14h 41m**, with all 66 layers offloaded. Sampled peaks were **7.26 GiB device VRAM**, **6.59 GiB process-dedicated VRAM**, **86 MiB process-shared GPU memory**, and **6.64 GiB process RAM**. The temporary checkpoint was removed after verification. [Full Windows evidence](../results/forward/standard-layer/windows-stories260k/README.md)
+The separate **6.047 GB Bonsai-27B** research checkpoint with the width-aware vector elementwise multiplier ran the original three-token guest to halt on an **8 GiB GTX 1080** using unmodified **Prism b12128**. It printed `Once upon a` and a newline. All **37,080 architectural retirements**, including **726 VMAT operations**, matched the CPU reference. Bonsai's parked state, result handoff, and next decode matched the original model at the same text history. Probe wall time through halt was **14h 41m**, with all 66 layers offloaded. Sampled peaks were **7.26 GiB device VRAM**, **6.59 GiB process-dedicated VRAM**, **86 MiB process-shared GPU memory**, and **6.64 GiB process RAM**. The exact GGUF is available with a matching checksum. [b12128 checkpoint](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism/tree/764da1a0a9f6f5cd68670a7a28eb2410a773c491/stock-prism-b12128) · [Full Windows evidence](../results/forward/standard-layer/windows-stories260k/README.md)
 
-## stories260K prefix across four packed hosts
+## Full stories260K across four packed hosts
 
-The same **2,578-record** prefix matched on Bonsai-27B, Bonsai 2 9B and 4B, and Qwen3.5-4B UD-IQ2_M on Windows with Prism b12128. The latest Qwen3.5 prefix matched 2,760 ordered writes and preserved the original Qwen text state. Full runs remain pending on Bonsai 2 9B and Qwen3.5-4B UD-IQ2_M. [Measured prefix comparison](BONSAI-PORTABILITY.md)
+The full three-token story now passes on all four b12128 hosts. Bonsai 2 9B and Qwen3.5-4B UD-IQ2_M each matched all 37,080 architectural records through halt and matched their original hosts at the parked, result and next-decode histories. [Complete capture and prefix comparison](BONSAI-PORTABILITY.md) · [Full-run evidence](../results/forward/standard-layer/evidence-snapshot.json)
 
 ## FP16 circuit projections on Windows
 

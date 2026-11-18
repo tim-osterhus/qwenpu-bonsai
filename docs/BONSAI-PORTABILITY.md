@@ -1,5 +1,18 @@
 # stories260K validation across packed Bonsai and Qwen3.5
 
+## Complete three-token workload on stock Windows Prism
+
+All four hosts matched **37,080 architectural records** and **726 VMAT operations** through output and halt on the GTX 1080. The normalized trace and final vector state hashes agree. Parked state, result insertion, and the next decode matched the original packed host at the checked histories for each checkpoint. An ordered-write audit checked **55,375 writes** on each 4B host. Those runs also checked the signed F16 weight cache.
+
+| Host | GGUF (GB) | Capture (h:mm:ss) | Post-seed decodes/s | Process RAM (GiB) | Dedicated VRAM (GiB) | Device VRAM (GiB) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| [Bonsai-27B b12128](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism) | 6.047 | 14:41:39 | 128.7 | 6.64 | 6.59 | 7.26 |
+| [Bonsai 2 9B](https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism) | 4.500 | 10:10:31 | 174.0 | 4.64 | 4.94 | 6.27 |
+| [Bonsai 2 4B](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism) | 4.031 | 8:48:59 | 159.3 | 4.46 | 4.73 | 6.84 |
+| [Qwen3.5-4B UD-IQ2_M](https://huggingface.co/millrace-ai/qwenpu-qwen35-4b-iq2-m-stock-prism) | 5.121 | 8:13:40 | 170.7 | 5.72 | 5.73 | 6.72 |
+
+The wall times are sampled process capture times. Shared GPU peaks were 86 MiB for 27B and 9B and 84 MiB for the two 4B hosts. Different schedules, kernels and sessions affect the comparison. [Pinned checkpoint identities and full-run receipts](../results/forward/standard-layer/evidence-snapshot.json) · [9B full-run receipt](https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism/blob/a410a122a9005acb999cb595fb0cc96ddbc68b52/evidence/story-three-token-windows.json)
+
 ## Full three-token stories260K on Bonsai 2 4B
 
 The **4.03 GB** native-width Bonsai 2 4B checkpoint on stock Windows Prism **b12128** printed `Once upon a` and a newline, then halted. The pinned CPU reference matched **37,080 architectural trace records, 55,375 ordered writes, and 726 VMAT operations**. Its normalized trace and final vector state matched the full 27B Windows result. Bonsai's parked text state, result insertion, and next decode matched the original packed 4B control at the recorded histories.
@@ -33,8 +46,6 @@ In the first 4B capture, vector exponentiation wrote 0 at record 2,005 where the
 
 The **5.12 GB** Qwen3.5-4B test checkpoint combined Unsloth's separately quantized UD-IQ2_M language weights with the **18 conditioned Bonsai 4B circuit tensors**. The export retained **426 original packed tensor extents** and extended 96 feed-forward tensors with exact zero blocks. The padding-only control matched logits, KV, and recurrent state through serial histories of up to 25 tokens and batched histories of up to 64. Separate scalar and vector fixtures matched **316 trace records, 307 ordered writes, and six text handoffs** against the reference and the original Qwen control, including vector A → B → A reset. The story prefix matched **2,578 records, 2,760 ordered writes, and eight VMAT operations**. The signed FP16 weight-cache evidence matched the Bonsai 4B prefix, and the parked text state matched original Qwen3.5-4B. The story capture ended before output or handoff. [Prefix, padding, and fixture receipts](../results/forward/standard-layer/windows-qwen35-4b-iq2-story-prefix.json) · [Pinned base quantization](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/tree/e87f176479d0855a907a41277aca2f8ee7a09523)
 
-## Full three-token status
+## Experiments at the original 4B FFN width
 
-Full three-token verification through halt passed on **Bonsai-27B** and **Bonsai 2 4B** with stock Windows Prism **b12128**. The **Bonsai 2 9B** and **Qwen3.5-4B UD-IQ2_M** results cover fixtures and the verified story prefix. Their full runs remain pending. Both earlier 9B full-run attempts stopped during CUDA startup before guest execution. [27B Windows result](../results/forward/standard-layer/windows-stories260k/README.md) · [4B full result](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism)
-
-The downloadable **27B b9596** checkpoint has separate full Linux and Windows smoke and prefix evidence. [Stock releases](STOCK-PRISM-RELEASE.md) · [27B b9596 reproduction guide](REPRODUCE-STOCK-PRISM.md)
+A standalone VMATR and VGET fixture at 2,560 lanes and 9,216 FFN rows matched 120 VMATR operations, 600 VGET results, and 2,400 ordered writes under FlashAttention on and off. It used predecoded instructions and 55,720 live F16 KV cells at synthetic occupancy. A separate partial CPU compiler census used 1,982 lanes and 4,023 rows with a synthetic microprogram ROM. The real controller, typed cache updates, and full-guest execution at 9,216 rows remain open. [Fixture and census evidence](../results/forward/standard-layer/evidence-snapshot.json)

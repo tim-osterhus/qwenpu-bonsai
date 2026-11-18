@@ -1,5 +1,7 @@
 # Validation results
 
+[Full Windows b12128 evidence](forward/standard-layer/evidence-snapshot.json) records the 27B, 9B, 4B, and Qwen3.5 full runs, including checkpoint identities, trace hashes, handoff verdicts, and resource samples. [Portability report](../docs/BONSAI-PORTABILITY.md)
+
 ## v0.1 clean Windows validation
 
 The full short suite passed on the retained stories260K GGUF using a clean patched Prism build on Windows 10 x64 and one GTX 1080 (8 GB, driver 582.66). The checkpoint's SHA-256 is `688571d20993ccd9080fb4dc5348205c99180d03c54e922bf83b13e6377a3ef1` before and after validation. The tests compared both the decoder's selected token stream and the circuit's encoded execution records with an independent interpreter. The full suite used the original guest ELFs. The source release redacts build paths in the ELF debug data and preserves all loadable bytes. [Guest hashes and provenance](../guests/README.md)

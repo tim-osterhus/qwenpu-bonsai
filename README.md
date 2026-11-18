@@ -2,21 +2,24 @@
 
 A RISC-V processor and vector unit execute through model weights in the same GGUF as a packed language model. The launcher loads the stories260K guest and relays the circuit’s selected actions through stock Prism’s multi-token prediction APIs. A pinned CPU reference verifies the resulting execution trace offline.
 
-## Latest verified results on an 8 GiB GTX 1080
+## Full stories260K on four packed hosts
 
-These runs used native Windows and unmodified Prism **b12128**.
+On an 8 GiB GTX 1080 with unmodified Windows Prism **b12128**, Bonsai-27B, Bonsai 2 9B and 4B, and Qwen3.5-4B UD-IQ2_M each printed `Once upon a` followed by a newline and halted. All **37,080 architectural records** and **726 VMAT operations** matched the pinned CPU reference. Each host's parked state, result insertion, and next decode matched the original packed model at the checked text histories.
 
-| Host checkpoint | Verified result | Evidence |
-| --- | --- | --- |
-| **Bonsai 2 4B PQ2_0** | The downloadable **4.03 GB** GGUF printed `Once upon a` and a newline, then halted. **37,080 records** and **55,375 ordered writes** matched exactly. The parked state, result handoff, and next decode matched original Bonsai 2 4B. Capture took **8 h 49 min**, peaking at **6.84 GiB device VRAM**. | [Download and Windows setup](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism) · [Full replay verdict](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism/blob/c0b9de4dd5ad7057ad677fb01f7e99e4ce350e00/evidence/4b-full-windows-portable-replay.json) |
-| **Qwen3.5-4B UD-IQ2_M** | The same circuit transferred to a separately quantized Qwen3.5-4B host. The **5.12 GB** build matched **2,578 records** and **2,760 ordered writes**, with exact parked text state. Records 1,717–2,578 took **8 min 39 s** and the prefix peaked at **7.29 GiB device VRAM**. Full three-token validation is pending. | [Prefix validation and measurements](results/forward/standard-layer/windows-qwen35-4b-iq2-story-prefix.json) |
-| **Bonsai-27B Q1_0** | The **6.047 GB** research checkpoint passed all **37,080 records** through the same three-token output and halt, with exact original-Bonsai handoff. Probe wall time was **14 h 41 min** with **7.26 GiB peak device VRAM**. | [Full Windows validation](results/forward/standard-layer/windows-stories260k/README.md) |
+| Host | GGUF (GB) | Capture (h:mm:ss) | Post-seed decodes/s | Process RAM (GiB) | Dedicated VRAM (GiB) | Device VRAM (GiB) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| [Bonsai-27B b12128](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism) | 6.047 | 14:41:39 | 128.7 | 6.64 | 6.59 | 7.26 |
+| [Bonsai 2 9B](https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism) | 4.500 | 10:10:31 | 174.0 | 4.64 | 4.94 | 6.27 |
+| [Bonsai 2 4B](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism) | 4.031 | 8:48:59 | 159.3 | 4.46 | 4.73 | 6.84 |
+| [Qwen3.5-4B UD-IQ2_M](https://huggingface.co/millrace-ai/qwenpu-qwen35-4b-iq2-m-stock-prism) | 5.121 | 8:13:40 | 170.7 | 5.72 | 5.73 | 6.72 |
 
-Bonsai 2 9B also matched the shared 2,578-record prefix and preserved its parked state. Its full three-token validation is pending. [Portability results and matched-window comparison](docs/BONSAI-PORTABILITY.md)
+Capture time includes setup and seeding. Decode speed uses the loop after seeding. Device VRAM includes other GPU activity. The 9B and Qwen3.5 runs complete the earlier prefix validation. [Full-run evidence](results/forward/standard-layer/evidence-snapshot.json) · [Portability report](docs/BONSAI-PORTABILITY.md)
 
 ## Downloads
 
 - **Bonsai 2 4B on Prism b12128.** The model card includes the GGUF, Windows launcher, smoke test, and full-story verifier. [4B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-4b-stock-prism) · [Reconstruct the 4B GGUF from source](reconstruction/bonsai-4b/README.md)
+- **Bonsai 2 9B and Qwen3.5-4B UD-IQ2_M on Prism b12128.** Both combined GGUFs have full Windows verification. Their model cards include setup and commands for the bounded capture. [9B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-9b-stock-prism) · [Qwen3.5-4B package](https://huggingface.co/millrace-ai/qwenpu-qwen35-4b-iq2-m-stock-prism)
+- **Bonsai-27B on Prism b12128.** The **6.047 GB** GGUF matches the full Windows run. [Checkpoint and checksums](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism/tree/764da1a0a9f6f5cd68670a7a28eb2410a773c491/stock-prism-b12128) · [Windows run evidence](results/forward/standard-layer/windows-stories260k/README.md)
 - **Bonsai-27B on Prism b9596.** This separate **6.920 GB** GGUF passed the full story on Linux and the vector smoke test and story prefix on Windows. [27B package](https://huggingface.co/millrace-ai/qwenpu-bonsai-27b-stock-prism) · [Windows reproduction guide](docs/REPRODUCE-STOCK-PRISM.md)
 - **Original patched v0.1.0.** The earlier **3.825 GB** 27B GGUF uses a patched Windows CUDA runtime. [Historical release](https://github.com/tim-osterhus/qwenpu-bonsai/releases/tag/v0.1.0) · [Patched build guide](docs/REPRODUCE.md)
 
