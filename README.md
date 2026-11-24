@@ -2,6 +2,8 @@
 
 A RISC-V processor and vector unit execute through model weights in the same GGUF as a packed language model. The launcher loads the stories260K guest and relays the circuit’s selected actions through stock Prism’s multi-token prediction APIs. A pinned CPU reference verifies the resulting execution trace offline.
 
+Read [Preprint v1 and the pinned reproduction artifacts](https://research.millrace.ai/bonsai-qwenpu/).
+
 ## Full stories260K on four packed hosts
 
 On an 8 GiB GTX 1080 with unmodified Windows Prism **b12128**, Bonsai-27B, Bonsai 2 9B and 4B, and Qwen3.5-4B UD-IQ2_M each printed `Once upon a` followed by a newline and halted. All **37,080 architectural records** and **726 VMAT operations** matched the pinned CPU reference. Each host's parked state, result insertion, and next decode matched the original packed model at the checked text histories.
